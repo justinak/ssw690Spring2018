@@ -1,0 +1,10 @@
+Please clone the project with the following: 
+git clone https://github.com/latinocodes/ssw690Spring2018.git
+
+then create a separate branch:
+git checkout -b branchName
+
+make sure when you push you push to your branch name not the master until everything is fully tested on your end.
+once you ready to merge then do: 
+git merge master
+git push origin master
