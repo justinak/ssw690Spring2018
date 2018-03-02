@@ -13,7 +13,6 @@ var username = ""
 class ViewController: UIViewController {
 
     @IBOutlet weak var UserName: UITextField!
-    @IBOutlet weak var UserID: UITextField!
     @IBOutlet weak var UserPassword: UITextField!
 
     override func viewDidLoad() {
@@ -28,7 +27,7 @@ class ViewController: UIViewController {
     @IBAction func LoginClick(_ sender: Any) {
         if (UserName.text != ""){
             username = UserName.text!
-            performSegue(withIdentifier: "segue", sender: self)
+            performSegue(withIdentifier: "LoginSegue", sender: self)
         }
     }
 }

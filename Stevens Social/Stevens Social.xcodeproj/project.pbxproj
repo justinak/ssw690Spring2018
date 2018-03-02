@@ -22,6 +22,7 @@
 		95FBC90220477AA100059E8A /* Stevens_SocialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90120477AA100059E8A /* Stevens_SocialTests.swift */; };
 		95FBC90D20477AA100059E8A /* Stevens_SocialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */; };
 		95FBC91F2047813A00059E8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC91E2047813A00059E8A /* MainScreenViewController.swift */; };
+		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stevens_SocialUITests.swift; sourceTree = "<group>"; };
 		95FBC90E20477AA100059E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95FBC91E2047813A00059E8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				95FBC8EE20477AA100059E8A /* ViewController.swift */,
 				95FBC91E2047813A00059E8A /* MainScreenViewController.swift */,
 				95FBC8F020477AA100059E8A /* Main.storyboard */,
+				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
 				95FBC8F820477AA100059E8A /* Info.plist */,
@@ -291,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FBC8EF20477AA100059E8A /* ViewController.swift in Sources */,
+				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
 				95FBC91F2047813A00059E8A /* MainScreenViewController.swift in Sources */,
 			);

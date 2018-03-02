@@ -1,24 +1,19 @@
-/*
- MainScreenViewController.swift
- Stevens Social
-
- Created by Michael Kim on 2/28/18.
- Copyright © 2018 Stevens. All rights reserved.
-*/
+//
+//  UserProfileViewController.swift
+//  Stevens Social
+//
+//  Created by Vincent Porta on 3/2/18.
+//  Copyright © 2018 Stevens. All rights reserved.
+//
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
-    
-    @IBOutlet weak var FullName: UITextField!
-    
+class UserProfileViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        FullName.text = username
     }
 
     override func didReceiveMemoryWarning() {
