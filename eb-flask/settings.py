@@ -7,3 +7,7 @@ MONGO_USERNAME = 'duck_hacker'
 MONGO_PASSWORD = 'ssw690'
 MONGO_AUTH_MECHANISM = 'MONGODB-CR'
 
+
+# Email Regular Expression
+EMAIL_VALIDATION = r"^[\w.+\-]+@stevens\.edu$"
+
