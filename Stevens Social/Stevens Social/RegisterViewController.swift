@@ -1,24 +1,23 @@
-/*
- MainScreenViewController.swift
- Stevens Social
-
- Created by Michael Kim on 2/28/18.
- Copyright © 2018 Stevens. All rights reserved.
-*/
+//
+//  RegisterViewController.swift
+//  Stevens Social
+//
+//  Created by Vincent Porta on 3/5/18.
+//  Copyright © 2018 Stevens. All rights reserved.
+//
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
-    
-    @IBOutlet weak var FullName: UITextField!
+class RegisterViewController: UIViewController {
+
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var confirmEmailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        FullName.text = username
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +25,10 @@ class MainScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func registerPressed(_ sender: Any) {
+//        self.performSegue(withIdentifier: "goToMainScreen", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
