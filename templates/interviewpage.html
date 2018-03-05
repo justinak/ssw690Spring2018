@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h2>{{title}}</h2>
+<h3>Question sample</h3>
+<table>
+    <tr>
+        <td>{{question}}</td>
+    </tr>
+     <tr>
+        <td><form action = "http://127.0.0.1:5000/comment" method = "POST">
+                    <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+                        Solution....
+                    </textarea>
+            <input type="submit" value="Submit"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<h3>Comments</h3>
+{% for post in newcomment %}
+        <div><p>{{ post.userid }} says: <b>{{ post.solution }}</b></p></div>
+        {% endfor %}
+{% endblock %}
