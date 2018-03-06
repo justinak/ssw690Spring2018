@@ -8,7 +8,6 @@
 
 import UIKit
 
-var username = ""
 
 class ViewController: UIViewController {
 
@@ -24,11 +23,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func LoginClick(_ sender: Any) {
-        if (UserName.text != ""){
-            username = UserName.text!
-            performSegue(withIdentifier: "LoginSegue", sender: self)
-        }
+//            performSegue(withIdentifier: "LoginSegue", sender: self)
+        
     }
+    
+    
 }
 

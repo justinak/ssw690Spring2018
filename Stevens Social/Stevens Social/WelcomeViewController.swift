@@ -1,24 +1,23 @@
-/*
- MainScreenViewController.swift
- Stevens Social
-
- Created by Michael Kim on 2/28/18.
- Copyright © 2018 Stevens. All rights reserved.
-*/
+//
+//  WelcomeViewController.swift
+//  Stevens Social
+//
+//  Created by Vincent Porta on 3/4/18.
+//  Copyright © 2018 Stevens. All rights reserved.
+//
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
-    
-    @IBOutlet weak var FullName: UITextField!
-    
+class WelcomeViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD:Stevens Social/Stevens Social/MainScreenViewController.swift
+        
+=======
+
+>>>>>>> b3b87a8bb5c0ac8bd53ea8b14513fab22b5f0e4a:Stevens Social/Stevens Social/WelcomeViewController.swift
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        FullName.text = username
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +25,10 @@ class MainScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func ProfileButton(_ sender: Any) {
+        performSegue(withIdentifier: "ProfileSegue", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

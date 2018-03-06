@@ -1,15 +1,19 @@
 //
-//  PostScreenViewController.swift
+//  RegisterViewController.swift
 //  Stevens Social
 //
-//  Created by Michael Kim on 3/2/18.
+//  Created by Vincent Porta on 3/5/18.
 //  Copyright © 2018 Stevens. All rights reserved.
 //
 
 import UIKit
 
-class PostScreenViewController: UIViewController {
+class RegisterViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var confirmEmailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +25,8 @@ class PostScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func CancelPostButton(_ sender: Any) {
-         performSegue(withIdentifier: "CancelPostButton", sender: self)
+    @IBAction func registerPressed(_ sender: Any) {
+//        self.performSegue(withIdentifier: "goToMainScreen", sender: self)
     }
     
     /*
