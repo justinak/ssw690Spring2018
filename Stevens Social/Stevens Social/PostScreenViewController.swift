@@ -21,7 +21,10 @@ class PostScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func CancelPostButton(_ sender: Any) {
+         performSegue(withIdentifier: "CancelPostButton", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

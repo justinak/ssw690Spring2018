@@ -21,7 +21,12 @@ class UserProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func ReturnHomeFromProfile(_ sender: Any) {
+        performSegue(withIdentifier: "ReturnHomeFromProfile", sender: self)
+    }
+    @IBAction func ProfilePostButt(_ sender: Any) {
+         performSegue(withIdentifier: "PostSegue", sender: self)
+    }
     /*
     // MARK: - Navigation
 

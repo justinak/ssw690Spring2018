@@ -14,6 +14,7 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -26,7 +27,10 @@ class MainScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func ProfileButton(_ sender: Any) {
+        performSegue(withIdentifier: "ProfileSegue", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
