@@ -3,7 +3,8 @@ from passlib.apps import custom_app_context as pwd_context
 class User():
     """User class to handle authentication"""
 
-    def __init__(self, full_name, username, password):
+    def __init__(self, id, full_name, username, password):
+        self._id = id
         self.full_name = full_name
         self.username = username
         self.hash_password(password)
@@ -21,7 +22,7 @@ class User():
 
     def get_id(self):
         """returns the id"""
-        return self.username
+        return chr(self._id).encode('UTF-32')
 
     def get_password(self):
         """return Hash password"""
