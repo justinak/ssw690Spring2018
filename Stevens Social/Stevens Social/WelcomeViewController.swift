@@ -12,11 +12,6 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD:Stevens Social/Stevens Social/MainScreenViewController.swift
-        
-=======
-
->>>>>>> b3b87a8bb5c0ac8bd53ea8b14513fab22b5f0e4a:Stevens Social/Stevens Social/WelcomeViewController.swift
         // Do any additional setup after loading the view.
     }
 
