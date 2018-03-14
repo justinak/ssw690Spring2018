@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,13 +76,9 @@
             <objects>
                 <viewController title="Login" id="BYZ-38-t0r" customClass="ViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stevenslogo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7rw-Mh-m5T">
-                                <rect key="frame" x="88" y="78" width="198" height="195"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmX-Sp-LDr">
                                 <rect key="frame" x="152.19303323925169" y="369" width="69.999999999999943" height="35.000000000000057"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -250,11 +246,11 @@
             <objects>
                 <viewController title="UserProfile" id="5fj-dh-tIB" customClass="UserProfileViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bGO-Y7-1Hj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRz-P0-aLc">
-                                <rect key="frame" x="1" y="480" width="375" height="231"/>
+                                <rect key="frame" x="1" y="335" width="375" height="231"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
@@ -396,7 +392,6 @@
                                 <state key="normal" title="Button" image="homeicon.png"/>
                                 <connections>
                                     <action selector="ReturnHomeFromProfile:" destination="5fj-dh-tIB" eventType="touchUpInside" id="xWv-PC-aeJ"/>
-                                    <segue destination="JPr-77-MSJ" kind="show" identifier="ReturnHomeFromProfile" id="Om5-rK-L02"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGX-1z-usz">
@@ -429,7 +424,7 @@
             <objects>
                 <viewController title="PostStatus" id="j9r-qq-U8h" customClass="PostScreenViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5n-Zd-NtV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-ZQ-qPf">
@@ -508,6 +503,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JJo-aJ-bLR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" tag="4" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Kg-vs-PcW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -529,6 +525,7 @@
         <image name="videoicon.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3fZ-DK-ASN"/>
         <segue reference="MBL-1q-wBe"/>
     </inferredMetricsTieBreakers>
 </document>
