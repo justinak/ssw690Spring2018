@@ -13,13 +13,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet var postTableView: UITableView!
     
-//    @IBOutlet var homeTab: UITabBarItem!
-//    @IBOutlet var interviewTab: UITabBarItem!
-//    @IBOutlet var videosTab: UITabBarItem!
-//    @IBOutlet var profileTab: UITabBarItem!
-    
-//    @IBOutlet var tabBar: UITabBar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

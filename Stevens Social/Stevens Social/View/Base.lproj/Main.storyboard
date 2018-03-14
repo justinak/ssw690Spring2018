@@ -97,14 +97,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O39-yj-GDJ">
                                 <rect key="frame" x="62" y="319" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stevenslogo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7rw-Mh-m5T">
                                 <rect key="frame" x="106" y="66" width="165" height="160"/>
@@ -172,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLp-ic-4ZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2784.8000000000002" y="160.56971514242881"/>
+            <point key="canvasLocation" x="3226" y="930"/>
         </scene>
         <!--Interview-->
         <scene sceneID="9sK-1p-hXh">
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0l-qL-Zqx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2785" y="860"/>
+            <point key="canvasLocation" x="2532" y="930"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Lyu-tk-xFQ">
@@ -224,12 +224,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ux-Xk-Ubo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2770" y="1575"/>
+            <point key="canvasLocation" x="1846" y="930"/>
         </scene>
         <!--Videos-->
         <scene sceneID="9Ra-hu-rd2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IPH-0F-G3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Videos" id="u71-VI-RUf" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nyp-DV-W0m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -249,8 +248,9 @@
                     <tabBarItem key="tabBarItem" title="Video" image="videoicon.png" id="CIo-TI-Uyo"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPH-0F-G3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2785" y="-558"/>
+            <point key="canvasLocation" x="3879" y="930"/>
         </scene>
         <!--Register-->
         <scene sceneID="Ama-yB-Fnz">
@@ -282,21 +282,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Confirm email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rCf-Bw-T7e">
                                 <rect key="frame" x="62" y="295" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G6f-ut-aNR">
                                 <rect key="frame" x="62" y="334" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -318,6 +318,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="7Bq-7C-LQU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uG1-Mu-M2h">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -342,6 +343,6 @@
         <image name="videoicon.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MBL-1q-wBe"/>
+        <segue reference="hQp-5w-php"/>
     </inferredMetricsTieBreakers>
 </document>

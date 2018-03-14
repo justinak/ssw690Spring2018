@@ -29,7 +29,7 @@
 		A7C5B2BA204DBE9C0065C25B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */; };
 		A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */; };
 		A7C5B2BE204DC34C0065C25B /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */; };
-		A7C5B2C1204DCDE60065C25B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2C0204DCDE60065C25B /* Post.swift */; };
+		A7E5881D2059A693005FACAE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */; };
 		FD9CA5BD96A4D22BA6C233FB /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +85,7 @@
 		A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
-		A7C5B2C0204DCDE60065C25B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F0A51C3FD15C6681D6718376 /* Pods-Stevens SocialUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens SocialUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens SocialUITests/Pods-Stevens SocialUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,7 +182,7 @@
 		A7C5B2BF204DCDA30065C25B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7C5B2C0204DCDE60065C25B /* Post.swift */,
+				A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -545,9 +545,9 @@
 				A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */,
 				95FBC8EF20477AA100059E8A /* ViewController.swift in Sources */,
 				A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */,
-				A7C5B2C1204DCDE60065C25B /* Post.swift in Sources */,
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
+				A7E5881D2059A693005FACAE /* DataModel.xcdatamodeld in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
 				A7C5B2BA204DBE9C0065C25B /* HomeViewController.swift in Sources */,
 			);
@@ -853,6 +853,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */,
+			);
+			currentVersion = A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 95FBC8E120477AA100059E8A /* Project object */;
 }
