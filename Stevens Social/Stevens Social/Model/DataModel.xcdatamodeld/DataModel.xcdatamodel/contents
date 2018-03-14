@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14124.1" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Follows" representedClassName=".Entity" syncable="YES" codeGenerationType="class">
-        <attribute name="attribute" optional="YES" syncable="YES"/>
-        <attribute name="attribute1" optional="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID2" optional="YES" attributeType="String" syncable="YES"/>
@@ -51,7 +49,7 @@
     <elements>
         <element name="Post" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="User" positionX="-54" positionY="90" width="128" height="195"/>
-        <element name="Follows" positionX="-36" positionY="126" width="128" height="120"/>
+        <element name="Follows" positionX="-36" positionY="126" width="128" height="90"/>
         <element name="Photos" positionX="-9" positionY="144" width="128" height="105"/>
         <element name="Videos" positionX="9" positionY="153" width="128" height="120"/>
     </elements>

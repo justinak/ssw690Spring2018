@@ -32,16 +32,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func logOutButton(_ sender: UIButton) {
+    
+    @IBAction func logOutPressed(_ sender: Any) {
+        //        do {
+        // Here we need to use an Auth() method to log out.
+        //            try
+        navigationController?.popToRootViewController(animated: true)
         
-//        performSegue(withIdentifier: "", sender: <#T##Any?#>)
+        //        }
+        //        catch {
+        //            print("error: there was a problem logging out")
+        //        }
     }
+    
     
     //  This method gets called for every cell in the post table view cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
-        let postArray = ["I like pie.", "I don't like pie", "I've never eaten pie"]
+        let postArray = ["I like pie."]
         
         cell.postBody.text = postArray[indexPath.row]
         
@@ -49,7 +58,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func configureTableView() {
