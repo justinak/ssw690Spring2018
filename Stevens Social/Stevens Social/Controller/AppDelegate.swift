@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Stevens Social
 //
-//  Created by Michael Kim on 2/28/18.
+//  Created by Vincent Porta, Michael Kim on 2/28/18.
 //  Copyright © 2018 Stevens. All rights reserved.
 //
 

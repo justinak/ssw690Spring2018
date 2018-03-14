@@ -8,16 +8,18 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     
     
     @IBOutlet var postTableView: UITableView!
     
-    @IBOutlet var homeTab: UITabBarItem!
-    @IBOutlet var interviewTab: UITabBarItem!
-    @IBOutlet var videosTab: UITabBarItem!
-    @IBOutlet var profileTab: UITabBarItem!
-
+//    @IBOutlet var homeTab: UITabBarItem!
+//    @IBOutlet var interviewTab: UITabBarItem!
+//    @IBOutlet var videosTab: UITabBarItem!
+//    @IBOutlet var profileTab: UITabBarItem!
+    
+//    @IBOutlet var tabBar: UITabBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +30,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         postTableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postTableCell")
         configureTableView()
+    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,9 +43,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 //        performSegue(withIdentifier: "", sender: <#T##Any?#>)
     }
-    
-    
-  
     
     //  This method gets called for every cell in the post table view cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.rowHeight = UITableViewAutomaticDimension
         postTableView.estimatedRowHeight = 120.0
     }
+
     /*
     // MARK: - Navigation
 

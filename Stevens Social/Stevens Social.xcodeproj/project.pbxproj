@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95C30F3D204A1F5D00613024 /* PostScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C30F3C204A1F5D00613024 /* PostScreenViewController.swift */; };
 		95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */; };
 		95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */; };
 		95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDF20479CA9002AFA8A /* stevenslogo.png */; };
@@ -49,7 +48,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		95C30F3C204A1F5D00613024 /* PostScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScreenViewController.swift; sourceTree = "<group>"; };
 		95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stevenslogo2.jpg; path = "Stevens Social/Assets.xcassets/iOS Photos/stevenslogo2.jpg"; sourceTree = "<group>"; };
 		95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stevens_Institute_of_Technology.png; path = "Stevens Social/Assets.xcassets/iOS Photos/Stevens_Institute_of_Technology.png"; sourceTree = "<group>"; };
 		95E80EDF20479CA9002AFA8A /* stevenslogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stevenslogo.png; path = "Stevens Social/Assets.xcassets/iOS Photos/stevenslogo.png"; sourceTree = "<group>"; };
@@ -135,15 +133,10 @@
 			isa = PBXGroup;
 			children = (
 				A7C5B2BF204DCDA30065C25B /* Model */,
-				A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */,
-				95FBC8EC20477AA100059E8A /* AppDelegate.swift */,
-				95FBC8EE20477AA100059E8A /* ViewController.swift */,
+				A7E588192059000F005FACAE /* Controller */,
 				95FBC8F020477AA100059E8A /* Main.storyboard */,
 				A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */,
 				A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */,
-				A7526C42204D0B650014B3AF /* RegisterViewController.swift */,
-				A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */,
-				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
 				95FBC8F820477AA100059E8A /* Info.plist */,
@@ -175,6 +168,19 @@
 				A7C5B2C0204DCDE60065C25B /* Post.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A7E588192059000F005FACAE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95FBC8EE20477AA100059E8A /* ViewController.swift */,
+				A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */,
+				95FBC8EC20477AA100059E8A /* AppDelegate.swift */,
+				A7526C42204D0B650014B3AF /* RegisterViewController.swift */,
+				A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */,
+				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
