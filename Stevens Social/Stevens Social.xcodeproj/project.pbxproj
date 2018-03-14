@@ -139,14 +139,10 @@
 				95FBC8EC20477AA100059E8A /* AppDelegate.swift */,
 				95FBC8EE20477AA100059E8A /* ViewController.swift */,
 				95FBC8F020477AA100059E8A /* Main.storyboard */,
-<<<<<<< HEAD
-				95C30F3C204A1F5D00613024 /* PostScreenViewController.swift */,
-=======
 				A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */,
 				A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */,
 				A7526C42204D0B650014B3AF /* RegisterViewController.swift */,
 				A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */,
->>>>>>> b3b87a8bb5c0ac8bd53ea8b14513fab22b5f0e4a
 				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
@@ -325,12 +321,8 @@
 			files = (
 				A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */,
 				95FBC8EF20477AA100059E8A /* ViewController.swift in Sources */,
-<<<<<<< HEAD
-				95C30F3D204A1F5D00613024 /* PostScreenViewController.swift in Sources */,
-=======
 				A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */,
 				A7C5B2C1204DCDE60065C25B /* Post.swift in Sources */,
->>>>>>> b3b87a8bb5c0ac8bd53ea8b14513fab22b5f0e4a
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
