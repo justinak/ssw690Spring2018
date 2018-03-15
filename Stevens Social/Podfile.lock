@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.6.0)
+  - AWSAuthCore (2.6.13):
+    - AWSCore (= 2.6.13)
+  - AWSCore (2.6.13)
+  - AWSMobileClient (2.6.13):
+    - AWSAuthCore (= 2.6.13)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AWSMobileClient (~> 2.6.13)
+  - SVProgressHUD
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AWSAuthCore: 821990b7fc2febe5ed5eb42199ea55ee22ac911d
+  AWSCore: 5da797bc476188fdaf00dec134fa18d84708eca9
+  AWSMobileClient: bf1c341c91f82eda8f757cd96dc0cbb3d1f0b768
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: a512710cd98d05de2f5de121aea934a0e5f0f463
+
+COCOAPODS: 1.4.0
