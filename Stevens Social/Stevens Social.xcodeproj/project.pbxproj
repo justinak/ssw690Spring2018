@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09B979A67FEA6E2FD3069B63 /* Pods_Stevens_SocialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC6EC99E15E3774C3057D14 /* Pods_Stevens_SocialTests.framework */; };
 		43ABDC06E886A3162A0C64E0 /* Pods_Stevens_SocialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D6EA5CC43EB6651483C475 /* Pods_Stevens_SocialUITests.framework */; };
+		9595AB76205B5E4B00CBCB13 /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
 		95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */; };
 		95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */; };
 		95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDF20479CA9002AFA8A /* stevenslogo.png */; };
@@ -31,7 +32,6 @@
 		A7C5B2BE204DC34C0065C25B /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */; };
 		A7E5881D2059A693005FACAE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */; };
 		A7E588212059DB7F005FACAE /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E588202059DB7F005FACAE /* CreatePostViewController.swift */; };
-		FD9CA5BD96A4D22BA6C233FB /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD9CA5BD96A4D22BA6C233FB /* Pods_Stevens_Social.framework in Frameworks */,
+				9595AB76205B5E4B00CBCB13 /* Pods_Stevens_Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

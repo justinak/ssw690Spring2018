@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
-class CreatePostViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet var postTextContent: UITextField!
+class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
+    
+  
+    @IBOutlet var postBody: UITextField!
+    
+    //PersistentContainer : Creates and Returns a container
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Allows us to use the delegate
-        postTextContent.delegate = self
+        postBody.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +36,21 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func confirmPost(_ sender: UIButton) {
-//        postTextContent.text = ""
-        print(postTextContent.text!)
-        
+        if postBody?.text != ""{
+            //Putting attribute value into newPost from textfield
+            let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
+            newPost.setValue(self.postBody!.text, forKey: "postBody")
+            do{
+                try context.save()
+            }catch{
+                print(error)
+            }
+        }
+        else{
+            print("Please enter text in the Post Box!")
+        }
     }
-    
-    
+
     /*
     // MARK: - Navigation
 
