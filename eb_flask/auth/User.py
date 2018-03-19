@@ -1,5 +1,6 @@
 from passlib.apps import custom_app_context as pwd_context
 
+
 class User():
     """User class to handle authentication"""
 
@@ -31,8 +32,6 @@ class User():
     def hash_password(self, password):
         self.password = pwd_context.encrypt(password)
 
-
     @staticmethod
     def verify_password(password, validate):
         return pwd_context.verify(password, validate)
-

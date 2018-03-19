@@ -2,10 +2,9 @@ from flask import Flask, request, jsonify, abort, url_for, make_response, sessio
 from flask_login import login_user, logout_user, LoginManager, login_required, current_user
 from flask_pymongo import PyMongo
 from random import randint
-from auth.User import User
-import settings
-import re
+from eb_flask.auth import User
 
+import eb_flask.settings as settings
 
 app = Flask(__name__)
 
@@ -31,11 +30,13 @@ login_manager.init_app(app)
 def index():
     return 'please go to /videos to see all videos'
 
+
 @app.route('/api/post/video', methods=['POST'])
 def post_video():
     '''Method use to post video to S3 and store data in database'''
 
     return jsonify({'result': None})
+
 
 @app.route('/videos', methods=['GET', 'POST'])
 def get_all_videos():
@@ -51,14 +52,14 @@ def get_all_videos():
 
 @app.route('/videos/<name>', methods=['GET', 'POST'])
 def get_one_video(name):
-  data = mongo.db.Videos
-  res = data.find_one({'name': name})
+    data = mongo.db.Videos
+    res = data.find_one({'name': name})
 
-  if res:
-    output = {'name': res['name']}
-  else:
-    output = "No such name"
-  return jsonify({'result': output})
+    if res:
+        output = {'name': res['name']}
+    else:
+        output = "No such name"
+    return jsonify({'result': output})
 
 
 @app.route('/api/login', methods=['POST'])
@@ -94,7 +95,7 @@ def login():
     return get_all_videos()
 
 
-@app.route('/api/new/users', methods = ['POST'])
+@app.route('/api/new/users', methods=['POST'])
 def new_user():
     """Creates new user by providing json content of Full name, Username and Password"""
     full_name = request.json.get('full_name')
@@ -117,9 +118,11 @@ def new_user():
     # Instantiate user
     user = User(id, full_name, username, password)
     # Inserting user to database
-    userDB.insert({'_id': id,'full_name': user.full_name, 'username': user.username, 'password': user.get_password(), 'is_authenticated': user.is_authenticated(), 'is_active': user.is_active(), 'is_anonymous': user.is_anonymous()})
+    userDB.insert({'_id': id, 'full_name': user.full_name, 'username': user.username, 'password': user.get_password(),
+                   'is_authenticated': user.is_authenticated(), 'is_active': user.is_active(),
+                   'is_anonymous': user.is_anonymous()})
 
-    return jsonify({'result': 'user created' }, 201, {'Location': url_for('new_user', id = user._id, _external = True)})
+    return jsonify({'result': 'user created'}, 201, {'Location': url_for('new_user', id=user._id, _external=True)})
 
 
 @login_manager.user_loader
@@ -128,9 +131,9 @@ def load_user(id):
     user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
     return user.get_id()
 
+
 @login_manager.request_loader
 def load_user_from_request(request):
-
     # first, try to login using the api_key url arg
     api_key = request.args.get('api_key')
     if api_key:
@@ -161,12 +164,10 @@ def logout():
     logout_user()
     return jsonify({'result': 'log out Successfully {}'.format(login_user())})
 
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
-
-
-
 
 
 if __name__ == '__main__':
