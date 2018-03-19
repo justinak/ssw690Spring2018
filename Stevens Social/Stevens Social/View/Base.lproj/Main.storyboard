@@ -168,7 +168,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postcell" id="g0N-YH-Up4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postcell" id="g0N-YH-Up4">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g0N-YH-Up4" id="ut1-8f-9VE">
@@ -256,6 +256,10 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTl-SM-7c1">
                                 <rect key="frame" x="0.0" y="87" width="375" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.28080993739999999" blue="0.22348071759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7jF-Fl-Sb7"/>
+                                    <constraint firstAttribute="width" constant="375" id="LZz-jO-3VY"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="add" id="s1e-Af-KRw">
                                         <color key="tintColor" red="1" green="0.10719844420000001" blue="0.056176716029999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -275,10 +279,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JTl-SM-7c1" firstAttribute="top" secondItem="Fsa-ji-lRX" secondAttribute="top" constant="87" id="5Gp-WH-Kz2"/>
-                            <constraint firstItem="JTl-SM-7c1" firstAttribute="leading" secondItem="M5s-WU-0Te" secondAttribute="leading" id="aIc-Br-g41"/>
-                            <constraint firstAttribute="bottom" secondItem="JTl-SM-7c1" secondAttribute="bottom" constant="681" id="s3Q-B7-jQG"/>
-                            <constraint firstItem="JTl-SM-7c1" firstAttribute="trailing" secondItem="M5s-WU-0Te" secondAttribute="trailing" id="zMC-de-2ps"/>
+                            <constraint firstItem="JTl-SM-7c1" firstAttribute="top" secondItem="Fsa-ji-lRX" secondAttribute="top" constant="87" id="6ol-aw-7WO"/>
+                            <constraint firstItem="JTl-SM-7c1" firstAttribute="trailing" secondItem="M5s-WU-0Te" secondAttribute="trailing" id="a66-dk-Ozr"/>
+                            <constraint firstAttribute="bottom" secondItem="JTl-SM-7c1" secondAttribute="bottom" constant="681" id="iY5-rM-Gel"/>
+                            <constraint firstItem="JTl-SM-7c1" firstAttribute="leading" secondItem="M5s-WU-0Te" secondAttribute="leading" id="unX-kw-lwz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M5s-WU-0Te"/>
                     </view>
@@ -473,7 +477,6 @@
         <image name="videoicon.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PCV-BH-qsF"/>
         <segue reference="V9z-9T-7fd"/>
     </inferredMetricsTieBreakers>
 </document>

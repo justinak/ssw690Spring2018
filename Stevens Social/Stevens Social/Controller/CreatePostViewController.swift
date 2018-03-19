@@ -43,7 +43,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
             do{
                 try context.save()
                 performSegue(withIdentifier: "postSuccess", sender: self)
-
             }catch{
                 print(error)
             }
