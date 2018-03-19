@@ -42,6 +42,8 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
             newPost.setValue(self.postBody!.text, forKey: "postBody")
             do{
                 try context.save()
+                performSegue(withIdentifier: "postSuccess", sender: self)
+
             }catch{
                 print(error)
             }
