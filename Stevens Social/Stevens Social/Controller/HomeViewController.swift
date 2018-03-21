@@ -35,12 +35,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
        // configureTableView()
 
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postArray.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postcell", for: indexPath)
         //first post data will be stored into post
@@ -54,6 +57,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func fetchData(){
         do{
             //fetch data from Post and put data in postArray
