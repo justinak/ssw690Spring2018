@@ -7,36 +7,41 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var confirmEmailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func registerPressed(_ sender: Any) {
-//        self.performSegue(withIdentifier: "goToMainScreen", sender: self)
-    }
-    
-    /*
-    // MARK: - Navigation
+    @IBAction func registerPressed(_ sender: AnyObject) {
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error != nil {
+                print(error!)
+                // This should send an error alert
+                let alert = UIAlertController(title: "Incorrect email or password", message: "Please enter a valid stevens.edu", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                print("registration success")
+                self.performSegue(withIdentifier: "goToHome", sender: self)
+                
+            }
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    
 
 }
