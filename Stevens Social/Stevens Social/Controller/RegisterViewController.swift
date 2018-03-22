@@ -24,6 +24,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerPressed(_ sender: AnyObject) {
+        
         if self.isValidEmail(email: emailTextField.text!) {
             print("valid email")
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -37,9 +38,23 @@ class RegisterViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     print("registration success")
-                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                    user?.sendEmailVerification(completion: { (error) in
+                        if error != nil {
+                            print(error!)
+                        } else {
+                            print("email verification link being sent")
+                            let alert = UIAlertController(title: "Email Confirmation", message: "An email has been sent to \(String(describing: user?.email))", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                                NSLog("The \"OK\" alert occured.")
+                            }))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    })
                 }
             }
+            
+            
+
         } else {
             print("invalid email")
         }
