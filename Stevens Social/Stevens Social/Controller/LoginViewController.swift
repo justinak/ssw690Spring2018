@@ -29,14 +29,22 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: UserName.text!, password: UserPassword.text!) { (user, error) in
             if error != nil {
                 print(error!)
-                let alert = UIAlertController(title: "Incorrect email or password", message: "Please enter a valid stevens.edu", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Incorrect email or password", message: "Please enter a valid stevens.edu email", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
                     NSLog("The \"OK\" alert occured.")
                 }))
                 self.present(alert, animated: true, completion: nil)
+            } else if (user?.isEmailVerified)! {
+                print("Email is verified")
+                self.performSegue(withIdentifier: "goToHome", sender: self)
             } else {
                 print("login successful")
-                self.performSegue(withIdentifier: "goToHome", sender: self)
+                let alert = UIAlertController(title: "Email not verified", message: "Please verify your \(user?.email ?? self.UserName.text!) email address", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+
             }
         }
     }
