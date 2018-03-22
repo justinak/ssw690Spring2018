@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
                             print(error!)
                         } else {
                             print("email verification link being sent")
-                            let alert = UIAlertController(title: "Email Confirmation", message: "An email has been sent to \(String(describing: user?.email))", preferredStyle: .alert)
+                            let alert = UIAlertController(title: "Email Confirmation", message: "An email has been sent to \(user?.email ?? self.emailTextField.text)", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
                                 NSLog("The \"OK\" alert occured.")
                             }))
@@ -52,9 +52,6 @@ class RegisterViewController: UIViewController {
                     })
                 }
             }
-            
-            
-
         } else {
             print("invalid email")
         }
