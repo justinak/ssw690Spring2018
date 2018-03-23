@@ -1,27 +1,91 @@
 PODS:
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.0)
   - AWSAuthCore (2.6.13):
     - AWSCore (= 2.6.13)
   - AWSCore (2.6.13)
   - AWSMobileClient (2.6.13):
     - AWSAuthCore (= 2.6.13)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - Firebase (4.11.0):
+    - Firebase/Core (= 4.11.0)
+  - Firebase/Auth (4.11.0):
+    - Firebase/Core
+    - FirebaseAuth (= 4.5.0)
+  - Firebase/Core (4.11.0):
+    - FirebaseAnalytics (= 4.1.0)
+    - FirebaseCore (= 4.0.18)
+  - Firebase/Database (4.11.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.5)
+  - FirebaseAnalytics (4.1.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - nanopb (~> 0.3)
+  - FirebaseAuth (4.5.0):
+    - FirebaseAnalytics (~> 4.1)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (4.0.18):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseDatabase (4.1.5):
+    - FirebaseAnalytics (~> 4.1)
+    - FirebaseCore (~> 4.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - GoogleToolboxForMac/DebugUtils (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.3):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.3)
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+  - GTMSessionFetcher/Core (1.1.14)
+  - leveldb-library (1.20)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - AWSMobileClient (~> 2.6.13)
+  - ChameleonFramework
+  - Firebase
+  - Firebase/Auth
+  - Firebase/Core
+  - Firebase/Database
   - SVProgressHUD
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AWSAuthCore: 821990b7fc2febe5ed5eb42199ea55ee22ac911d
   AWSCore: 5da797bc476188fdaf00dec134fa18d84708eca9
   AWSMobileClient: bf1c341c91f82eda8f757cd96dc0cbb3d1f0b768
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
+  FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
+  FirebaseAuth: 147bf340a0706b44ca1753d6b41ebafd9687cfe6
+  FirebaseCore: b981f47e5254cbcfdeb483355300d743f6fcab2c
+  FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a512710cd98d05de2f5de121aea934a0e5f0f463
+PODFILE CHECKSUM: 062460e67a7bb6d99b838437b79b2c68197c7607
 
 COCOAPODS: 1.4.0
