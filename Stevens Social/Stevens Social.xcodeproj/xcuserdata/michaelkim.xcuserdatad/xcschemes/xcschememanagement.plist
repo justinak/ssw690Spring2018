@@ -7,7 +7,25 @@
 		<key>Stevens Social.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>95FBC8E820477AA100059E8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95FBC8FC20477AA100059E8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95FBC90720477AA100059E8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

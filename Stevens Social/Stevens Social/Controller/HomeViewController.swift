@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //Has attribute of postBody
     var postArray:[Post] = []
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -60,9 +61,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func fetchData(){
+        //fetch data from Post and put data in postArray
         do{
-            //fetch data from Post and put data in postArray
-            postArray = try context.fetch(Post.fetchRequest())
+        postArray = try context.fetch(Post.fetchRequest())
         }catch{
             print(error)
         }
