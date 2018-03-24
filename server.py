@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, LoginManager, login_required, c
 from flask_pymongo import PyMongo
 from random import randint
 from eb_flask.auth import User
-
+import re
 import eb_flask.settings as settings
 
 app = Flask(__name__)
@@ -47,6 +47,34 @@ def get_all_videos():
     for d in data:
         output.append(d)
 
+    return jsonify({'result': output})
+
+
+@app.route('/feeds', methods=['GET'])
+def get_all_feeds():
+    """Method returns all the feeds on the database"""
+    output = []
+    data = mongo.db.Feeds.find()
+
+    for d in data:
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/new/feed', methods=['POST'])
+def post_feed():
+    feed = mongo.db.Feeds
+    actor = request.json['actor']
+    verb = request.json['verb']
+    object = request.json['object']
+    target = request.json['target']
+    foreign_id = request.json['foreign id']
+    time = request.json['time']
+    message = request.json['message']
+    feed_id = feed.insert({'actor': actor, 'verb': verb, 'object':object, 'target': target, 'foreign id': foreign_id, 'time': time, 'message': message})
+    new_feed = feed.find_one({'_id': feed_id})
+    output = {'actor': new_feed['actor'], 'verb': new_feed['verb'], 'object' :new_feed['object'],'target': new_feed['target'], 'foreign id': foreign_id, 'time': time, 'message':message}
     return jsonify({'result': output})
 
 
