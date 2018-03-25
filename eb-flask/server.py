@@ -1,11 +1,13 @@
-from flask import Flask, request, jsonify, abort, url_for, make_response, session
-from flask_login import login_user, logout_user, LoginManager, login_required, current_user
+from flask import Flask, request, jsonify, make_response, render_template, json
 from flask_pymongo import PyMongo
+from flask_httpauth import HTTPBasicAuth
+from googleapiclient.discovery import build
+import boto3
+import pprint
+from botocore.client import Config
 from random import randint
-from auth.User import User
+import argparse
 import settings
-import re
-
 
 app = Flask(__name__)
 
@@ -20,22 +22,112 @@ app.config['MONGO_PORT'] = settings.MONGO_PORT
 app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
 app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
 app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
-mongo = PyMongo(app)
 
-# Login Manager
-login_manager = LoginManager()
-login_manager.init_app(app)
+# extensions
+mongo = PyMongo(app)
+auth = HTTPBasicAuth()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return 'please go to /videos to see all videos'
+    return 'please go to /videos/youtube to see stevens videos from youtube or /videos for all videos'
 
-@app.route('/api/post/video', methods=['POST'])
+# Video Routes
+
+@app.route('/videos/youtube')
+def youtubeApi():
+    data = youtube_search()
+    return data
+
+
+def youtube_search():
+    youtube = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION,
+        developerKey=settings.DEVELOPER_KEY)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--q', help='Search term', default='Stevens Institute of Tech')
+    parser.add_argument('--type', help='video', default='video')
+    parser.add_argument('--max-results', help='Max results', default=25)
+    args = parser.parse_args()
+
+
+    search_response = youtube.search().list(
+        q=args.q,
+        part='id,snippet',
+        maxResults=args.max_results
+    ).execute()
+
+    v = dict()
+    t = []
+
+    for search_result in search_response.get('items', []):
+        if search_result['id']['kind'] == 'youtube#video':
+            id = search_result['snippet']
+            title = search_result['snippet']['title']
+            src = search_result['snippet']['thumbnails']['high']
+            publish_date = search_result['snippet']['publishedAt']
+            v['_id'] = id
+            v['title'] = title
+            v['src'] = src
+            v['publish_date'] = publish_date
+            t.append(v)
+
+    return t
+
+@app.route('/api/post/video', methods=['POST', 'GET'])
 def post_video():
     '''Method use to post video to S3 and store data in database'''
 
-    return jsonify({'result': None})
+    if request.method == 'POST':
+        file = request.files['file']
+
+        video_format_list = ('.mp4')
+
+        if file is not None and file.filename.endswith(video_format_list):
+            post_video_to_mongo(file)
+            upload_video_to_S3(file, file.filename)
+        else:
+            result = {
+                'message': 'check file and try again, ',
+                'uploaded': 'false'
+            }
+
+        data = youtubeApi()
+
+        return render_template('hola.html', videos=data)
+
+    return render_template('video.html')
+
+def post_video_to_mongo(file):
+    '''Uploads video data to database'''
+    try:
+        id = randint(10000, 99999)
+        videoDB = mongo.db.Videos
+        video_name = file.filename.split('.')
+        videoDB.insert(
+            { '_id': id,
+              'title': video_name[0],
+              'src': settings.AWS_BASE_URL+video_name
+              })
+
+    except Exception as e:
+        return e
+
+def upload_video_to_S3(file, file_name):
+    '''Uploads video to s3 '''
+    try:
+        # S3 Connect
+        s3 = boto3.resource( 's3',
+            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            config=Config(signature_version='s3v4'),
+        )
+
+        s3.Bucket(settings.BUCKET_NAME).put_object(Key=file_name, Body=file)
+    except Exception as e:
+        print("Something wrong happened", e)
+        return e
+
 
 @app.route('/videos', methods=['GET', 'POST'])
 def get_all_videos():
@@ -43,8 +135,15 @@ def get_all_videos():
     output = []
     data = mongo.db.Videos.find()
 
+    pprint.pprint(data)
+
     for d in data:
         output.append(d)
+
+    other_videos = youtubeApi()
+
+    for v in other_videos:
+        output.append(v)
 
     return jsonify({'result': output})
 
@@ -61,111 +160,9 @@ def get_one_video(name):
   return jsonify({'result': output})
 
 
-@app.route('/api/login', methods=['POST'])
-def login():
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-
-    if username in session:
-        return get_all_videos()
-
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'invalid username and/or password'})
-
-    # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if not userDB.find_one({'username': username}):
-        return jsonify({'result': 'invalid username'})
-
-    user_to_validate = userDB.find_one({'username': username})
-
-    if not User.verify_password(password, user_to_validate['password']):
-        return jsonify({'result': 'invalid password'})
-
-    # Instantiate user
-    user = User(user_to_validate['_id'], user_to_validate['full_name'], username, password)
-
-    login_user(user)
-
-    return get_all_videos()
-
-
-@app.route('/api/new/users', methods = ['POST'])
-def new_user():
-    """Creates new user by providing json content of Full name, Username and Password"""
-    full_name = request.json.get('full_name')
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-    id = randint(10000, 99999)
-
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'Field cannot be empty'})
-
-    # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if userDB.find_one({'username': username}) is not None:
-        return jsonify({'result': 'username exist already, please select another.'})
-
-    # Instantiate user
-    user = User(id, full_name, username, password)
-    # Inserting user to database
-    userDB.insert({'_id': id,'full_name': user.full_name, 'username': user.username, 'password': user.get_password(), 'is_authenticated': user.is_authenticated(), 'is_active': user.is_active(), 'is_anonymous': user.is_anonymous()})
-
-    return jsonify({'result': 'user created' }, 201, {'Location': url_for('new_user', id = user._id, _external = True)})
-
-
-@login_manager.user_loader
-def load_user(id):
-    temp = mongo.db.Users.find_one({'_id': id})
-    user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-    return user.get_id()
-
-@login_manager.request_loader
-def load_user_from_request(request):
-
-    # first, try to login using the api_key url arg
-    api_key = request.args.get('api_key')
-    if api_key:
-        temp = mongo.db.Users.find_one({'_id': id})
-        user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-        if user:
-            return user
-
-    # next, try to login using Basic Auth
-    api_key = request.headers.get('auth')
-    if api_key:
-        api_key = api_key.replace('Basic ', '', 1)
-        try:
-            api_key = base64.b64decode(api_key)
-        except TypeError:
-            pass
-        user = User.query.filter_by(api_key=api_key).first()
-        if user:
-            return user
-
-    # finally, return None if both methods did not login the user
-    return None
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return jsonify({'result': 'log out Successfully {}'.format(login_user())})
-
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
-
-
 
 
 
