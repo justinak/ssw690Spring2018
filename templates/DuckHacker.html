@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+    cthden@stevens.edu
+  </div>
+  <div class = "toolbar col-md-7">
+    <ul class = "nav navbar-nav">
+      <li>
+        <a>Home</a>
+      </li>
+      <li>
+        <a>Pages</a>
+      </li>
+      <li>
+        <a>My Account</a>
+      </li>
+      <li>
+        <a>Contact</a>
+      </li>
+      <li>
+          <input type = "text" class="form-control">
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="My Questions" name="menu" class="btn btn-block">My Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+<div class = "content">
+  <h1>Interview Questions</h1>
+  <h2>Most Recent</h2>
+  <p>{{question}}</p>
+  <div class = "addanswers">
+    <h3>add your answer</h3>
+    <form action = "/comment" method = "POST" enctype="multipart/form-data">
+        <textarea name="comments" id="comments" class = "answer"></textarea>
+        <input type="file" value="Upload File" name="input_files"/>
+    <div class = "submit">
+       <input type="submit" value="Submit"/>
+    </div>
+    </form>
+      <h3>Other Answers</h3>
+      <table>
+          {% for post in newcomment %}
+        <tr>
+          <div><p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p><p>Votes: {{post.votes}}</p>
+            <input  name="voteup" type="submit" id="up{{post._id}}" value="Vote Up" onclick="voteup('{{post._id}}')" />
+            <input name="votedown" type="submit" id="down{{post._id}}" value="Vote Down"
+                   onclick="votedown('{{post._id}}')"/>
+          </div>
+
+          {% endfor %}
+        </tr>
+      </table>
+
+</div>
+
+
+</div>
+{% endblock %}

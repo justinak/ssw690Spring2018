@@ -3,6 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <!-- Bootstrap -->
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+              function voteup(post_id){
+                alert(post_id);
+                $.ajax({
+                    url: '/voteup/'+post_id,
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                     },
+                     error: function(error) {
+                        console.log(error);
+                     }
+                });
+              }
+              function votedown(post_id){
+                alert(post_id);
+                $.ajax({
+                    url: '/votedown/'+post_id,
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                     },
+                     error: function(error) {
+                        console.log(error);
+                     }
+                });
+              }
+        </script>
+<style>
+div.container {
+    width: 100%;
+}
+
+.header {
+    padding: 0;
+    color: white;
+    background-color: rgb(69,69,69);
+    clear: both;
+    font-size: 16px;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.header ul li {
+    display: inline;
+    margin-left: 20px;
+}
+a {
+    text-decoration: none;
+    color:white;
+}
+.toolbar ul{
+    list-style-type: none;
+}
+.content {
+    margin-right: 170px;
+    padding: 1em;
+    overflow: hidden;
+    margin-right: 170px;
+    font-size: 14px;
+}
+
+.menu {
+    float: right;
+    max-width: 220px;
+    border-left: 1px solid gray;
+    padding: 1em;
+}
+
+.menu ul {
+    list-style-type: none;
+}
+.menu button {
+    color:white;
+    background-color: rgb(133,165,55);
+}
+
+.menu li div {
+    height: 50px;
+}
+
+.answer {
+    width:500px;
+    height: 180px;
+}
+
+.submit{
+    margin-top: 20px;
+}
+
+.submit button {
+    background-color:rgb(133,165,55);
+    color:white;
+}
+</style>
 </head>
 <body>
     {% block body %}

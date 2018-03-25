@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+    cthden@stevens.edu
+  </div>
+  <div class = "toolbar col-md-7">
+    <ul class = "nav navbar-nav">
+      <li>
+        <a>Home</a>
+      </li>
+      <li>
+        <a>Pages</a>
+      </li>
+      <li>
+        <a>My Account</a>
+      </li>
+      <li>
+        <a>Contact</a>
+      </li>
+      <li>
+          <input type = "text" class="form-control">
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+  <ul>
+    <li>
+      <div>
+      <button class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button class="btn btn-block">New Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button class="btn btn-block">My Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class = "content">
+  <h1>Experience</h1>
+  <div class = "addanswers">
+    <h3>Add Experience</h3>
+    <form action = "/Experience" method = "POST" enctype="multipart/form-data">
+        <textarea name="comments" id="comments" class = "answer">
+
+                    </textarea>
+        <input type="file" value="Upload File" name="input_files"/>
+    <div class = "submit">
+       <input type="submit" value="Submit"/>
+    </div>
+    </form>
+      <h3>Experiences</h3>
+      <form action ="/user_experience" method="post">
+          {% for post in experiences %}
+          <div class="answer"><p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p><p>Votes: {{post.votes}}</p>
+            <button name="voteup" type="submit">Vote Up</button>
+            <button name="votedown" type="submit">Vote Down</button>
+          </div>
+          {% endfor %}
+
+      </form>
+
+  </div>
+
+
+</div>
+{% endblock %}
