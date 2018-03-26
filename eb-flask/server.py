@@ -34,12 +34,12 @@ def index():
 
 # Video Routes
 
-@app.route('/videos/youtube')
+
 def youtubeApi():
     data = youtube_search()
     return data
 
-
+@app.route('/videos/youtube')
 def youtube_search():
     youtube = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION,
         developerKey=settings.DEVELOPER_KEY)
@@ -57,6 +57,7 @@ def youtube_search():
         maxResults=args.max_results
     ).execute()
 
+    pprint.pprint(search_response)
     v = dict()
     t = []
 
@@ -72,7 +73,7 @@ def youtube_search():
             v['publish_date'] = publish_date
             t.append(v)
 
-    return t
+    return jsonify({'result': t})
 
 @app.route('/api/post/video', methods=['POST', 'GET'])
 def post_video():
@@ -92,9 +93,12 @@ def post_video():
                 'uploaded': 'false'
             }
 
-        data = youtubeApi()
+        data = mongo.db.Videos.find({})
+        m = []
+        for d in data:
+            m.append(d)
 
-        return render_template('hola.html', videos=data)
+        return render_template('hola.html', videos=m)
 
     return render_template('video.html')
 
@@ -107,7 +111,7 @@ def post_video_to_mongo(file):
         videoDB.insert(
             { '_id': id,
               'title': video_name[0],
-              'src': settings.AWS_BASE_URL+video_name
+              'src': settings.AWS_BASE_URL+file.filename
               })
 
     except Exception as e:
@@ -139,11 +143,6 @@ def get_all_videos():
 
     for d in data:
         output.append(d)
-
-    other_videos = youtubeApi()
-
-    for v in other_videos:
-        output.append(v)
 
     return jsonify({'result': output})
 
