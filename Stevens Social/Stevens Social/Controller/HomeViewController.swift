@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
     @IBOutlet var postTableView: UITableView!
@@ -51,10 +52,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //first post data will be stored into post
         let post = postArray[indexPath.row]
         cell.textLabel!.text = post.postBody!
-        
+        //get from post
+        //cell.postName!.text = post.email
         return cell
     }
 
+    //create function getpostfromapi. grab json
+    func getpostfromapi(){
+        //not working need to test and research.....
+        //create the url with URL
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:5000/api/getPost")!)
+        request.httpMethod = "POST"
+        let session = URLSession.shared
+        
+        session.dataTask(with: request) {data, response, err in
+            print("Entered the completionHandler")
+            }.resume()
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
