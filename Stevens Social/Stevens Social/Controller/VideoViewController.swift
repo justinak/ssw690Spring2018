@@ -1,19 +1,25 @@
 //
-//  UserProfileViewController.swift
+//  VideoViewController.swift
 //  Stevens Social
 //
-//  Created by Vincent Porta on 3/2/18.
+//  Created by Michael Kim on 3/26/18.
 //  Copyright © 2018 Stevens. All rights reserved.
 //
 
 import UIKit
 
-class UserProfileViewController: UIViewController {
+class VideoViewController: UIViewController {
 
+    @IBOutlet var videoView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
+        
+        //Allow Video View to play video back
+        videoView.allowsInlineMediaPlayback = true
+        
+        videoView.loadHTMLString("<iframe width=\"\(videoView.frame.width)\" height=\"\(videoView.frame.height)\" src=\"https://www.youtube.com/embed/g36FwefoGRk?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +27,7 @@ class UserProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
     /*
     // MARK: - Navigation
 
