@@ -90,67 +90,18 @@ def get_one_video(name):
     return jsonify({'result': output})
 
 
-@app.route('/api/login', methods=['POST'])
-def login():
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-
-    if username in session:
-        return get_all_videos()
-
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'invalid username and/or password'})
-
-    # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if not userDB.find_one({'username': username}):
-        return jsonify({'result': 'invalid username'})
-
-    user_to_validate = userDB.find_one({'username': username})
-
-    if not User.verify_password(password, user_to_validate['password']):
-        return jsonify({'result': 'invalid password'})
-
-    # Instantiate user
-    user = User(user_to_validate['_id'], user_to_validate['full_name'], username, password)
-
-    login_user(user)
-
-    return get_all_videos()
-
-
 @app.route('/api/new/users', methods=['POST'])
 def new_user():
     """Creates new user by providing json content of Full name, Username and Password"""
-    full_name = request.json.get('full_name')
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-    id = randint(10000, 99999)
-
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'Field cannot be empty'})
-
+    uid = request.json.get('uuid')
+    email = request.json.get('email')
     # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if userDB.find_one({'username': username}) is not None:
-        return jsonify({'result': 'username exist already, please select another.'})
-
-    # Instantiate user
-    user = User(id, full_name, username, password)
+    user_db = mongo.db.Users
+    print(uid,email)
     # Inserting user to database
-    userDB.insert({'_id': id, 'full_name': user.full_name, 'username': user.username, 'password': user.get_password(),
-                   'is_authenticated': user.is_authenticated(), 'is_active': user.is_active(),
-                   'is_anonymous': user.is_anonymous()})
+    user_db.insert({'uuid': uid, 'email': email})
 
-    return jsonify({'result': 'user created'}, 201, {'Location': url_for('new_user', id=user._id, _external=True)})
+    return jsonify({'result': 'user created'})
 
 @app.route('/api/NewPost', methods=['POST'])
 def new_feed_post():
