@@ -64,12 +64,10 @@
   <p>{{question}}</p>
   <div class = "addanswers">
     <h3>add your answer</h3>
-    <form action = "/comment" method = "POST" enctype="multipart/form-data">
-        <textarea name="comments" id="comments" class = "answer"></textarea>
-        <input type="file" value="Upload File" name="input_files"/>
-    <div class = "submit">
+    <form action = "{{url_for('handle_data')}}" method = "POST" enctype="multipart/form-data">
+        <textarea name="Solution" id="Solution" class = "answer"></textarea>
+        <input type="file" value="Upload File" name="file"/>
        <input type="submit" value="Submit"/>
-    </div>
     </form>
       <h3>Other Answers</h3>
       <table>
@@ -80,9 +78,8 @@
             <input name="votedown" type="submit" id="down{{post._id}}" value="Vote Down"
                    onclick="votedown('{{post._id}}')"/>
           </div>
-
-          {% endfor %}
         </tr>
+          {% endfor %}
       </table>
 
 </div>

@@ -1,5 +1,6 @@
-
+"""Handle calls to and from mongodb"""
 from pymongo import MongoClient
+import json
 from random import randint
 # client = stream.connect('6mrsygzpr525', 's64tas6unkczm5a6dj5qr4w8dgrpgqe2gdy8f8t9cp68ctbezp2fc7exepmkh5ka')
 client = MongoClient('mongodb://duck_hacker:ssw690@34.228.66.29/ssw690spring2018')
@@ -7,6 +8,7 @@ db = client.ssw690spring2018
 
 
 def get_question():
+    """retrieve all the questions contained in Interview collection"""
 
     try:
         questions = db.Interview.find()
@@ -17,6 +19,7 @@ def get_question():
 
 
 def get_experience():
+    """retrieve all the experiences contained in Experience collection"""
 
     try:
         experience = db.Experience.find()
@@ -26,14 +29,20 @@ def get_experience():
 
 
 def get_solution():
+    """retrieve all the solutions conatined in solutions collection"""
     try:
         solution = db.solution.find()
     except:
         print('Error retrieving file')
+
+    # solutions = [{'_id':id, 'userid': userid, 'files':files, 'votes':votes, 'solution':solution}
+    #              for id, userid, files, votes, solution in solution]
     return solution
 
 
-def insert_solution(solution, id, files=''):
+def insert_solution(solution, id, files=None):
+    """insert solutions into the solution collection"""
+
     id = randint(0, 9999)
     try:
         db.solution.insert_one(
@@ -49,17 +58,19 @@ def insert_solution(solution, id, files=''):
         print('Error submitting solution: {}'.format(e))
 
 
-def insert_experience(solution, files=''):
+def insert_experience(experience, files=''):
+    """insert user experience into Experience collection"""
+
     id=randint(0, 9999)
     try:
         db.Experience.insert_one(
         {
             '_id': id,
             "userid": 'hannah',
-            "exp_id": id,
+            #"exp_id": id,
             "files": files,
             "votes": 0,
-            "solution": solution
+            "Experience": experience
         }
         )
     except Exception as e:
@@ -67,6 +78,8 @@ def insert_experience(solution, files=''):
 
 
 def increase_count(post_id):
+    """increase count of votes by 1"""
+
     votes=None
     table = db.solution
 
@@ -90,6 +103,7 @@ def increase_count(post_id):
 
 
 def decrease_count(post_id):
+    """decrease count of votes by 1"""
     votes = None
     table = db.solution
 
@@ -112,6 +126,7 @@ def decrease_count(post_id):
 
 
 def download_file(filename):
+    """download file uploaded to mongodb"""
     try:
         post = db.solution.find({"file":filename})
     except Exception as e:

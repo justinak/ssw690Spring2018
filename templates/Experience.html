@@ -59,29 +59,25 @@
 <div class = "content">
   <h1>Experience</h1>
   <div class = "addanswers">
-    <h3>Add Experience</h3>
-    <form action = "/Experience" method = "POST" enctype="multipart/form-data">
-        <textarea name="comments" id="comments" class = "answer">
-
-                    </textarea>
-        <input type="file" value="Upload File" name="input_files"/>
-    <div class = "submit">
-       <input type="submit" value="Submit"/>
-    </div>
-    </form>
       <h3>Experiences</h3>
-      <form action ="/user_experience" method="post">
-          {% for post in experiences %}
-          <div class="answer"><p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p><p>Votes: {{post.votes}}</p>
-            <button name="voteup" type="submit">Vote Up</button>
-            <button name="votedown" type="submit">Vote Down</button>
-          </div>
-          {% endfor %}
-
-      </form>
-
+        <table>
+           {% for post in experiences %}
+              <tr>
+                <p><b>{{ post.actor }}</b>: {{ post.tweet }}</p>
+                  <p>{{post.votes}}</p>
+                <input  name="voteup" type="submit" id="up{{post.id}}" value="Vote Up" onclick="voteup('{{post.id}}')" />
+                <input name="votedown" type="submit" id="down{{post.id}}" value="Vote Down"
+                   onclick="votedown('{{post.id}}')"/>
+                <hr/>
+              </tr>
+           {% endfor %}
+        </table>
+      <h3>Add Experience</h3>
+        <form action = "/experience/submit" method = "POST" enctype="multipart/form-data">
+        <input type="text" name="Experience" id="Experience" class = "answer"/>
+        <input type="file" value="Upload File" name="file"/>
+        <input type="submit" value="Submit"/>
+    </form>
   </div>
-
-
 </div>
 {% endblock %}
