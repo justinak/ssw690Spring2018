@@ -1,9 +1,5 @@
 from flask import Flask, request, jsonify, abort, url_for, make_response, session
-from flask_login import login_user, logout_user, LoginManager, login_required, current_user
 from flask_pymongo import PyMongo
-from random import randint
-from eb_flask.auth import User
-import re
 import eb_flask.settings as settings
 
 app = Flask(__name__)
@@ -12,18 +8,15 @@ app = Flask(__name__)
 app.config['SESSION_TYPE'] = settings.APP_SESSION_TYPE
 app.config['SECRET_KEY'] = settings.APP_SECRET_KEY
 
-# Mongo Configuration
+# Mongo Configuration for production
 app.config['MONGO_DBNAME'] = settings.MONGO_DBNAME
-app.config['MONGO_HOST'] = settings.MONGO_HOST
-app.config['MONGO_PORT'] = settings.MONGO_PORT
-app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
-app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
-app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
-mongo = PyMongo(app)
+# app.config['MONGO_HOST'] = settings.MONGO_HOST
+# app.config['MONGO_PORT'] = settings.MONGO_PORT
+# app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
+# app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
+# app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
 
-# Login Manager
-login_manager = LoginManager()
-login_manager.init_app(app)
+mongo = PyMongo(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -106,50 +99,11 @@ def new_user():
 @app.route('/api/NewPost', methods=['POST'])
 def new_feed_post():
     """Creates NewPost by providing json content of ID and postBody"""
-    email = request.json.get('email')
+    user_id = request.json.get('uuid')
     postbody = request.json.get('postBody')
     PostsDB = mongo.db.Posts
-    PostsDB.insert({'email': email, 'postbody': postbody})
+    PostsDB.insert({'userID': user_id, 'postBody': postbody})
     return jsonify({'result': 'Post Created'})
-
-@login_manager.user_loader
-def load_user(id):
-    temp = mongo.db.Users.find_one({'_id': id})
-    user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-    return user.get_id()
-
-
-@login_manager.request_loader
-def load_user_from_request(request):
-    # first, try to login using the api_key url arg
-    api_key = request.args.get('api_key')
-    if api_key:
-        temp = mongo.db.Users.find_one({'_id': id})
-        user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-        if user:
-            return user
-
-    # next, try to login using Basic Auth
-    api_key = request.headers.get('auth')
-    if api_key:
-        api_key = api_key.replace('Basic ', '', 1)
-        try:
-            api_key = base64.b64decode(api_key)
-        except TypeError:
-            pass
-        user = User.query.filter_by(api_key=api_key).first()
-        if user:
-            return user
-
-    # finally, return None if both methods did not login the user
-    return None
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return jsonify({'result': 'log out Successfully {}'.format(login_user())})
 
 
 @app.errorhandler(404)

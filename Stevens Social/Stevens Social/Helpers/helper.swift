@@ -57,10 +57,3 @@ class API {
         task.resume()
     }
 }
-//                        } catch let error {
-//                            print(error.localizedDescription)
-//                        }
-//                    })
-//                    task.resume()
-
-

@@ -13,8 +13,6 @@ class VideoViewController: UIViewController {
     @IBOutlet var videoView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         //Allow Video View to play video back
         videoView.allowsInlineMediaPlayback = true
