@@ -1,18 +1,19 @@
 //
-//  UserProfileViewController.swift
+//  MainVideoViewController.swift
 //  Stevens Social
 //
-//  Created by Vincent Porta on 3/2/18.
+//  Created by Michael Kim on 3/26/18.
 //  Copyright © 2018 Stevens. All rights reserved.
 //
 
 import UIKit
 
-class UserProfileViewController: UIViewController {
+class MainVideoViewController: UIViewController {
 
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +22,9 @@ class UserProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func PlayVideoBtn(_ sender: Any) {
+        performSegue(withIdentifier: "watchVideo", sender: self)
+    }
     /*
     // MARK: - Navigation
 
