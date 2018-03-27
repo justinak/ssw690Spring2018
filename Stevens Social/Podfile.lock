@@ -55,6 +55,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
+  - YouTubePlayer-Swift (1.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - Firebase/Database
   - SVProgressHUD
   - SwiftyJSON
+  - YouTubePlayer-Swift (~> 1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
@@ -85,7 +87,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  YouTubePlayer-Swift: ae82f4bcb504162a872b852596a9dc1fa3828c34
 
-PODFILE CHECKSUM: 062460e67a7bb6d99b838437b79b2c68197c7607
+PODFILE CHECKSUM: 8e9a9985bbe2f9aa6144b40beeeaed51dcaca121
 
 COCOAPODS: 1.4.0

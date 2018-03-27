@@ -124,6 +124,14 @@ def new_user():
 
     return jsonify({'result': 'user created'}, 201, {'Location': url_for('new_user', id=user._id, _external=True)})
 
+@app.route('/api/NewPost', methods=['POST'])
+def new_feed_post():
+    """Creates NewPost by providing json content of ID and postBody"""
+    email = request.json.get('email')
+    postbody = request.json.get('postBody')
+    PostsDB = mongo.db.Posts
+    PostsDB.insert({'email': email, 'postbody': postbody})
+    return jsonify({'result': 'Post Created'})
 
 @login_manager.user_loader
 def load_user(id):

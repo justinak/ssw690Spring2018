@@ -10,6 +10,11 @@
 		09B979A67FEA6E2FD3069B63 /* Pods_Stevens_SocialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC6EC99E15E3774C3057D14 /* Pods_Stevens_SocialTests.framework */; };
 		43ABDC06E886A3162A0C64E0 /* Pods_Stevens_SocialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D6EA5CC43EB6651483C475 /* Pods_Stevens_SocialUITests.framework */; };
 		9595AB76205B5E4B00CBCB13 /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
+		9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */; };
+		95C7DA7C2064AF3E00D312BB /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95C7DA7A2064AF3E00D312BB /* DataModel.xcdatamodeld */; };
+		95C7DA852069F09F00D312BB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7DA832069F09F00D312BB /* VideoViewController.swift */; };
+		95C7DA862069F09F00D312BB /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C7DA842069F09F00D312BB /* VideoViewController.xib */; };
+		95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7DA872069F4C600D312BB /* MainVideoViewController.swift */; };
 		95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */; };
 		95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */; };
 		95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDF20479CA9002AFA8A /* stevenslogo.png */; };
@@ -28,10 +33,8 @@
 		A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */; };
 		A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C42204D0B650014B3AF /* RegisterViewController.swift */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
-		A7C5B2BA204DBE9C0065C25B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */; };
 		A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */; };
 		A7C5B2BE204DC34C0065C25B /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */; };
-		A7E5881D2059A693005FACAE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */; };
 		A7E588212059DB7F005FACAE /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E588202059DB7F005FACAE /* CreatePostViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,10 @@
 		486DC5956564D76D242F20CC /* Pods-Stevens Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens Social/Pods-Stevens Social.debug.xcconfig"; sourceTree = "<group>"; };
 		74C88C4D976D04B9A4A52BAE /* Pods-Stevens SocialUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens SocialUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens SocialUITests/Pods-Stevens SocialUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stevens_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		95C7DA832069F09F00D312BB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		95C7DA842069F09F00D312BB /* VideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		95C7DA872069F4C600D312BB /* MainVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVideoViewController.swift; sourceTree = "<group>"; };
 		95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stevenslogo2.jpg; path = "Stevens Social/Assets.xcassets/iOS Photos/stevenslogo2.jpg"; sourceTree = "<group>"; };
 		95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stevens_Institute_of_Technology.png; path = "Stevens Social/Assets.xcassets/iOS Photos/Stevens_Institute_of_Technology.png"; sourceTree = "<group>"; };
 		95E80EDF20479CA9002AFA8A /* stevenslogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stevenslogo.png; path = "Stevens Social/Assets.xcassets/iOS Photos/stevenslogo.png"; sourceTree = "<group>"; };
@@ -88,7 +95,6 @@
 		A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
-		A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		A7E588202059DB7F005FACAE /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		F0A51C3FD15C6681D6718376 /* Pods-Stevens SocialUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens SocialUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens SocialUITests/Pods-Stevens SocialUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +164,7 @@
 				A7E5881A20599A2A005FACAE /* View */,
 				A7C5B2BB204DC34C0065C25B /* PostTableViewCell.swift */,
 				A7C5B2BC204DC34C0065C25B /* PostTableViewCell.xib */,
+				95C7DA842069F09F00D312BB /* VideoViewController.xib */,
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
 				95FBC8F820477AA100059E8A /* Info.plist */,
@@ -187,7 +194,7 @@
 		A7C5B2BF204DCDA30065C25B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */,
+				95C7DA7A2064AF3E00D312BB /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 				A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */,
 				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				A7E588202059DB7F005FACAE /* CreatePostViewController.swift */,
+				95C7DA872069F4C600D312BB /* MainVideoViewController.swift */,
+				95C7DA832069F09F00D312BB /* VideoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -315,6 +324,11 @@
 					95FBC8E820477AA100059E8A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					95FBC8FC20477AA100059E8A = {
 						CreatedOnToolsVersion = 9.2;
@@ -353,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C7DA862069F09F00D312BB /* VideoViewController.xib in Resources */,
 				A7333F9A2062FEF30043E9BF /* GoogleService-Info.plist in Resources */,
 				95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */,
 				95E80EE620479E75002AFA8A /* homeicon.png in Resources */,
@@ -416,6 +431,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/YouTubePlayer-Swift/YouTubePlayer_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -430,6 +446,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -562,12 +579,14 @@
 				A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */,
 				95FBC8EF20477AA100059E8A /* LoginViewController.swift in Sources */,
 				A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */,
+				9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */,
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
-				A7E5881D2059A693005FACAE /* DataModel.xcdatamodeld in Sources */,
+				95C7DA7C2064AF3E00D312BB /* DataModel.xcdatamodeld in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
+				95C7DA852069F09F00D312BB /* VideoViewController.swift in Sources */,
+				95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */,
 				A7E588212059DB7F005FACAE /* CreatePostViewController.swift in Sources */,
-				A7C5B2BA204DBE9C0065C25B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,12 +896,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A7E5881B2059A693005FACAE /* DataModel.xcdatamodeld */ = {
+		95C7DA7A2064AF3E00D312BB /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */,
+				95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */,
 			);
-			currentVersion = A7E5881C2059A693005FACAE /* DataModel.xcdatamodel */;
+			currentVersion = 95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
