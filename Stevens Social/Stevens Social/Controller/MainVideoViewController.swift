@@ -1,5 +1,5 @@
 //
-//  VideoViewController.swift
+//  MainVideoViewController.swift
 //  Stevens Social
 //
 //  Created by Michael Kim on 3/26/18.
@@ -8,18 +8,13 @@
 
 import UIKit
 
-class VideoViewController: UIViewController {
+class MainVideoViewController: UIViewController {
 
-    @IBOutlet var videoView: UIWebView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        //Allow Video View to play video back
-        videoView.allowsInlineMediaPlayback = true
-        
-        videoView.loadHTMLString("<iframe width=\"\(videoView.frame.width)\" height=\"\(videoView.frame.height)\" src=\"https://www.youtube.com/embed/g36FwefoGRk?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +22,9 @@ class VideoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func PlayVideoBtn(_ sender: Any) {
+        performSegue(withIdentifier: "watchVideo", sender: self)
+    }
     /*
     // MARK: - Navigation
 

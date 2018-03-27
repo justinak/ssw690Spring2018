@@ -14,7 +14,7 @@ target 'Stevens Social' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'ChameleonFramework'
-  pod "YouTube-Player-iOS-Helper"
+  pod 'YouTubePlayer-Swift','~>1.0'
   target 'Stevens SocialTests' do
     inherit! :search_paths
     # Pods for testing

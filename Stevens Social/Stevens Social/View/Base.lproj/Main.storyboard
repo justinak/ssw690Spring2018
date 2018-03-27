@@ -331,7 +331,7 @@
         <!--Videos-->
         <scene sceneID="9Ra-hu-rd2">
             <objects>
-                <viewController title="Videos" id="u71-VI-RUf" customClass="VideoViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Videos" id="u71-VI-RUf" customClass="MainVideoViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nyp-DV-W0m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -356,9 +356,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJc-f1-KpP">
-                                <rect key="frame" x="164" y="275" width="46" height="30"/>
+                                <rect key="frame" x="153" y="269" width="68" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="PlayVideo"/>
+                                <connections>
+                                    <action selector="PlayVideoBtn:" destination="u71-VI-RUf" eventType="touchUpInside" id="6dF-sO-8Gg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -372,25 +375,45 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Video" image="videoicon.png" id="CIo-TI-Uyo"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="YWK-gt-O3e" kind="show" identifier="watchVideo" id="H4t-2Z-Gy3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPH-0F-G3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4530" y="961"/>
+            <point key="canvasLocation" x="3856.8000000000002" y="929.55665024630548"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="c7N-yB-3wY">
+        <!--Video View Controller-->
+        <scene sceneID="aCT-wK-WTm">
             <objects>
-                <viewController id="Ebg-gn-d8s" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YXL-8o-tl9">
+                <viewController id="YWK-gt-O3e" customClass="VideoViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gvp-eV-jcm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="167-lw-66F">
+                                <rect key="frame" x="0.0" y="323.66666666666669" width="375" height="165"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="FQP-Ne-xe4"/>
+                                    <constraint firstAttribute="width" constant="375" id="XRQ-We-jq4"/>
+                                </constraints>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="pH7-cz-Y8o"/>
+                        <constraints>
+                            <constraint firstItem="167-lw-66F" firstAttribute="centerY" secondItem="gvp-eV-jcm" secondAttribute="centerY" id="Y5N-BZ-hfs"/>
+                            <constraint firstItem="167-lw-66F" firstAttribute="centerX" secondItem="gvp-eV-jcm" secondAttribute="centerX" id="cqE-YE-3uk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dOI-Xx-7JS"/>
                     </view>
+                    <connections>
+                        <outlet property="videoView" destination="167-lw-66F" id="ODd-iz-L5p"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZFO-m2-IGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cjb-Pi-jTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5244" y="964"/>
+            <point key="canvasLocation" x="4592.8000000000002" y="929.55665024630548"/>
         </scene>
         <!--Register-->
         <scene sceneID="Ama-yB-Fnz">
@@ -478,6 +501,6 @@
         <image name="videoicon.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V9z-9T-7fd"/>
+        <segue reference="Ffz-fI-Gzb"/>
     </inferredMetricsTieBreakers>
 </document>
