@@ -17,12 +17,17 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     //PersistentContainer : Creates and Returns a container
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Allows us to use the delegate
         postBody.delegate = self
+        
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            self.uid = user?.uid
+//        }
         
     }
 
@@ -40,8 +45,12 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         if postBody?.text != ""{
             //Putting attribute value into newPost from textfield
+           
             let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
+//            print("uid here: " + uid!)
+//            newPost.setValue(uid, forKey: "userID")
             newPost.setValue(self.postBody!.text, forKey: "postBody")
+           
             do{
                 try context.save()
                 performSegue(withIdentifier: "postSuccess", sender: self)
@@ -52,11 +61,8 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
             print("Please enter text in the Post Box!")
         }
         
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            let uid = user?.uid
-            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
-            myAPI.sendRequest(parameters: ["uuid": uid!, "postBody": self.postBody!.text!])
-        }
+//        let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
+//        myAPI.sendRequest(parameters: ["uuid": uid!, "postBody": self.postBody!.text!])
     }
 
     /*

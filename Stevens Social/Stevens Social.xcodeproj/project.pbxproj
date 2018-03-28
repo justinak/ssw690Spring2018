@@ -91,6 +91,7 @@
 		95FBC90E20477AA100059E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7333F992062FEF30043E9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A743DFFB206A0565000270E6 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
+		A743DFFD206C1634000270E6 /* DataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel2.xcdatamodel; sourceTree = "<group>"; };
 		A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A7526C42204D0B650014B3AF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -911,6 +912,7 @@
 		95C7DA7A2064AF3E00D312BB /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A743DFFD206C1634000270E6 /* DataModel2.xcdatamodel */,
 				95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */,
 			);
 			currentVersion = 95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */;

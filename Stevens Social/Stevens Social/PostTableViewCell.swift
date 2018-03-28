@@ -25,4 +25,13 @@ class PostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func shareButton(_ sender: UIButton) {
+        print("shareButton pressed")
+    }
+    
+    @IBAction func quackButton(_ sender: UIButton) {
+        print("quackButton pressed")
+
+    }
+    
 }
