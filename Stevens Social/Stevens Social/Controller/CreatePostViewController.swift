@@ -17,12 +17,17 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     //PersistentContainer : Creates and Returns a container
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Allows us to use the delegate
         postBody.delegate = self
+        
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            self.uid = user?.uid
+//        }
         
     }
 
@@ -40,8 +45,12 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         if postBody?.text != ""{
             //Putting attribute value into newPost from textfield
+           
             let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
+//            print("uid here: " + uid!)
+//            newPost.setValue(uid, forKey: "userID")
             newPost.setValue(self.postBody!.text, forKey: "postBody")
+           
             do{
                 try context.save()
                 performSegue(withIdentifier: "postSuccess", sender: self)
@@ -51,56 +60,9 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         }else{
             print("Please enter text in the Post Box!")
         }
-
-            //UserID
-            let userEmail = Auth.auth().currentUser!.email
         
-            //declare parameter as a dictionary which contains string as key and value combination. considering inputs are valid
-        let parameters = ["email": userEmail, "postBody": postBody!.text] as! Dictionary<String, String>
-        
-            //create the url with URL
-            let url = URL(string: "http://127.0.0.1:5000/api/NewPost")!
-        
-            //create the session object
-            let session = URLSession.shared
-        
-            //now create the URLRequest object using the url object
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST" //set http method as POST
-        
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-                
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-            //create dataTask using the session object to send data to the server
-            let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-                
-                guard error == nil else {
-                    return
-                }
-                
-                guard let data = data else {
-                    return
-                }
-                
-                do {
-                    //create json object from data
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                        print(json)
-                        // handle json...
-                    }
-                    
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-            })
-            task.resume()
+//        let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
+//        myAPI.sendRequest(parameters: ["uuid": uid!, "postBody": self.postBody!.text!])
     }
 
     /*

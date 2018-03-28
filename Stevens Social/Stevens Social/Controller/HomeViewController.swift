@@ -9,11 +9,15 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseAuth
+import Alamofire
 
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
     @IBOutlet var postTableView: UITableView!
+    
+    @IBOutlet var userEmail: UILabel!
     
     //Has attribute of postBody
     var postArray:[Post] = []
@@ -32,10 +36,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.fetchData()
         self.postTableView.reloadData()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
-       // postTableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postTableCell")
-       // configureTableView()
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        configureTableView()
+        configureEmail()
 
     }
     
@@ -48,7 +51,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postcell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath)
+        cell.selectionStyle = .none
         //first post data will be stored into post
         let post = postArray[indexPath.row]
         cell.textLabel!.text = post.postBody!
@@ -56,31 +60,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //cell.postName!.text = post.email
         return cell
     }
-
-    //create function getpostfromapi. grab json
-    func getpostfromapi(){
-        //not working need to test and research.....
-        //create the url with URL
-        var request = URLRequest(url: URL(string: "http://127.0.0.1:5000/api/getPost")!)
-        request.httpMethod = "POST"
-        let session = URLSession.shared
-        
-        session.dataTask(with: request) {data, response, err in
-            print("Entered the completionHandler")
-            }.resume()
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    // fetch data from get api
     func fetchData(){
         //fetch data from Post and put data in postArray
-        do{
-        postArray = try context.fetch(Post.fetchRequest())
-        }catch{
+//        Alamofire.request("http://127.0.0.1:5000/api/posts/get").response { response in
+//            print(response)
+//            if let json = response.result.value {
+//                print("JSON: \(json)") // serialized json response
+//            }
+//
+//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                print("Data: \(utf8Text)") // original server data as UTF8 string
+//            }
+//        }
+        do {
+            postArray = try context.fetch(Post.fetchRequest())
+        } catch {
             print(error)
         }
     }
@@ -97,8 +98,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func configureTableView() {
+        postTableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: "postTableCell")
         postTableView.rowHeight = UITableViewAutomaticDimension
-        postTableView.estimatedRowHeight = 120.0
+        postTableView.estimatedRowHeight = 350.0
+        
+    }
+    
+    func configureEmail() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.userEmail.text = user?.email
+        }
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

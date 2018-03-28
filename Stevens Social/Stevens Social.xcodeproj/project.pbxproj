@@ -30,6 +30,7 @@
 		95FBC90220477AA100059E8A /* Stevens_SocialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90120477AA100059E8A /* Stevens_SocialTests.swift */; };
 		95FBC90D20477AA100059E8A /* Stevens_SocialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */; };
 		A7333F9A2062FEF30043E9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7333F992062FEF30043E9BF /* GoogleService-Info.plist */; };
+		A743DFFC206A0565000270E6 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743DFFB206A0565000270E6 /* helper.swift */; };
 		A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */; };
 		A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C42204D0B650014B3AF /* RegisterViewController.swift */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
@@ -89,6 +90,8 @@
 		95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stevens_SocialUITests.swift; sourceTree = "<group>"; };
 		95FBC90E20477AA100059E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7333F992062FEF30043E9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A743DFFB206A0565000270E6 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
+		A743DFFD206C1634000270E6 /* DataModel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel2.xcdatamodel; sourceTree = "<group>"; };
 		A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A7526C42204D0B650014B3AF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		95FBC8EB20477AA100059E8A /* Stevens Social */ = {
 			isa = PBXGroup;
 			children = (
+				A743DFFA206A0536000270E6 /* Helpers */,
 				A7C5B2BF204DCDA30065C25B /* Model */,
 				A7E588192059000F005FACAE /* Controller */,
 				A7E5881A20599A2A005FACAE /* View */,
@@ -189,6 +193,14 @@
 				95FBC90E20477AA100059E8A /* Info.plist */,
 			);
 			path = "Stevens SocialUITests";
+			sourceTree = "<group>";
+		};
+		A743DFFA206A0536000270E6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A743DFFB206A0565000270E6 /* helper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A7C5B2BF204DCDA30065C25B /* Model */ = {
@@ -579,6 +591,7 @@
 				A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */,
 				95FBC8EF20477AA100059E8A /* LoginViewController.swift in Sources */,
 				A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */,
+				A743DFFC206A0565000270E6 /* helper.swift in Sources */,
 				9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */,
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
@@ -899,6 +912,7 @@
 		95C7DA7A2064AF3E00D312BB /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A743DFFD206C1634000270E6 /* DataModel2.xcdatamodel */,
 				95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */,
 			);
 			currentVersion = 95C7DA7B2064AF3E00D312BB /* DataModel.xcdatamodel */;

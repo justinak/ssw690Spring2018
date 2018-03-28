@@ -88,6 +88,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>YouTubePlayer-Swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
 			<key>isShown</key>

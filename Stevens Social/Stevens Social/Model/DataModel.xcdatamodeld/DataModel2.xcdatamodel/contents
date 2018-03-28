@@ -44,12 +44,12 @@
         <attribute name="quacks" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Follows" positionX="61" positionY="72" width="128" height="90"/>
         <element name="Photos" positionX="25" positionY="198" width="128" height="105"/>
-        <element name="Post" positionX="-234" positionY="-45" width="128" height="253"/>
+        <element name="Post" positionX="-234" positionY="-45" width="128" height="255"/>
         <element name="User" positionX="-81" positionY="-45" width="128" height="195"/>
         <element name="Videos" positionX="-189" positionY="270" width="128" height="118"/>
     </elements>
