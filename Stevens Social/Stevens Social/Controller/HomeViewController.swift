@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import Alamofire
 
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
@@ -59,14 +60,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     // fetch data from get api
     func fetchData(){
         //fetch data from Post and put data in postArray
-        do{
-        postArray = try context.fetch(Post.fetchRequest())
-        }catch{
-            print(error)
+        Alamofire.request("http://127.0.0.1:5000/api/posts/get").response { response in
+            print(response)
+//            if let json = response.result.value {
+//                print("JSON: \(json)") // serialized json response
+//            }
+//
+//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                print("Data: \(utf8Text)") // original server data as UTF8 string
+//            }
         }
+        
     }
     
     @IBAction func logOutPressed(_ sender: Any) {

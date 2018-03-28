@@ -48,6 +48,7 @@ class API {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(json)
                     // handle json...
+
                 }
                 
             } catch let error {
@@ -56,4 +57,5 @@ class API {
         })
         task.resume()
     }
+
 }

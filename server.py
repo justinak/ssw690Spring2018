@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, abort, url_for, make_response, session
+from flask import Flask, request, jsonify, make_response
 from flask_pymongo import PyMongo
 import eb_flask.settings as settings
 
@@ -108,6 +108,16 @@ def new_feed_post():
     posts_db = mongo.db.Posts
     posts_db.insert({'userID': user_id, 'postBody': post_body})
     return jsonify({'result': 'Post Created'})
+
+
+@app.route('/api/posts/get', methods=['GET'])
+def get_post():
+    """Grabs all posts"""
+
+    posts_db = mongo.db.Posts.find()
+    print(posts_db)
+    return jsonify(posts_db)
+
 
 
 @app.errorhandler(404)
