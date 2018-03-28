@@ -65,9 +65,12 @@ def post_feed():
     foreign_id = request.json['foreign id']
     time = request.json['time']
     message = request.json['message']
-    feed_id = feed.insert({'actor': actor, 'verb': verb, 'object':object, 'target': target, 'foreign id': foreign_id, 'time': time, 'message': message})
+    feed_id = feed.insert(
+        {'actor': actor, 'verb': verb, 'object': object, 'target': target, 'foreign id': foreign_id, 'time': time,
+         'message': message})
     new_feed = feed.find_one({'_id': feed_id})
-    output = {'actor': new_feed['actor'], 'verb': new_feed['verb'], 'object' :new_feed['object'],'target': new_feed['target'], 'foreign id': foreign_id, 'time': time, 'message':message}
+    output = {'actor': new_feed['actor'], 'verb': new_feed['verb'], 'object': new_feed['object'],
+              'target': new_feed['target'], 'foreign id': foreign_id, 'time': time, 'message': message}
     return jsonify({'result': output})
 
 
@@ -90,19 +93,20 @@ def new_user():
     email = request.json.get('email')
     # Starting MongoDB
     user_db = mongo.db.Users
-    print(uid,email)
+    print(uid, email)
     # Inserting user to database
     user_db.insert({'uuid': uid, 'email': email})
 
     return jsonify({'result': 'user created'})
 
+
 @app.route('/api/NewPost', methods=['POST'])
 def new_feed_post():
     """Creates NewPost by providing json content of ID and postBody"""
     user_id = request.json.get('uuid')
-    postbody = request.json.get('postBody')
-    PostsDB = mongo.db.Posts
-    PostsDB.insert({'userID': user_id, 'postBody': postbody})
+    post_body = request.json.get('postBody')
+    posts_db = mongo.db.Posts
+    posts_db.insert({'userID': user_id, 'postBody': post_body})
     return jsonify({'result': 'Post Created'})
 
 
