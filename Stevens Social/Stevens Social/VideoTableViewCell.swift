@@ -8,11 +8,16 @@
 
 import UIKit
 
+//protocol ChangeVideoDelegate {
+//    func vincent(<#parameters#>)
+//}
+
 class VideoTableViewCell: UITableViewCell {
 
     @IBOutlet var videoThumbnail: UIImageView!
     @IBOutlet var videoTitle: UILabel!
     @IBOutlet var videoPoster: UILabel!
+    @IBOutlet var playVid: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +28,11 @@ class VideoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    @IBAction func playVideo(_ sender: UIButton) {
+        print("pressed")
     }
     
 }

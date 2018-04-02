@@ -11,5 +11,5 @@ import Foundation
 struct Video {
     let _id: Any
     let title: String
-    let src: String
+    let src: Any
 }
