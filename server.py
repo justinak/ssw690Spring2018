@@ -26,21 +26,26 @@ def index():
 
 @app.route('/api/post/video', methods=['POST'])
 def post_video():
-    '''Method use to post video to S3 and store data in database'''
+    """Method use to post video to S3 and store data in database"""
 
     return jsonify({'result': None})
 
 
-@app.route('/videos', methods=['GET', 'POST'])
+@app.route('/videos', methods=['GET'])
 def get_all_videos():
-    '''Method returns all the videos on the database'''
+    """Method returns videos that match the search title in the database"""
     output = []
-    data = mongo.db.Videos.find()
-
-    for d in data:
-        output.append(d)
-
-    return jsonify({'result': output})
+    name = request.args.get('name')
+    print(name)
+    data = mongo.db.Videos.find({'title': name}) # Use find, not find_one
+    print(data)
+    if data:
+        for d in data:
+            d['_id'] = str(d['_id'])
+            output.append(d)
+        return jsonify({'result': output})
+    else:
+        return jsonify({'result': output})
 
 
 @app.route('/feeds', methods=['GET'])
@@ -74,18 +79,6 @@ def post_feed():
     return jsonify({'result': output})
 
 
-@app.route('/videos/<name>', methods=['GET', 'POST'])
-def get_one_video(name):
-    data = mongo.db.Videos
-    res = data.find_one({'name': name})
-
-    if res:
-        output = {'name': res['name']}
-    else:
-        output = "No such name"
-    return jsonify({'result': output})
-
-
 @app.route('/api/new/users', methods=['POST'])
 def new_user():
     """Creates new user by providing json content of Full name, Username and Password"""
@@ -114,10 +107,28 @@ def new_feed_post():
 def get_post():
     """Grabs all posts"""
 
-    posts_db = mongo.db.Posts.find()
-    print(posts_db)
-    return jsonify(posts_db)
+    output = []
+    data = mongo.db.Posts.find()
 
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/users/get', methods=['GET'])
+def get_users():
+    """Grabs all users"""
+
+    output = []
+    data = mongo.db.Users.find()
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
 
 
 @app.errorhandler(404)
