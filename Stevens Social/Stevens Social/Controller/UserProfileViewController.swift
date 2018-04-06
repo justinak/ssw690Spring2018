@@ -11,13 +11,15 @@ import CoreData
 import Firebase
 import FirebaseAuth
 import Alamofire
+import SwiftyJSON
 
 class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     
+    @IBOutlet weak var followBtnText: UIButton!
     @IBOutlet var postTableViewProfile: UITableView!
-    var postArray:[Post] = []
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    var postsArray:[Post] = []
+    var isFollowing: Bool = false
     var uid: String?
     
     override func viewDidLoad() {
@@ -40,16 +42,16 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postArray.count
+        return postsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
         //first post data will be stored into post
-        let post = postArray[indexPath.row]
-        cell.textLabel!.text = post.postBody!
-        //get from post
-        //cell.postName!.text = post.email
+        let post = postsArray[indexPath.row]
+        cell.postBody!.text = post.text
+        cell.postName!.text = post.uuid as! String as! String
+        
         return cell
     }
 
@@ -59,22 +61,36 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchData(){
-        //fetch data from Post and put data in postArray
-//        Alamofire.request("http://127.0.0.1:5000/api/posts/get").response { response in
-//            print(response)
-//            if let json = response.result.value {
-//                print("JSON: \(json)") // serialized json response
-//            }
-//
-//            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//                print("Data: \(utf8Text)") // original server data as UTF8 string
-//            }
+//        do {
+//            postArray = try context.fetch(Post.fetchRequest())
+//        } catch {
+//            print(error)
 //        }
         
-        do {
-            postArray = try context.fetch(Post.fetchRequest())
-        } catch {
-            print(error)
+        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid! 
+        Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
+            
+            if (response.result.error != nil) {
+                print(response.result.error!)
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                for (_, subJson) in json["result"] {
+                    print(subJson)
+                    let id: String = subJson["_id"].stringValue
+                    let text: String = subJson["text"].stringValue
+                    let uid: String = subJson["uuid"].stringValue
+                    let likes: Array<Any> = []
+                    
+                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes))
+                    
+                }
+                DispatchQueue.main.async {
+                    self.postTableViewProfile.reloadData()
+                }
+                print(self.postsArray)
+            }
         }
         
     }
@@ -84,6 +100,18 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         postTableViewProfile.rowHeight = UITableViewAutomaticDimension
         postTableViewProfile.estimatedRowHeight = 350.0
         
+    }
+    
+    @IBAction func followBtn(_ sender: UIButton) {
+        print("follow button pressed")
+        if isFollowing == false {
+            followBtnText.setTitle("Following", for: UIControlState.normal)
+            isFollowing = true
+        } else if isFollowing == true {
+            followBtnText.setTitle("Follow", for: UIControlState.normal)
+            isFollowing = false
+        }
+
     }
     
 

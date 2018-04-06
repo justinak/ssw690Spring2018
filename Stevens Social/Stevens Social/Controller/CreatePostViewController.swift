@@ -9,15 +9,17 @@
 import UIKit
 import CoreData
 import FirebaseAuth
+import MobileCoreServices
 
-class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate {
+
+class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
+    let imagePickerController = UIImagePickerController()
+    var uid: String?
+    
     @IBOutlet var postBody: UITextField!
-    
-    //PersistentContainer : Creates and Returns a container
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    var uid: String?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +27,9 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         // Allows us to use the delegate
         postBody.delegate = self
         
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            self.uid = user?.uid
-//        }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.uid = user?.uid
+        }
         
     }
 
@@ -43,35 +45,15 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     @IBAction func confirmPost(_ sender: UIButton) {
         
-        if postBody?.text != ""{
-            //Putting attribute value into newPost from textfield
-           
-            let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
-//            newPost.setValue(uid, forKey: "userID")
-            newPost.setValue(self.postBody!.text, forKey: "postBody")
-           
-            do {
-                try context.save()
-                performSegue(withIdentifier: "postSuccess", sender: self)
-            } catch {
-                print(error)
-            }
+        if postBody?.text != "" {
+            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
+            myAPI.sendRequest(parameters: ["uuid": "000002", "text": self.postBody!.text!]) // insert real uuid from firebase
         } else {
             print("Please enter text in the Post Box!")
         }
         
-//        let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
-//        myAPI.sendRequest(parameters: ["uuid": uid!, "postBody": self.postBody!.text!])
+    
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 

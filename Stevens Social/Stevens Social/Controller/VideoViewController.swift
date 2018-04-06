@@ -16,8 +16,8 @@ class VideoViewController: UIViewController {
         
         //Allow Video View to play video back
         videoView.allowsInlineMediaPlayback = true
-        
-        videoView.loadHTMLString("<iframe width=\"\(videoView.frame.width)\" height=\"\(videoView.frame.height)\" src=\"https://www.youtube.com/embed/g36FwefoGRk?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
+
+//        videoView.loadHTMLString("<iframe width=\"\(videoView.frame.width)\" height=\"\(videoView.frame.height)\" src=\"https://www.youtube.com/embed/g36FwefoGRk?&playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {

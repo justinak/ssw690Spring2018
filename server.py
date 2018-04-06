@@ -10,11 +10,11 @@ app.config['SECRET_KEY'] = settings.APP_SECRET_KEY
 
 # Mongo Configuration for production
 app.config['MONGO_DBNAME'] = settings.MONGO_DBNAME
-# app.config['MONGO_HOST'] = settings.MONGO_HOST
-# app.config['MONGO_PORT'] = settings.MONGO_PORT
-# app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
-# app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
-# app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
+app.config['MONGO_HOST'] = settings.MONGO_HOST
+app.config['MONGO_PORT'] = settings.MONGO_PORT
+app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
+app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
+app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
 
 mongo = PyMongo(app)
 
@@ -27,6 +27,8 @@ def index():
 @app.route('/api/post/video', methods=['POST'])
 def post_video():
     """Method use to post video to S3 and store data in database"""
+
+    print(request.json)
 
     return jsonify({'result': None})
 
@@ -97,9 +99,9 @@ def new_user():
 def new_feed_post():
     """Creates NewPost by providing json content of ID and postBody"""
     user_id = request.json.get('uuid')
-    post_body = request.json.get('postBody')
+    post_body = request.json.get('text')
     posts_db = mongo.db.Posts
-    posts_db.insert({'userID': user_id, 'postBody': post_body})
+    posts_db.insert({'uuid': user_id, 'text': post_body})
     return jsonify({'result': 'Post Created'})
 
 
@@ -108,11 +110,45 @@ def get_post():
     """Grabs all posts"""
 
     output = []
-    data = mongo.db.Posts.find()
+    user_id = request.args.get('uuid')
+    data = mongo.db.Posts.find({'uuid': user_id })
 
     for d in data:
         d['_id'] = str(d['_id'])
         output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/get/timeline', methods=['GET'])
+def get_timeline():
+    """
+    Get someone's timeline
+    Request uuid(user)
+    """
+    output = []
+    data1 = []
+    data2 = []
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    uuid = request.args.get('uuid')
+    data = user.find({'uuid': uuid})
+
+    for i in data:
+
+        data1.append(i)
+
+    for n in data1:
+        x = post.find({'uuid': n})
+
+        for m in x:
+            data2.append(m)
+
+    for d in data2:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    print(output)
 
     return jsonify({'result': output})
 
