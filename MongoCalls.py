@@ -2,8 +2,11 @@
 from pymongo import MongoClient
 import json
 from random import randint
-# client = stream.connect('6mrsygzpr525', 's64tas6unkczm5a6dj5qr4w8dgrpgqe2gdy8f8t9cp68ctbezp2fc7exepmkh5ka')
-client = MongoClient('mongodb://duck_hacker:ssw690@34.228.66.29/ssw690spring2018')
+import datetime
+from flask import jsonify
+
+#client = MongoClient()
+client = MongoClient('mongodb://duck_hacker:ssw690@34.230.77.217/ssw690spring2018')
 db = client.ssw690spring2018
 
 
@@ -31,12 +34,10 @@ def get_experience():
 def get_solution():
     """retrieve all the solutions conatined in solutions collection"""
     try:
-        solution = db.solution.find()
+        solution = db.Solution.find()
     except:
         print('Error retrieving file')
 
-    # solutions = [{'_id':id, 'userid': userid, 'files':files, 'votes':votes, 'solution':solution}
-    #              for id, userid, files, votes, solution in solution]
     return solution
 
 
@@ -45,13 +46,34 @@ def insert_solution(solution, id, files=None):
 
     id = randint(0, 9999)
     try:
-        db.solution.insert_one(
+        db.Solution.insert_one(
         {
             '_id': id,
             "userid": 'hannah',
             "files": files,
             "votes": 0,
-            "solution": solution
+            "solution": solution,
+            'time': get_time()
+        }
+        )
+    except Exception as e:
+        print('Error submitting solution: {}'.format(e))
+
+
+def insert_interview(question, title, topic):
+    """insert solutions into the solution collection"""
+
+    id = randint(0, 9999)
+    try:
+        db.Interview.insert_one(
+        {
+            '_id': id,
+            'title': title,
+            "votes": 0,
+            "question": question,
+            'topic': topic,
+            'userid': 'hannah',
+            'time': get_time()
         }
         )
     except Exception as e:
@@ -67,21 +89,33 @@ def insert_experience(experience, files=''):
         {
             '_id': id,
             "userid": 'hannah',
-            #"exp_id": id,
             "files": files,
             "votes": 0,
-            "Experience": experience
+            "Experience": experience,
+            'time': get_time()
         }
         )
     except Exception as e:
         print('Error submitting experience: {}'.format(e))
 
 
+def find_by_topic(topic):
+    table = db.Interview
+
+    try:
+        questions = table.find({'topic': topic})
+
+    except Exception as e:
+        print("Error finding element: {}".format(e))
+
+    return questions
+
+
 def increase_count(post_id):
     """increase count of votes by 1"""
 
     votes=None
-    table = db.solution
+    table = db.Solution
 
     try:
         solution = table.find_one({'_id': int(post_id)})
@@ -93,7 +127,7 @@ def increase_count(post_id):
     new_vote = int(votes)+1
 
     try:
-        db.solution.update_one(
+        db.Solution.update_one(
         {'_id': int(post_id)},
         {"$set":{"votes" : new_vote}
           }
@@ -105,7 +139,7 @@ def increase_count(post_id):
 def decrease_count(post_id):
     """decrease count of votes by 1"""
     votes = None
-    table = db.solution
+    table = db.Solution
 
     try:
         solution = table.find_one({'_id': int(post_id)})
@@ -116,7 +150,55 @@ def decrease_count(post_id):
 
     new_vote = int(votes) - 1
     try:
-        db.solution.update_one(
+        db.Solution.update_one(
+            {'_id': int(post_id)},
+            {"$set": {"votes" : new_vote}
+             }
+        )
+    except Exception as e:
+        print('Error updating count: {}'.format(e))
+
+
+def ex_increase_count(post_id):
+    """increase count of votes by 1"""
+
+    votes=None
+    table = db.Experience
+
+    try:
+        Experience = table.find_one({'_id': int(post_id)})
+        votes = Experience['votes']
+
+    except Exception as e:
+        print('Error finding element : {}'.format(e))
+
+    new_vote = int(votes)+1
+
+    try:
+        db.Experience.update_one(
+        {'_id': int(post_id)},
+        {"$set":{"votes" : new_vote}
+          }
+        )
+    except Exception as e:
+        print('Error updating count: {}'.format(e))
+
+
+def ex_decrease_count(post_id):
+    """decrease count of votes by 1"""
+    votes = None
+    table = db.Experience
+
+    try:
+        Experience = table.find_one({'_id': int(post_id)})
+        votes = Experience['votes']
+
+    except Exception as e:
+        print('Error finding element : {}'.format(e))
+
+    new_vote = int(votes) - 1
+    try:
+        db.Experience.update_one(
             {'_id': int(post_id)},
             {"$set": {"votes" : new_vote}
              }
@@ -132,3 +214,19 @@ def download_file(filename):
     except Exception as e:
         print('Error downloading file: {}'.format(e))
     return post.file
+
+def get_ex_votes(post_id):
+    votes = None
+    table = db.Experience
+    try:
+        Experience = table.find_one({'_id': int(post_id)})
+        votes = Experience['votes']
+
+    except Exception as e:
+        print('Error finding element : {}'.format(e))
+
+    return votes
+
+def get_time():
+    return datetime.datetime.now()
+

@@ -9,7 +9,7 @@
   <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script type="text/javascript">
               function voteup(post_id){
-                alert(post_id);
+
                 $.ajax({
                     url: '/voteup/'+post_id,
                     type: 'POST',
@@ -22,7 +22,7 @@
                 });
               }
               function votedown(post_id){
-                alert(post_id);
+
                 $.ajax({
                     url: '/votedown/'+post_id,
                     type: 'POST',
@@ -34,6 +34,33 @@
                      }
                 });
               }
+              function exvoteup(post_id){
+
+                $.ajax({
+                    url: '/exvoteup/'+post_id,
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                     },
+                     error: function(error) {
+                        console.log(error);
+                     }
+                });
+              }
+              function exvotedown(post_id){
+
+                $.ajax({
+                    url: '/exvotedown/'+post_id,
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                     },
+                     error: function(error) {
+                        console.log(error);
+                     }
+                });
+              }
+
         </script>
 <style>
 div.container {

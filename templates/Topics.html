@@ -59,27 +59,45 @@
 </div>
 
 <div class = "content">
-  <h1>Experience</h1>
+  <h1>Topics</h1>
   <div class = "addanswers">
-      <h3>Experiences</h3>
-        <table>
-           {% for post in experiences %}
-              <tr>
-                <p><b>{{ post.actor }}</b>: {{ post.tweet }}</p>
-                  <p>{{post.votes}}</p>
-                <input  name="voteup" type="submit" id="up{{post.id}}" value="Vote Up" onclick="voteup('{{post.id}}')" />
-                <input name="votedown" type="submit" id="down{{post.id}}" value="Vote Down"
-                   onclick="votedown('{{post.id}}')"/>
-                <hr/>
-              </tr>
-           {% endfor %}
-        </table>
-      <h3>Add Experience</h3>
-        <form action = "/experience/submit" method = "POST" enctype="multipart/form-data">
-        <input type="text" name="Experience" id="Experience" class = "answer"/><br/><br/>
-        <input type="file" value="Upload File" name="file"/><br/><br/>
-        <input type="submit" value="Submit"/>
+      <h3>View Questions</h3>
+        <form action = "/question/topic" method = "POST" enctype="multipart/form-data">
+          <ul>
+            <li>
+              <div>
+              <button type="submit" value="Algorithm" name="topic" class="btn btn-block">Algorithm</button>
+              </div>
+            </li>
+            <li>
+              <div>
+              <button type="submit" value="DataAnalysis" name="topic" class="btn btn-block">Data Analysis</button>
+              </div>
+            </li>
+            <li>
+              <div>
+              <button type="submit" value="SoftwareEngineering" name="topic" class="btn btn-block">Software Engineering</button>
+              </div>
+            </li>
+            <li>
+              <div>
+              <button type="submit" value="SystemsEngineering" name="topic" class="btn btn-block">Systems Engineering</button>
+              </div>
+            </li>
+            <li>
+              <div>
+              <button type="submit" value="Testing" name="topic" class="btn btn-block">Testing</button>
+              </div>
+            </li>
+        </ul>
     </form>
+
+      {% for post in questions %}
+               <p><b>{{post.title}}</b></p><br/><br/>
+                  {{post.question}}
+                <hr/>
+
+           {% endfor %}
   </div>
 </div>
 {% endblock %}
