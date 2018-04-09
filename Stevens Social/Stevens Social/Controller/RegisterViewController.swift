@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
@@ -16,7 +17,6 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +38,12 @@ class RegisterViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 } else {
                     print("registration success")
+                    var uid = user?.uid
+                    var email = user?.email
+                    let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/user", customMethod: "POST")
+                    myAPI.sendRequest(parameters: ["uuid": uid!, "email": email!])
+                    print(myAPI)
+
                     user?.sendEmailVerification(completion: { (error) in
                         if error != nil {
                             print(error!)
@@ -51,6 +57,7 @@ class RegisterViewController: UIViewController {
                         }
                     })
                 }
+                
             }
         } else {
             print("invalid email")

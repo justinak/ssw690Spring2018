@@ -1,10 +1,7 @@
-from flask import Flask, request, jsonify, abort, url_for, make_response, session
-from flask_login import login_user, logout_user, LoginManager, login_required, current_user
+from flask import Flask, request, jsonify, make_response
 from flask_pymongo import PyMongo
-from random import randint
-from eb_flask.auth import User
-
 import eb_flask.settings as settings
+import datetime
 
 app = Flask(__name__)
 
@@ -12,18 +9,15 @@ app = Flask(__name__)
 app.config['SESSION_TYPE'] = settings.APP_SESSION_TYPE
 app.config['SECRET_KEY'] = settings.APP_SECRET_KEY
 
-# Mongo Configuration
+# Mongo Configuration for production
 app.config['MONGO_DBNAME'] = settings.MONGO_DBNAME
 app.config['MONGO_HOST'] = settings.MONGO_HOST
 app.config['MONGO_PORT'] = settings.MONGO_PORT
 app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
 app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
 app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
-mongo = PyMongo(app)
 
-# Login Manager
-login_manager = LoginManager()
-login_manager.init_app(app)
+mongo = PyMongo(app)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -31,138 +25,267 @@ def index():
     return 'please go to /videos to see all videos'
 
 
-@app.route('/api/post/video', methods=['POST'])
-def post_video():
-    '''Method use to post video to S3 and store data in database'''
+# @app.route('/api/post/video', methods=['POST', 'GET'])
+# def post_video():
+#     """Method use to post video to S3 and store data in database"""
+#
+#     file = request.files['file']
+#     return jsonify(file)
 
-    return jsonify({'result': None})
 
 
-@app.route('/videos', methods=['GET', 'POST'])
+@app.route('/videos', methods=['GET'])
 def get_all_videos():
-    '''Method returns all the videos on the database'''
+    """Method returns videos that match the search title in the database"""
     output = []
-    data = mongo.db.Videos.find()
+    name = request.args.get('name')
+    print(name)
+    data = mongo.db.Videos.find({'title': name}) # Use find, not find_one
+    print(data)
+    if data:
+        for d in data:
+            d['_id'] = str(d['_id'])
+            output.append(d)
+        return jsonify({'result': output})
+    else:
+        return jsonify({'result': output})
+
+
+@app.route('/api/new/user', methods=['POST'])
+def new_user():
+    """Creates new user by providing json content
+    of Full name, Username and Password"""
+    uuid = request.json.get('uuid')
+    email = request.json.get('email')
+    at_symbol = email.find('@')
+    username = email[:at_symbol]
+    photo = "https://pbs.twimg.com/profile_images/676830491383730177/pY-4PfOy_400x400.jpg"
+    user = mongo.db.Users
+    print(uuid, email)
+    follow = []
+    follower = []
+    likes = []
+    if user.find_one({'uuid': uuid}) is not None:
+        return jsonify({'result': 'uuid is already exist'})
+
+    user.insert({'uuid': uuid, 'email': email, 'username': username, 'photo': photo, 'follow': follow, 'follower': follower, 'likes': likes})
+
+    return jsonify({'result': "User created"})
+
+
+
+@app.route('/api/new/post', methods=['POST'])
+def new_feed_post():
+    """Creates NewPost by providing json content of ID and postBody"""
+    uuid = request.json.get('uuid')
+    text = request.json.get('text')
+    user = mongo.db.Users
+    post = mongo.db.Posts
+    # image = request.json['image']
+    user_document = user.find_one({'uuid': uuid})
+    created_by = user_document['username']
+    time = datetime.datetime.utcnow()
+    likes = []
+    post.insert({'uuid': uuid, 'created_by': created_by, 'text': text, 'image': "", 'time': time, 'likes': likes})
+    return jsonify({'result': 'Post Created'})
+
+
+@app.route('/api/posts/get', methods=['GET'])
+def get_post():
+    """Grabs all posts"""
+
+    output = []
+    user_id = request.args.get('uuid')
+    data = mongo.db.Posts.find({'uuid': user_id })
 
     for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+#  Kevin's routes
+@app.route('/api/get/posts', methods=['GET'])
+def get_posts():
+    """
+    Get all posts in MongoDB
+    """
+    post = mongo.db.Posts
+    data = post.find()
+
+    output = []
+    for d in data:
+        d['_id'] = str(d['_id'])
         output.append(d)
 
     return jsonify({'result': output})
 
 
-@app.route('/videos/<name>', methods=['GET', 'POST'])
-def get_one_video(name):
-    data = mongo.db.Videos
-    res = data.find_one({'name': name})
+@app.route('/api/follow', methods=['GET', 'POST'])
+def follow():
+    """
+    Follow people
+    Request uuid(user), foreign_uuid(another user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    foreign_uuid = request.json['foreign_uuid']
+    user.update({'uuid': uuid}, {"$addToSet": {'follow': foreign_uuid}}, True)
+    user.update({'uuid': foreign_uuid}, {"$addToSet": {'follower': uuid}}, True)
 
-    if res:
-        output = {'name': res['name']}
+    return jsonify({'result': "Follow successful!"})
+
+
+@app.route('/api/unfollow', methods=['GET', 'POST'])
+def unfollow():
+    """
+    Unfollow people
+    Request uuid(user), foreign_uuid(another user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    foreign_uuid = request.json['foreign_uuid']
+    user.update({'uuid': uuid}, {"$pull": {'follow': foreign_uuid}}, True)
+    user.update({'uuid': foreign_uuid}, {"$pull": {'follower': uuid}}, True)
+
+    return jsonify({'result': "Unfollow successful!"})
+
+
+@app.route('/api/get/follow', methods=['GET', 'POST'])
+def get_follow_uuid():
+    """
+    Get uuid which someone followed
+    Request uuid(user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    data = user.find_one({'uuid': uuid})
+    if data:
+        output = {'follow': data['follow']}
     else:
-        output = "No such name"
+        output = ['Wrong uuid']
     return jsonify({'result': output})
 
 
-@app.route('/api/login', methods=['POST'])
-def login():
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-
-    if username in session:
-        return get_all_videos()
-
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'invalid username and/or password'})
-
-    # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if not userDB.find_one({'username': username}):
-        return jsonify({'result': 'invalid username'})
-
-    user_to_validate = userDB.find_one({'username': username})
-
-    if not User.verify_password(password, user_to_validate['password']):
-        return jsonify({'result': 'invalid password'})
-
-    # Instantiate user
-    user = User(user_to_validate['_id'], user_to_validate['full_name'], username, password)
-
-    login_user(user)
-
-    return get_all_videos()
+@app.route('/api/get/follower', methods=['GET', 'POST'])
+def get_follower_uuid():
+    """
+    Get someone's followers' uuid
+    Request uuid(user)
+    """
+    user = mongo.db.Users
+    uuid =request.json['uuid']
+    data = user.find_one({'uuid': uuid})
+    if data:
+        output = {'follower': data['follower']}
+    else:
+        output = ['Wrong uuid']
+    return jsonify({'result': output})
 
 
-@app.route('/api/new/users', methods=['POST'])
-def new_user():
-    """Creates new user by providing json content of Full name, Username and Password"""
-    full_name = request.json.get('full_name')
-    username = str(request.json.get('username')).lower()
-    password = request.json.get('password')
-    id = randint(10000, 99999)
+@app.route('/api/like', methods=['POST', 'GET'])
+def like():
+    """
+    Like a post
+    Request uuid(user), _id(post)
+    """
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    _id = request.json['_id']
+    uuid = request.json['uuid']
+    post.update({'_id': ObjectId(_id)}, {"$addToSet": {'likes': uuid}}, True)
+    user.update({'uuid': uuid}, {"$addToSet": {'likes': _id}}, True)
 
-    if not re.match(settings.EMAIL_VALIDATION, username):
-        return jsonify({'result': 'invalid email'})
-
-    if username is None or password is None:
-        return jsonify({'result': 'Field cannot be empty'})
-
-    # Starting MongoDB
-    userDB = mongo.db.Users
-
-    if userDB.find_one({'username': username}) is not None:
-        return jsonify({'result': 'username exist already, please select another.'})
-
-    # Instantiate user
-    user = User(id, full_name, username, password)
-    # Inserting user to database
-    userDB.insert({'_id': id, 'full_name': user.full_name, 'username': user.username, 'password': user.get_password(),
-                   'is_authenticated': user.is_authenticated(), 'is_active': user.is_active(),
-                   'is_anonymous': user.is_anonymous()})
-
-    return jsonify({'result': 'user created'}, 201, {'Location': url_for('new_user', id=user._id, _external=True)})
+    return jsonify({'result': 'like it!'})
 
 
-@login_manager.user_loader
-def load_user(id):
-    temp = mongo.db.Users.find_one({'_id': id})
-    user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-    return user.get_id()
+@app.route('/api/unlike', methods=['POST', 'GET'])
+def unlike():
+    """
+    Unlike a post
+    Request uuid(user), _id(post)
+    """
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    _id = request.json['_id']
+    uuid = request.json['uuid']
+    post.update({'_id': ObjectId(_id)}, {"$pull": {'likes': uuid}}, True)
+    user.update({'uuid': uuid}, {"$pull": {'likes': _id}}, True)
+
+    return jsonify({'result': 'like it!'})
 
 
-@login_manager.request_loader
-def load_user_from_request(request):
-    # first, try to login using the api_key url arg
-    api_key = request.args.get('api_key')
-    if api_key:
-        temp = mongo.db.Users.find_one({'_id': id})
-        user = User(temp['_id'], temp['full_name'], temp['username'], temp['password'])
-        if user:
-            return user
+@app.route('/api/delete/post', methods=['DELETE'])
+def delete_post():
+    """
+    Delete a post
+    Request _id(post)
+    """
+    post = mongo.db.Posts
+    _id = request.json['_id']
+    post.delete_one({'_id': ObjectId(_id)})
 
-    # next, try to login using Basic Auth
-    api_key = request.headers.get('auth')
-    if api_key:
-        api_key = api_key.replace('Basic ', '', 1)
-        try:
-            api_key = base64.b64decode(api_key)
-        except TypeError:
-            pass
-        user = User.query.filter_by(api_key=api_key).first()
-        if user:
-            return user
-
-    # finally, return None if both methods did not login the user
-    return None
+    return jsonify({'result': "Post deleted!"})
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return jsonify({'result': 'log out Successfully {}'.format(login_user())})
+@app.route('/api/get/timeline',methods=['GET', 'POST'])
+def get_timeline():
+    """
+    Get someone's timeline
+    Request uuid(user)
+    """
+    output = []
+    data1 = []
+    data2 = []
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    uuid = request.args.get('uuid')
+    data = user.find({'uuid': uuid})
+
+    for i in data:
+        data1 = i['follow']
+
+    for n in data1:
+        x = post.find({'uuid': n})
+
+        for m in x:
+            data2.append(m)
+
+    for d in data2:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/users/get', methods=['GET'])
+def get_users():
+    """Grabs all users"""
+
+    output = []
+    data = mongo.db.Users.find()
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+
+@app.route('/api/user/getone', methods=['GET'])
+def get_one_user():
+    """Grabs one user"""
+
+    output = []
+    uuid = request.args.get('uuid')
+    data = mongo.db.Users.find({'uuid': uuid})
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
 
 
 @app.errorhandler(404)
