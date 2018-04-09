@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
 
 <div class = "header row">
   <div class = "title col-md-3">
@@ -92,12 +92,17 @@
         </ul>
     </form>
 
+    <form action="/topic/question" method="POST" enctype="multipart/form-data">
       {% for post in questions %}
+
                <p><b>{{post.title}}</b></p><br/><br/>
-                  {{post.question}}
-                <hr/>
+                {{post.question}}
+                <button type="submit" value="{{post._id}}" name ='solve'> Solve</button>
+
+      <hr/>
 
            {% endfor %}
+       </form>
   </div>
 </div>
 {% endblock %}

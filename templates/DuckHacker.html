@@ -61,13 +61,13 @@
 <div class = "content">
   <h1>Interview Questions</h1>
   <h2>Most Recent</h2>
-  <p>{{question}}</p>
+  <p>{{question.question}}</p>
   <div class = "addanswers">
     <h3>add your answer</h3>
     <form action = "{{url_for('handle_data')}}" method = "POST" enctype="multipart/form-data">
         <textarea name="Solution" id="Solution" class = "answer"></textarea><br/><br/>
         <input type="file" value="Upload File" name="file"/><br/><br/>
-       <input type="submit" value="Submit"/>
+        <button type="submit" value="{{question._id}}" name="quesid">Submit</button>
     </form>
       <h3>Other Answers</h3>
       <table>

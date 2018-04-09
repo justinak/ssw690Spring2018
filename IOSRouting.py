@@ -37,10 +37,3 @@ def add_experience(value):
 application.route('/experience/feed')
 def get_experience():
     return user_hannah.get_feed()
-
-
-
-
-if __name__ =='__main__':
-    #add_experiences_from_mongo()
-    get_experience()
