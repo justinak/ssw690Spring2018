@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 from flask_pymongo import PyMongo
 import eb_flask.settings as settings
+import datetime
 
 app = Flask(__name__)
 
@@ -10,11 +11,11 @@ app.config['SECRET_KEY'] = settings.APP_SECRET_KEY
 
 # Mongo Configuration for production
 app.config['MONGO_DBNAME'] = settings.MONGO_DBNAME
-# app.config['MONGO_HOST'] = settings.MONGO_HOST
-# app.config['MONGO_PORT'] = settings.MONGO_PORT
-# app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
-# app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
-# app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
+app.config['MONGO_HOST'] = settings.MONGO_HOST
+app.config['MONGO_PORT'] = settings.MONGO_PORT
+app.config['MONGO_USERNAME'] = settings.MONGO_USERNAME
+app.config['MONGO_PASSWORD'] = settings.MONGO_PASSWORD
+app.config['MONGO_AUTH_MECHANISM'] = settings.MONGO_AUTH_MECHANISM
 
 mongo = PyMongo(app)
 
@@ -24,11 +25,13 @@ def index():
     return 'please go to /videos to see all videos'
 
 
-@app.route('/api/post/video', methods=['POST'])
-def post_video():
-    """Method use to post video to S3 and store data in database"""
+# @app.route('/api/post/video', methods=['POST', 'GET'])
+# def post_video():
+#     """Method use to post video to S3 and store data in database"""
+#
+#     file = request.files['file']
+#     return jsonify(file)
 
-    return jsonify({'result': None})
 
 
 @app.route('/videos', methods=['GET'])
@@ -48,58 +51,42 @@ def get_all_videos():
         return jsonify({'result': output})
 
 
-@app.route('/feeds', methods=['GET'])
-def get_all_feeds():
-    """Method returns all the feeds on the database"""
-    output = []
-    data = mongo.db.Feeds.find()
-
-    for d in data:
-        output.append(d)
-
-    return jsonify({'result': output})
-
-
-@app.route('/new/feed', methods=['POST'])
-def post_feed():
-    feed = mongo.db.Feeds
-    actor = request.json['actor']
-    verb = request.json['verb']
-    object = request.json['object']
-    target = request.json['target']
-    foreign_id = request.json['foreign id']
-    time = request.json['time']
-    message = request.json['message']
-    feed_id = feed.insert(
-        {'actor': actor, 'verb': verb, 'object': object, 'target': target, 'foreign id': foreign_id, 'time': time,
-         'message': message})
-    new_feed = feed.find_one({'_id': feed_id})
-    output = {'actor': new_feed['actor'], 'verb': new_feed['verb'], 'object': new_feed['object'],
-              'target': new_feed['target'], 'foreign id': foreign_id, 'time': time, 'message': message}
-    return jsonify({'result': output})
-
-
-@app.route('/api/new/users', methods=['POST'])
+@app.route('/api/new/user', methods=['POST'])
 def new_user():
-    """Creates new user by providing json content of Full name, Username and Password"""
-    uid = request.json.get('uuid')
+    """Creates new user by providing json content
+    of Full name, Username and Password"""
+    uuid = request.json.get('uuid')
     email = request.json.get('email')
-    # Starting MongoDB
-    user_db = mongo.db.Users
-    print(uid, email)
-    # Inserting user to database
-    user_db.insert({'uuid': uid, 'email': email})
+    at_symbol = email.find('@')
+    username = email[:at_symbol]
+    photo = "https://pbs.twimg.com/profile_images/676830491383730177/pY-4PfOy_400x400.jpg"
+    user = mongo.db.Users
+    print(uuid, email)
+    follow = []
+    follower = []
+    likes = []
+    if user.find_one({'uuid': uuid}) is not None:
+        return jsonify({'result': 'uuid is already exist'})
 
-    return jsonify({'result': 'user created'})
+    user.insert({'uuid': uuid, 'email': email, 'username': username, 'photo': photo, 'follow': follow, 'follower': follower, 'likes': likes})
+
+    return jsonify({'result': "User created"})
 
 
-@app.route('/api/NewPost', methods=['POST'])
+
+@app.route('/api/new/post', methods=['POST'])
 def new_feed_post():
     """Creates NewPost by providing json content of ID and postBody"""
-    user_id = request.json.get('uuid')
-    post_body = request.json.get('postBody')
-    posts_db = mongo.db.Posts
-    posts_db.insert({'userID': user_id, 'postBody': post_body})
+    uuid = request.json.get('uuid')
+    text = request.json.get('text')
+    user = mongo.db.Users
+    post = mongo.db.Posts
+    # image = request.json['image']
+    user_document = user.find_one({'uuid': uuid})
+    created_by = user_document['username']
+    time = datetime.datetime.utcnow()
+    likes = []
+    post.insert({'uuid': uuid, 'created_by': created_by, 'text': text, 'image': "", 'time': time, 'likes': likes})
     return jsonify({'result': 'Post Created'})
 
 
@@ -108,9 +95,40 @@ def get_post():
     """Grabs all posts"""
 
     output = []
-    data = mongo.db.Posts.find()
+    user_id = request.args.get('uuid')
+    data = mongo.db.Posts.find({'uuid': user_id })
 
     for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/get/timeline',methods=['GET', 'POST'])
+def get_timeline():
+    """
+    Get someone's timeline
+    Request uuid(user)
+    """
+    output = []
+    data1 = []
+    data2 = []
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    uuid = request.args.get('uuid')
+    data = user.find({'uuid': uuid})
+
+    for i in data:
+        data1 = i['follow']
+
+    for n in data1:
+        x = post.find({'uuid': n})
+
+        for m in x:
+            data2.append(m)
+
+    for d in data2:
         d['_id'] = str(d['_id'])
         output.append(d)
 
@@ -123,6 +141,22 @@ def get_users():
 
     output = []
     data = mongo.db.Users.find()
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+
+@app.route('/api/user/getone', methods=['GET'])
+def get_one_user():
+    """Grabs one user"""
+
+    output = []
+    uuid = request.args.get('uuid')
+    data = mongo.db.Users.find({'uuid': uuid})
 
     for d in data:
         d['_id'] = str(d['_id'])

@@ -9,7 +9,8 @@
 import Foundation
 
 struct Video {
-    let _id: Any
-    let title: String
-    let src: Any
+    let _id: Any?
+    let title: String?
+    let src: URL?
+    let user_id: Any?
 }
