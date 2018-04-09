@@ -47,17 +47,16 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
             //Putting attribute value into newPost from textfield
            
             let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
-//            print("uid here: " + uid!)
 //            newPost.setValue(uid, forKey: "userID")
             newPost.setValue(self.postBody!.text, forKey: "postBody")
            
-            do{
+            do {
                 try context.save()
                 performSegue(withIdentifier: "postSuccess", sender: self)
-            }catch{
+            } catch {
                 print(error)
             }
-        }else{
+        } else {
             print("Please enter text in the Post Box!")
         }
         
