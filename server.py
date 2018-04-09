@@ -104,6 +104,129 @@ def get_post():
 
     return jsonify({'result': output})
 
+#  Kevin's routes
+@app.route('/api/get/posts', methods=['GET'])
+def get_posts():
+    """
+    Get all posts in MongoDB
+    """
+    post = mongo.db.Posts
+    data = post.find()
+
+    output = []
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/follow', methods=['GET', 'POST'])
+def follow():
+    """
+    Follow people
+    Request uuid(user), foreign_uuid(another user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    foreign_uuid = request.json['foreign_uuid']
+    user.update({'uuid': uuid}, {"$addToSet": {'follow': foreign_uuid}}, True)
+    user.update({'uuid': foreign_uuid}, {"$addToSet": {'follower': uuid}}, True)
+
+    return jsonify({'result': "Follow successful!"})
+
+
+@app.route('/api/unfollow', methods=['GET', 'POST'])
+def unfollow():
+    """
+    Unfollow people
+    Request uuid(user), foreign_uuid(another user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    foreign_uuid = request.json['foreign_uuid']
+    user.update({'uuid': uuid}, {"$pull": {'follow': foreign_uuid}}, True)
+    user.update({'uuid': foreign_uuid}, {"$pull": {'follower': uuid}}, True)
+
+    return jsonify({'result': "Unfollow successful!"})
+
+
+@app.route('/api/get/follow', methods=['GET', 'POST'])
+def get_follow_uuid():
+    """
+    Get uuid which someone followed
+    Request uuid(user)
+    """
+    user = mongo.db.Users
+    uuid = request.json['uuid']
+    data = user.find_one({'uuid': uuid})
+    if data:
+        output = {'follow': data['follow']}
+    else:
+        output = ['Wrong uuid']
+    return jsonify({'result': output})
+
+
+@app.route('/api/get/follower', methods=['GET', 'POST'])
+def get_follower_uuid():
+    """
+    Get someone's followers' uuid
+    Request uuid(user)
+    """
+    user = mongo.db.Users
+    uuid =request.json['uuid']
+    data = user.find_one({'uuid': uuid})
+    if data:
+        output = {'follower': data['follower']}
+    else:
+        output = ['Wrong uuid']
+    return jsonify({'result': output})
+
+
+@app.route('/api/like', methods=['POST', 'GET'])
+def like():
+    """
+    Like a post
+    Request uuid(user), _id(post)
+    """
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    _id = request.json['_id']
+    uuid = request.json['uuid']
+    post.update({'_id': ObjectId(_id)}, {"$addToSet": {'likes': uuid}}, True)
+    user.update({'uuid': uuid}, {"$addToSet": {'likes': _id}}, True)
+
+    return jsonify({'result': 'like it!'})
+
+
+@app.route('/api/unlike', methods=['POST', 'GET'])
+def unlike():
+    """
+    Unlike a post
+    Request uuid(user), _id(post)
+    """
+    post = mongo.db.Posts
+    user = mongo.db.Users
+    _id = request.json['_id']
+    uuid = request.json['uuid']
+    post.update({'_id': ObjectId(_id)}, {"$pull": {'likes': uuid}}, True)
+    user.update({'uuid': uuid}, {"$pull": {'likes': _id}}, True)
+
+    return jsonify({'result': 'like it!'})
+
+
+@app.route('/api/delete/post', methods=['DELETE'])
+def delete_post():
+    """
+    Delete a post
+    Request _id(post)
+    """
+    post = mongo.db.Posts
+    _id = request.json['_id']
+    post.delete_one({'_id': ObjectId(_id)})
+
+    return jsonify({'result': "Post deleted!"})
+
 
 @app.route('/api/get/timeline',methods=['GET', 'POST'])
 def get_timeline():
