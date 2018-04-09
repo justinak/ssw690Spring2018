@@ -558,7 +558,6 @@
                     <connections>
                         <outlet property="searchBox" destination="Uld-f4-c1B" id="cu4-9Q-bp2"/>
                         <outlet property="videoView" destination="DrD-JD-t7U" id="VzZ-88-Sqz"/>
-                        <segue destination="YWK-gt-O3e" kind="show" identifier="watchVideo" id="H4t-2Z-Gy3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPH-0F-G3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -636,38 +635,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upu-Yg-zMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3845.5999999999999" y="1751.9704433497539"/>
-        </scene>
-        <!--Video View Controller-->
-        <scene sceneID="aCT-wK-WTm">
-            <objects>
-                <viewController id="YWK-gt-O3e" customClass="VideoViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gvp-eV-jcm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="167-lw-66F">
-                                <rect key="frame" x="0.0" y="323.66666666666669" width="375" height="165"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="FQP-Ne-xe4"/>
-                                    <constraint firstAttribute="width" constant="375" id="XRQ-We-jq4"/>
-                                </constraints>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="167-lw-66F" firstAttribute="centerY" secondItem="gvp-eV-jcm" secondAttribute="centerY" id="Y5N-BZ-hfs"/>
-                            <constraint firstItem="167-lw-66F" firstAttribute="centerX" secondItem="gvp-eV-jcm" secondAttribute="centerX" id="cqE-YE-3uk"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="dOI-Xx-7JS"/>
-                    </view>
-                    <connections>
-                        <outlet property="videoView" destination="167-lw-66F" id="ODd-iz-L5p"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cjb-Pi-jTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4592.8000000000002" y="929.55665024630548"/>
         </scene>
         <!--Register-->
         <scene sceneID="Ama-yB-Fnz">

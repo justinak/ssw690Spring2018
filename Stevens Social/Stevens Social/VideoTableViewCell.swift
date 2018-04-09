@@ -40,26 +40,33 @@ class VideoTableViewCell: UITableViewCell {
         
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
     func setupMoviePlayer(){
         self.avPlayer = AVPlayer.init(playerItem: self.videoPlayerItem)
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
         avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+        avPlayerLayer?.frame = self.videoPlayerSuperView.bounds
         avPlayer?.volume = 3
         avPlayer?.actionAtItemEnd = .none
 
-        if UIScreen.main.bounds.width == 375 {
-            let widthRequired = self.frame.size.width - 20
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
-        } else if UIScreen.main.bounds.width == 320 {
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: (self.frame.size.height - 120) * 1.78, height: self.frame.size.height - 120)
-        } else {
-            let widthRequired = self.frame.size.width
-            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
-        }
-        let widthRequired = self.frame.size.width
-        avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
+//        if UIScreen.main.bounds.width == 375 {
+//            let widthRequired = self.frame.size.width - 20
+//            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
+//        } else if UIScreen.main.bounds.width == 320 {
+//            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: (self.frame.size.height - 120) * 1.78, height: self.frame.size.height - 120)
+//        } else {
+//            let widthRequired = self.frame.size.width
+//            avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
+//        }
+//        let widthRequired = self.frame.size.width
+//        avPlayerLayer?.frame = CGRect.init(x: 0, y: 0, width: widthRequired, height: widthRequired/1.78)
         
-        self.backgroundColor = .red
+        
         self.videoPlayerSuperView.layer.insertSublayer(avPlayerLayer!, at: 0)
         
         // This notification is fired when the video ends, you can handle it in the method.
@@ -82,14 +89,4 @@ class VideoTableViewCell: UITableViewCell {
         let p: AVPlayerItem = notification.object as! AVPlayerItem
         p.seek(to: kCMTimeZero)
     }
-
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-
-    
 }

@@ -25,6 +25,15 @@ def index():
     return 'please go to /videos to see all videos'
 
 
+# @app.route('/api/post/video', methods=['POST', 'GET'])
+# def post_video():
+#     """Method use to post video to S3 and store data in database"""
+#
+#     file = request.files['file']
+#     return jsonify(file)
+
+
+
 @app.route('/videos', methods=['GET'])
 def get_all_videos():
     """Method returns videos that match the search title in the database"""

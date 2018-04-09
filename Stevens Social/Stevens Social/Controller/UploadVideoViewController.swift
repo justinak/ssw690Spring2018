@@ -15,7 +15,7 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
 
     
     let imagePickerController = UIImagePickerController()
-    var videoURL: URL?
+//    var videoURL: URL?
     var uid: Any?
     
     @IBOutlet weak var displayImage: UIImageView!
@@ -71,7 +71,13 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
             
             print("Video is here: \(video)")
 
-            self.videoURL = video as URL
+//            self.videoURL = video
+            
+//            let fileURL = Bundle.main.url(forResource: video, withExtension: "mov")
+//
+//            Alamofire.upload(fileURL, to: "http://localhost:5000/api/post/video").responseJSON { response in
+//                debugPrint(response)
+////            }
             
         }
         

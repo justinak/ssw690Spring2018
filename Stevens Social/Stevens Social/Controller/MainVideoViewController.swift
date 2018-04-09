@@ -80,23 +80,23 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let indexPaths = self.videoView.indexPathsForVisibleRows
         var cells = [Any]()
-        for ip in indexPaths!{
-            if let videoCell = self.videoView.cellForRow(at: ip) as? VideoTableViewCell{
+        for ip in indexPaths! {
+            if let videoCell = self.videoView.cellForRow(at: ip) as? VideoTableViewCell {
                 cells.append(videoCell)
             }
         }
         let cellCount = cells.count
         if cellCount == 0 {return}
-        if cellCount == 1{
-            if visibleIP != indexPaths?[0]{
+        if cellCount == 1 {
+            if visibleIP != indexPaths?[0] {
                 visibleIP = indexPaths?[0]
             }
-            if let videoCell = cells.last! as? VideoTableViewCell{
+            if let videoCell = cells.last! as? VideoTableViewCell {
                 self.playVideoOnTheCell(cell: videoCell, indexPath: (indexPaths?.last)!)
             }
         }
         if cellCount >= 2 {
-            for i in 0..<cellCount{
+            for i in 0..<cellCount {
                 let cellRect = self.videoView.rectForRow(at: (indexPaths?[i])!)
                 let intersect = cellRect.intersection(self.videoView.bounds)
                 //                currentHeight is the height of the cell that
@@ -118,9 +118,9 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 }
                 else{
-                    if aboutToBecomeInvisibleCell != indexPaths?[i].row{
+                    if aboutToBecomeInvisibleCell != indexPaths?[i].row {
                         aboutToBecomeInvisibleCell = (indexPaths?[i].row)!
-                        if let videoCell = cells[i] as? VideoTableViewCell{
+                        if let videoCell = cells[i] as? VideoTableViewCell {
                             self.stopPlayBack(cell: videoCell, indexPath: (indexPaths?[i])!)
                         }
                         
@@ -148,7 +148,7 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
                     let src: URL = subJson["src"].url!
                     let userID: String = subJson["user_id"].stringValue
                     
-                    self.videoArray.append(Video(_id: id, title: title, src: src, user_id: nil))
+                    self.videoArray.append(Video(_id: id, title: title, src: src, user_id: nil)) // Enter Firebase uid! instead of nil
             
                 }
                 DispatchQueue.main.async {

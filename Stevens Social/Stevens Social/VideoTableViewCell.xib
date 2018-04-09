@@ -35,21 +35,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAW-s6-tP6">
-                        <rect key="frame" x="28" y="60" width="325" height="173"/>
+                        <rect key="frame" x="28" y="60" width="300" height="173"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="f10-k2-Hbs" firstAttribute="trailing" secondItem="yAW-s6-tP6" secondAttribute="trailing" constant="47" id="3Qd-tt-OmW"/>
                     <constraint firstItem="f10-k2-Hbs" firstAttribute="trailing" secondItem="NHg-6U-1wE" secondAttribute="trailing" constant="36" id="Kft-Rx-d3h"/>
-                    <constraint firstItem="NHg-6U-1wE" firstAttribute="top" secondItem="yAW-s6-tP6" secondAttribute="bottom" constant="21" id="TGi-SX-nrb"/>
-                    <constraint firstItem="yAW-s6-tP6" firstAttribute="leading" secondItem="f10-k2-Hbs" secondAttribute="leading" constant="28" id="a8b-38-SKV"/>
                     <constraint firstItem="iSO-Ax-yJ4" firstAttribute="leading" secondItem="f10-k2-Hbs" secondAttribute="leading" constant="46" id="biy-Fx-U1R"/>
+                    <constraint firstItem="yAW-s6-tP6" firstAttribute="leading" secondItem="f10-k2-Hbs" secondAttribute="leading" constant="28" id="cKQ-aC-nUF"/>
                     <constraint firstItem="f10-k2-Hbs" firstAttribute="trailing" secondItem="iSO-Ax-yJ4" secondAttribute="trailing" constant="102" id="fG8-cS-mUX"/>
                     <constraint firstItem="iSO-Ax-yJ4" firstAttribute="top" secondItem="f10-k2-Hbs" secondAttribute="top" constant="17" id="fva-Yb-sBr"/>
-                    <constraint firstItem="yAW-s6-tP6" firstAttribute="top" secondItem="iSO-Ax-yJ4" secondAttribute="bottom" constant="27" id="jfP-1P-CAn"/>
+                    <constraint firstItem="NHg-6U-1wE" firstAttribute="top" secondItem="yAW-s6-tP6" secondAttribute="bottom" constant="21" id="jvB-6o-VXL"/>
+                    <constraint firstItem="yAW-s6-tP6" firstAttribute="top" secondItem="iSO-Ax-yJ4" secondAttribute="bottom" constant="27" id="nx2-1t-ver"/>
                     <constraint firstItem="NHg-6U-1wE" firstAttribute="leading" secondItem="iSO-Ax-yJ4" secondAttribute="leading" id="rGJ-iD-ii8"/>
                     <constraint firstItem="f10-k2-Hbs" firstAttribute="bottom" secondItem="NHg-6U-1wE" secondAttribute="bottom" constant="5.5" id="tGZ-bJ-3mk"/>
-                    <constraint firstItem="f10-k2-Hbs" firstAttribute="trailing" secondItem="yAW-s6-tP6" secondAttribute="trailing" constant="22" id="y0B-WT-8cI"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="f10-k2-Hbs"/>
             </tableViewCellContentView>
