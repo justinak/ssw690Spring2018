@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32551dbd-6ac4-437c-9fda-bee42813183a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UploadVideoViewController.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Helpers/AttachmentHandler.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Post.swift" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/VideoViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/VideoViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/VideoViewController.swift" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Post.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Post.swift" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" />
-      <change beforePath="$PROJECT_DIR$/eb_flask/settings.py" afterPath="$PROJECT_DIR$/eb_flask/settings.py" />
       <change beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +29,8 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
+            <state relative-caret-position="18">
+              <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -118,8 +112,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -136,7 +130,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -227,12 +221,13 @@
       <workItem from="1521430445604" duration="2790000" />
       <workItem from="1521494242393" duration="1662000" />
       <workItem from="1522603299061" duration="7198000" />
-      <workItem from="1522736069095" duration="5761000" />
+      <workItem from="1522736069095" duration="6858000" />
+      <workItem from="1523052876099" duration="5981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35879000" />
+    <option name="totallyTimeSpent" value="42957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -606,8 +601,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
+        <state relative-caret-position="18">
+          <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>

@@ -14,4 +14,5 @@ struct Post {
     let image: String?
     let uuid: Any?
     let likes: Array<Any>
+    let created_by: String?
 }

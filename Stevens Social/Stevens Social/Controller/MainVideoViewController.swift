@@ -99,7 +99,7 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
             for i in 0..<cellCount{
                 let cellRect = self.videoView.rectForRow(at: (indexPaths?[i])!)
                 let intersect = cellRect.intersection(self.videoView.bounds)
-                //                curerntHeight is the height of the cell that
+                //                currentHeight is the height of the cell that
                 //                is visible
                 let currentHeight = intersect.height
                 print("\n \(currentHeight)")

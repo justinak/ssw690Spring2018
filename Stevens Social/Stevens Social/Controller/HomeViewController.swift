@@ -16,19 +16,17 @@ import SwiftyJSON
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
 
     @IBOutlet var postTableView: UITableView!
-    
     @IBOutlet var userEmail: UILabel!
-
+    
     var postsArray:[Post] = []
     var uid: String?
+    var uName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.uid = user?.uid
-        }
-        // Do aUITableView setup after loading the view.
-        
+        }   
         postTableView.delegate = self
         postTableView.dataSource = self
         
@@ -37,8 +35,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.postTableView.reloadData()
         
 //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        configureTableView()
-        configureEmail()
+        self.configureTableView()
+        self.configureEmail()
 
     }
     
@@ -52,10 +50,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
+        
         cell.selectionStyle = .none
         let post = postsArray[indexPath.row]
+        let quackCount = post.likes.count
         cell.postBody!.text = post.text
-        cell.postName!.text = post.uuid as! String as! String
+        cell.postName!.text = post.created_by
+        cell.quackCount!.text = "\(quackCount)"
+        
         return cell
         
     }
@@ -82,13 +84,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let id: String = subJson["_id"].stringValue
                     let text: String = subJson["text"].stringValue
                     let uid: String = subJson["uuid"].stringValue
-                    let likes: Array<Any> = []
+                    let likes: Array<Any> = subJson["likes"].array!
+                    let created_by: String = subJson["created_by"].stringValue
                     
-                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes))
+                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
+                    
+                    // Must change 000002 to Firebase uid!
+                    if (subJson["uuid"].stringValue == "000002") {
+                        self.uName = created_by
+                    }
                     
                 }
                 DispatchQueue.main.async {
                     self.postTableView.reloadData()
+                    self.userEmail.text = self.uName
                 }
                 print(self.postsArray)
             }

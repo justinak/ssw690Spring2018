@@ -14,6 +14,9 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet var postBody: UILabel!
     @IBOutlet var postName: UILabel!
     
+
+    @IBOutlet var quackCount: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,10 +31,9 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func shareButton(_ sender: UIButton) {
         print("shareButton pressed")
     }
-    
+
     @IBAction func quackButton(_ sender: UIButton) {
         print("quackButton pressed")
-
     }
     
 }

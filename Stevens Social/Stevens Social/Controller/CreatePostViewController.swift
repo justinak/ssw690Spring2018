@@ -46,13 +46,14 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     @IBAction func confirmPost(_ sender: UIButton) {
         
         if postBody?.text != "" {
-            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/NewPost", customMethod: "POST")
+            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
             myAPI.sendRequest(parameters: ["uuid": "000002", "text": self.postBody!.text!]) // insert real uuid from firebase
         } else {
             print("Please enter text in the Post Box!")
         }
         
-    
+        performSegue(withIdentifier: "postSuccess", sender: self)
+
     }
 
 }

@@ -17,10 +17,14 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var followBtnText: UIButton!
     @IBOutlet var postTableViewProfile: UITableView!
-
+    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var profileName: UILabel!
+    
     var postsArray:[Post] = []
     var isFollowing: Bool = false
     var uid: String?
+    var userPhoto: String?
+    var uName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +34,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         postTableViewProfile.delegate = self
         postTableViewProfile.dataSource = self
         
-        //fetch data from postArray
         self.fetchData()
+        self.runGetRequestForUserPhoto()
         self.postTableViewProfile.reloadData()
         
         configureTableView()
@@ -47,10 +51,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
-        //first post data will be stored into post
+        cell.selectionStyle = .none
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
-        cell.postName!.text = post.uuid as! String as! String
+        cell.postName!.text = post.created_by
+//        let imageUrl:URL = URL(string: self.userPhoto!)!
+//        let imageData:NSData = NSData(contentsOf: imageUrl)!
+//        let image = UIImage(data: imageData as Data)
+//        cell.avatarImageView!.image = image
+//        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
         
         return cell
     }
@@ -61,11 +70,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchData(){
-//        do {
-//            postArray = try context.fetch(Post.fetchRequest())
-//        } catch {
-//            print(error)
-//        }
         
         let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid! 
         Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
@@ -82,8 +86,9 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     let text: String = subJson["text"].stringValue
                     let uid: String = subJson["uuid"].stringValue
                     let likes: Array<Any> = []
-                    
-                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes))
+                    let created_by: String = subJson["created_by"].stringValue
+  
+                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                     
                 }
                 DispatchQueue.main.async {
@@ -93,6 +98,34 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
+    }
+    
+    func runGetRequestForUserPhoto() {
+        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid!
+        Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
+            
+            if (response.result.error != nil) {
+                print(response.result.error!)
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                for (_, subJson) in json["result"] {
+                    print(subJson)
+                    self.uName = subJson["username"].stringValue
+                    self.userPhoto = subJson["photo"].stringValue
+                }
+                DispatchQueue.main.async {
+                    self.postTableViewProfile.reloadData()
+                    let imageUrl:URL = URL(string: self.userPhoto!)!
+                    let imageData:NSData = NSData(contentsOf: imageUrl)!
+                    let image = UIImage(data: imageData as Data)
+                    self.profileImage.image = image
+                    self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
+                    self.profileName.text = self.uName
+                }
+            }
+        }
     }
     
     func configureTableView() {
