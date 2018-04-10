@@ -21,6 +21,11 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var searchBox: UITextField!
     
     var videoArray:[Video] = []
+    var aboutToBecomeInvisibleCell = -1
+    var avPlayerLayer: AVPlayerLayer!
+    var firstLoad = true
+    var visibleIP : IndexPath?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,45 +34,100 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
         videoView.dataSource = self
         
         configureTableView()
-        
+        visibleIP = IndexPath.init(row: 0, section: 0)
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.separatorStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoTableCell", for: indexPath) as! VideoTableViewCell
         cell.selectionStyle = .none
-        print(self.videoArray)
         let video = videoArray[indexPath.row]
-        let videoURL = NSURL(string: video.src as! String)
         cell.videoTitle.text = video.title
-        cell.videoPoster.text = "Vincent Porta"
-        
+        cell.videoPoster.text = "Vincent Porta" // Need a user email address to be displayed here. 
+        cell.videoPlayerItem = AVPlayerItem.init(url: video.src! )
+
         return cell
+    }
+    
+    func playVideoOnTheCell(cell : VideoTableViewCell, indexPath : IndexPath){
+        cell.startPlayback()
+    }
+    
+    func stopPlayBack(cell : VideoTableViewCell, indexPath : IndexPath){
+        cell.stopPlayback()
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("end = \(indexPath)")
+        if let videoCell = cell as? VideoTableViewCell {
+            videoCell.stopPlayback()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videoArray.count
     }
     
-    func playExternalVideo(videoURL: NSURL) {
-        let player = AVPlayer(url: videoURL as URL)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        
-        self.present(playerViewController, animated: true) { () -> Void in
-            
-            playerViewController.player!.play()
-            
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 290
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let indexPaths = self.videoView.indexPathsForVisibleRows
+        var cells = [Any]()
+        for ip in indexPaths! {
+            if let videoCell = self.videoView.cellForRow(at: ip) as? VideoTableViewCell {
+                cells.append(videoCell)
+            }
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func PlayVideoBtn(_ sender: Any) {
-        performSegue(withIdentifier: "watchVideo", sender: self)
+        let cellCount = cells.count
+        if cellCount == 0 {return}
+        if cellCount == 1 {
+            if visibleIP != indexPaths?[0] {
+                visibleIP = indexPaths?[0]
+            }
+            if let videoCell = cells.last! as? VideoTableViewCell {
+                self.playVideoOnTheCell(cell: videoCell, indexPath: (indexPaths?.last)!)
+            }
+        }
+        if cellCount >= 2 {
+            for i in 0..<cellCount {
+                let cellRect = self.videoView.rectForRow(at: (indexPaths?[i])!)
+                let intersect = cellRect.intersection(self.videoView.bounds)
+                //                currentHeight is the height of the cell that
+                //                is visible
+                let currentHeight = intersect.height
+                print("\n \(currentHeight)")
+                let cellHeight = (cells[i] as AnyObject).frame.size.height
+                //                0.95 here denotes how much you want the cell to display
+                //                for it to mark itself as visible,
+                //                .95 denotes 95 percent,
+                //                you can change the values accordingly
+                if currentHeight > (cellHeight * 0.95){
+                    if visibleIP != indexPaths?[i]{
+                        visibleIP = indexPaths?[i]
+                        print ("visible = \(indexPaths?[i])")
+                        if let videoCell = cells[i] as? VideoTableViewCell{
+                            self.playVideoOnTheCell(cell: videoCell, indexPath: (indexPaths?[i])!)
+                        }
+                    }
+                }
+                else{
+                    if aboutToBecomeInvisibleCell != indexPaths?[i].row {
+                        aboutToBecomeInvisibleCell = (indexPaths?[i].row)!
+                        if let videoCell = cells[i] as? VideoTableViewCell {
+                            self.stopPlayBack(cell: videoCell, indexPath: (indexPaths?[i])!)
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
     
     func getTitle(title: String) {
@@ -85,10 +145,11 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
                     print(subJson)
                     let id: String = subJson["_id"].stringValue
                     let title: String = subJson["title"].stringValue
-                    let src: String = subJson["src"].stringValue
+                    let src: URL = subJson["src"].url!
+                    let userID: String = subJson["user_id"].stringValue
                     
-                    self.videoArray.append(Video(_id: id, title: title, src: src))
-                
+                    self.videoArray.append(Video(_id: id, title: title, src: src, user_id: nil)) // Enter Firebase uid! instead of nil
+            
                 }
                 DispatchQueue.main.async {
                     self.videoView.reloadData()
@@ -111,7 +172,7 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
     func configureTableView() {
         videoView.register(UINib(nibName: "VideoTableViewCell", bundle: nil), forCellReuseIdentifier: "videoTableCell")
         videoView.rowHeight = UITableViewAutomaticDimension
-        videoView.estimatedRowHeight = 300.0
+        videoView.estimatedRowHeight = 290.0
         
     }
 }
