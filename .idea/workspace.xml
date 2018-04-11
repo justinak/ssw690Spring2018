@@ -2,33 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32551dbd-6ac4-437c-9fda-bee42813183a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceCollectionViewCell.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UploadVideoViewController.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Helpers/AttachmentHandler.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Experience.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Post.swift" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreateExpViewController.swift" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Pods/Pods.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Stevens Social/Pods/Pods.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/michaelkim.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/michaelkim.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/VideoViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/michaelkim.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/michaelkim.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceCollectionViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceCollectionViewCell.swift" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ExperienceViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" />
-      <change beforePath="$PROJECT_DIR$/eb_flask/settings.py" afterPath="$PROJECT_DIR$/eb_flask/settings.py" />
       <change beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +24,8 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="129" column="15" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="15" />
+            <state relative-caret-position="230">
+              <caret line="98" column="13" lean-forward="false" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -70,6 +51,8 @@
       <find>user</find>
       <find>.idea</find>
       <find>User</find>
+      <find>get/experiences</find>
+      <find>experience</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -616,8 +599,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="129" column="15" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="15" />
+        <state relative-caret-position="230">
+          <caret line="98" column="13" lean-forward="false" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>

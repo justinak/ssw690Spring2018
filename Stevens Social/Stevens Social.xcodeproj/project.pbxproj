@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09B979A67FEA6E2FD3069B63 /* Pods_Stevens_SocialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC6EC99E15E3774C3057D14 /* Pods_Stevens_SocialTests.framework */; };
 		43ABDC06E886A3162A0C64E0 /* Pods_Stevens_SocialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D6EA5CC43EB6651483C475 /* Pods_Stevens_SocialUITests.framework */; };
+		95880D37207D85E5006B9072 /* CreateExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95880D36207D85E5006B9072 /* CreateExpViewController.swift */; };
 		9595AB76205B5E4B00CBCB13 /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
 		9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */; };
 		95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7DA872069F4C600D312BB /* MainVideoViewController.swift */; };
@@ -71,6 +72,7 @@
 		486DC5956564D76D242F20CC /* Pods-Stevens Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens Social/Pods-Stevens Social.debug.xcconfig"; sourceTree = "<group>"; };
 		74C88C4D976D04B9A4A52BAE /* Pods-Stevens SocialUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens SocialUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens SocialUITests/Pods-Stevens SocialUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stevens_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95880D36207D85E5006B9072 /* CreateExpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExpViewController.swift; sourceTree = "<group>"; };
 		95C7DA872069F4C600D312BB /* MainVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVideoViewController.swift; sourceTree = "<group>"; };
 		95E5D702207D56890075315D /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		95E5D704207D59880075315D /* ExperienceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				95C7DA872069F4C600D312BB /* MainVideoViewController.swift */,
 				95E5D704207D59880075315D /* ExperienceCollectionViewCell.swift */,
 				95E5D706207D59F20075315D /* ExperienceViewController.swift */,
+				95880D36207D85E5006B9072 /* CreateExpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				A752388520769D6600BDA798 /* AttachmentHandler.swift in Sources */,
 				95E5D707207D59F20075315D /* ExperienceViewController.swift in Sources */,
 				A752388320768D0600BDA798 /* UploadVideoViewController.swift in Sources */,
+				95880D37207D85E5006B9072 /* CreateExpViewController.swift in Sources */,
 				95E5D705207D59880075315D /* ExperienceCollectionViewCell.swift in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
 				95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */,

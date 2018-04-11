@@ -10,45 +10,51 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ExperienceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
-
-    @IBOutlet weak var expCollect: UICollectionView!
+class ExperienceViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    @IBOutlet weak var expColl: UICollectionView!
     var ExperiencePosts:[Experiences] = []
 
-    override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
-        print("Request: \(String(describing: response.request))")   // original url request
-        print("Response: \(String(describing: response.response))") // http url response
-        print("Result: \(response.result)")
-    // response serialization result
-    
-    if (response.result.error != nil) {
-        print(response.result.error!)
+    @IBAction func likeButton(_ sender: Any) {
+     
+        
     }
-            if let value = response.result.value{
-            let json = JSON(value)
-            for (_, subJson) in json["result"] {
-                print("subJson: ",subJson)
-                let Experience = subJson["experience"].stringValue
-                let id = subJson["_id"].stringValue
-                let date = subJson["time"].stringValue
-                let UserID = subJson["userid"].stringValue
-                let votes = subJson["votes"].stringValue
-                self.ExperiencePosts.append(Experiences(experience: Experience, _id: id, time: date, userid: UserID, votes: votes))
+    @IBAction func dislikeButton(_ sender: Any) {
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
+            //print("Request: \(String(describing: response.request))")   // original url request
+            //print("Response: \(String(describing: response.response))") // http url response
+            //print("Result: \(response.result)")
+        // response serialization result
+        
+            if (response.result.error != nil) {
+                print(response.result.error!)
             }
+                if let value = response.result.value{
+                let json = JSON(value)
+                for (_, subJson) in json["result"] {
+                    print("subJson: ",subJson)
+                    let experience = subJson["experience"].stringValue
+                    let _id = subJson["_id"].stringValue
+                    let time = subJson["time"].stringValue
+                    let userid = subJson["userid"].stringValue
+                    let votes = subJson["votes"].stringValue
+                    self.ExperiencePosts.append(Experiences(experience: experience, _id: _id, time: time, userid: userid, votes: votes))
+                }
     
                     DispatchQueue.main.async {
                     print("DATA: \(self.ExperiencePosts)")
-                    self.expCollect.reloadData()
-                    print(self.ExperiencePosts.count)
-    
+                    self.expColl.reloadData()
                 }
             }
         }
+    
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ExperiencePosts.count
     }
@@ -58,26 +64,27 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "expCell", for: indexPath) as! ExperienceCollectionViewCell
-    
-            let experience = self.ExperiencePosts[indexPath.row]
         
-            cell.experiencePost.text = experience.experience
-            cell.timePost.text = experience.time
-            cell.votePost.text = experience.votes
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "experienceCell", for: indexPath) as! ExperienceCollectionViewCell
+        
+        let experience = self.ExperiencePosts[indexPath.row]
+        
+        cell.experiencePost.text = experience.experience
+        cell.timePost.text = experience.time
+        cell.votePost.text = experience.votes
 
-            cell.contentView.layer.cornerRadius = 4.0
-            cell.contentView.layer.borderWidth = 1.0
-            cell.contentView.layer.borderColor = UIColor.clear.cgColor
-            cell.contentView.layer.masksToBounds = false
-            cell.layer.shadowColor = UIColor.gray.cgColor
-            cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-            cell.layer.shadowRadius = 4.0
-            cell.layer.shadowOpacity = 1.0
-            cell.layer.masksToBounds = false
-            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-    
-            return cell
-        }
+        cell.contentView.layer.cornerRadius = 7.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = false
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowRadius = 7.0
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+
+        return cell
+    }
 }
 

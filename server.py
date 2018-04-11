@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify, make_response
 from flask_pymongo import PyMongo
+from random import randint
 import eb_flask.settings as settings
 import datetime
+
 
 app = Flask(__name__)
 
@@ -88,6 +90,18 @@ def new_feed_post():
     likes = []
     post.insert({'uuid': uuid, 'created_by': created_by, 'text': text, 'image': "", 'time': time, 'likes': likes})
     return jsonify({'result': 'Post Created'})
+
+@app.route('/api/new/experiences', methods=['POST'])
+def new_experience_post():
+    """Creates NewPost experience by providing json content of ID and postBody"""
+    text = request.json.get('experience')
+    userid = request.json.get('userid')
+    votes = 0
+    randomid = randint(0, 9999)
+    exp = mongo.db.Experience
+    time = datetime.datetime.utcnow()
+    exp.insert({'_id': randomid ,'experience': text, 'time': time, 'votes': votes, 'userid': userid})
+    return jsonify({'result': 'Experience Post Created'})
 
 
 @app.route('/api/posts/get', methods=['GET'])

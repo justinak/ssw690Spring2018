@@ -13,9 +13,5 @@ class ExperienceCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timePost: UILabel!
     @IBOutlet weak var experiencePost: UILabel!
     @IBOutlet weak var votePost: UILabel!
-    @IBAction func LikeButton(_ sender: Any) {
-    }
-    @IBAction func DislikeButton(_ sender: Any) {
-    }
     
 }
