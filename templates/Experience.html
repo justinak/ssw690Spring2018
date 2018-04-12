@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+    cthden@stevens.edu
+  </div>
+  <div class = "toolbar col-md-7">
+    <ul class = "nav navbar-nav">
+      <li>
+        <a>Home</a>
+      </li>
+      <li>
+        <a>Pages</a>
+      </li>
+      <li>
+        <a>My Account</a>
+      </li>
+      <li>
+        <a>Contact</a>
+      </li>
+      <li>
+          <input type = "text" class="form-control">
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="newQuestion" name="menu" class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+<div class = "content">
+  <h1>Experience</h1>
+  <div class = "addanswers">
+      <h3>Experiences</h3>
+        <table>
+
+           {% for post in experiences %}
+              <tr>
+                <p><b>{{ post.userid }}</b>: {{ post.experience }}</p>
+                  <p>{{post.votes}}</p>
+                <input  name="voteup" type="submit" value="Vote Up" onclick="exvoteup('{{post._id}}')" />
+                <input name="votedown" type="submit" value="Vote Down"onclick="exvotedown('{{post._id}}')"/>
+                <hr/>
+              </tr>
+           {% endfor %}
+        </table>
+      <h3>Add Experience</h3>
+        <form action = "/experience/submit" method = "POST" enctype="multipart/form-data">
+        <textarea name="Experience" id="Experience" class = "answer"></textarea><br/><br/>
+        <input type="file" value="Upload File" name="file"/><br/><br/>
+        <input type="submit" value="Submit"/>
+    </form>
+  </div>
+</div>
+{% endblock %}
