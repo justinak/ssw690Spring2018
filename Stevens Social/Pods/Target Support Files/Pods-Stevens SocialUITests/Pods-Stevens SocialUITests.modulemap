@@ -1,0 +1,6 @@
+framework module Pods_Stevens_SocialUITests {
+  umbrella header "Pods-Stevens SocialUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
