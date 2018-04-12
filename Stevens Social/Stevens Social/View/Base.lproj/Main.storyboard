@@ -162,10 +162,13 @@
                                 <color key="backgroundColor" red="1" green="0.28080993739999999" blue="0.22348071759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <barButtonItem title="Logout" id="sZz-pW-y4S">
-                                        <color key="tintColor" red="1" green="0.28080993739999999" blue="0.22348071759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="1" green="0.32230202390000001" blue="0.25715955839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="logOutPressed:" destination="KTK-vE-Ldu" id="hRO-yO-pdT"/>
                                         </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Search" id="UrN-Cs-pjD">
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -564,6 +567,21 @@
             </objects>
             <point key="canvasLocation" x="3856.8000000000002" y="929.55665024630548"/>
         </scene>
+        <!--SearchUser-->
+        <scene sceneID="hYI-69-sMp">
+            <objects>
+                <viewController title="SearchUser" id="lSn-UB-lO8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hPs-sq-I6b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I8W-kU-IAj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j2b-QS-S29" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3193" y="1655"/>
+        </scene>
         <!--UploadVideo-->
         <scene sceneID="QUb-rl-0xR">
             <objects>
@@ -634,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upu-Yg-zMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3845.5999999999999" y="1751.9704433497539"/>
+            <point key="canvasLocation" x="4070" y="1677"/>
         </scene>
         <!--Register-->
         <scene sceneID="Ama-yB-Fnz">

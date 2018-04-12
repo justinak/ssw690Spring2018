@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32551dbd-6ac4-437c-9fda-bee42813183a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UploadVideoViewController.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Helpers/AttachmentHandler.swift" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Post.swift" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Pods/Pods.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Stevens Social/Pods/Pods.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/xcuserdata/vincentporta.xcuserdatad/xcschemes/xcschememanagement.plist" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcworkspace/xcuserdata/vincentporta.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/AppDelegate.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/CreatePostViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/MainVideoViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/RegisterViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/VideoViewController.swift" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Info.plist" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/DataModel.xcdatamodeld/.xccurrentversion" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Model/Video.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/PostTableViewCell.xib" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/VideoTableViewCell.xib" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" />
-      <change beforePath="$PROJECT_DIR$/eb_flask/settings.py" afterPath="$PROJECT_DIR$/eb_flask/settings.py" />
-      <change beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,8 +17,8 @@
       <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="287" column="19" lean-forward="false" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
+            <state relative-caret-position="268">
+              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -69,6 +45,7 @@
       <find>.idea</find>
       <find>User</find>
       <find>DS</find>
+      <find>.idea/workspace.xml</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -94,8 +71,8 @@
         <option value="$PROJECT_DIR$/eb_flask/auth/User.py" />
         <option value="$PROJECT_DIR$/eb_flask/MongoService.py" />
         <option value="$PROJECT_DIR$/eb_flask/settings.py" />
-        <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
   </component>
@@ -237,12 +214,12 @@
       <workItem from="1521494242393" duration="1662000" />
       <workItem from="1522603299061" duration="7198000" />
       <workItem from="1522736069095" duration="6858000" />
-      <workItem from="1523052876099" duration="11521000" />
+      <workItem from="1523052876099" duration="12815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48497000" />
+    <option name="totallyTimeSpent" value="49791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -609,16 +586,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="377">
+          <caret line="117" column="12" lean-forward="false" selection-start-line="117" selection-start-column="12" selection-end-line="117" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="287" column="19" lean-forward="false" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
+        <state relative-caret-position="268">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
