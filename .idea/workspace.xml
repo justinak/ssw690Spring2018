@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5a95873-42ba-47db-a120-468df2ff67e2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="a5a95873-42ba-47db-a120-468df2ff67e2" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -311,6 +309,14 @@
       <option name="presentableId" value="Default" />
       <updated>1523505107376</updated>
     </task>
+    <task id="LOCAL-00001" summary="merge errors fixed">
+      <created>1523505367540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523505367540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -357,6 +363,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="merge errors fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge errors fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
