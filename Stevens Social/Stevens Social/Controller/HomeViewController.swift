@@ -57,6 +57,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
         cell.quackCount!.text = "\(quackCount)"
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        cell.quackCount!.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+            cell.quackCount!.alpha = 1
+        })
         
         return cell
         

@@ -17,22 +17,21 @@ class UserResultTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        userSearchDisplayName.isUserInteractionEnabled = true
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
-            target: self, action: #selector(didTapLabelDemo))
-        userSearchDisplayName.addGestureRecognizer(tap)
-        tap.delegate = self
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped))
+//        userSearchDisplayName.addGestureRecognizer(gestureRecognizer)
     }
-
+ 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
-    @objc func didTapLabelDemo(sender: UITapGestureRecognizer) {
-        print("you tapped label \(sender)")
-    }
+//    @objc func labelTapped() {
+//        print("labelTapped tapped")
+//        print(userSearchDisplayName.text!)
+//
+//    }
+    
+    
+
     
 }

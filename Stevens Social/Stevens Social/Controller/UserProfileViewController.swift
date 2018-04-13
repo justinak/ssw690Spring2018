@@ -52,9 +52,17 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
         cell.selectionStyle = .none
+        
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+        })
+        
         
 //        let imageUrl:URL = URL(string: self.userPhoto!)!
 //        let imageData:NSData = NSData(contentsOf: imageUrl)!
@@ -91,11 +99,13 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
   
                     self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                     
+                    
                 }
+                
                 DispatchQueue.main.async {
                     self.postTableViewProfile.reloadData()
                 }
-                print(self.postsArray)
+                print(self.postsArray.reverse())
             }
         }
         

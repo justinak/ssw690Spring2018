@@ -13,9 +13,12 @@ import FirebaseAuth
 import Alamofire
 import SwiftyJSON
 
+
 class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var userArray:[User] = []
+    var uName: String = ""
+    
     @IBOutlet var searchUsersTextBox: UITextField!
     
     @IBOutlet var searchUsersTableView: UITableView!
@@ -34,7 +37,7 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userArray.count
     }
@@ -42,15 +45,42 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userResultCell", for: indexPath) as! UserResultTableViewCell
         cell.selectionStyle = .none
+        cell.backgroundColor = UIColor.magenta
         let user = userArray[indexPath.row]
         cell.userSearchDisplayName!.text = user.username
 //        cell.userSearchDisplayName.addGestureRecognizer()
         let imgData = NSData(contentsOf: user.photo!)
         cell.userSearchImage.contentMode = .scaleAspectFit
         cell.userSearchImage.image = UIImage(data: imgData! as Data)
+        
+        
         return cell
         
     }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let user = tableView.cellForRow(at: indexPath) as! UserResultTableViewCell
+        
+        print(user.userSearchDisplayName.text!)
+        
+        uName = user.userSearchDisplayName.text!
+        
+        // Segue to the profile view controller
+        self.performSegue(withIdentifier: "sendToProfileView", sender: self)
+    }
+    
+    // This function is called before the segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // get a reference to the profile view controller
+        let profileViewController = segue.destination as! ProfileViewController
+        
+        // set a variable in the profile view controller with the data to pass
+        profileViewController.data = uName
+    }
+    
     
     func getUser(name: String) {
         let params: Parameters = ["username": name]

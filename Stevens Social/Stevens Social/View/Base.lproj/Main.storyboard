@@ -481,7 +481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C72-dq-Lgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846" y="1739"/>
+            <point key="canvasLocation" x="1590" y="1705"/>
         </scene>
         <!--Videos-->
         <scene sceneID="9Ra-hu-rd2">
@@ -615,11 +615,39 @@
                     <connections>
                         <outlet property="searchUsersTableView" destination="UCc-7X-jhr" id="1MF-q2-LWH"/>
                         <outlet property="searchUsersTextBox" destination="94O-We-mW8" id="t54-nq-aDk"/>
+                        <segue destination="NQB-tu-ic7" kind="show" identifier="sendToProfileView" id="N5f-bf-2xZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oH1-HY-BaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3480.8000000000002" y="1680.2955665024631"/>
+            <point key="canvasLocation" x="3481" y="1693"/>
+        </scene>
+        <!--ProfileView-->
+        <scene sceneID="G28-HU-KHm">
+            <objects>
+                <viewController title="ProfileView" id="NQB-tu-ic7" customClass="ProfileViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G7C-oR-12h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-bY-1S2">
+                                <rect key="frame" x="96" y="159" width="189" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="MeK-2o-Oxl"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameHere" destination="DD5-bY-1S2" id="d1g-ES-eKM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQK-ov-JBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3480.8000000000002" y="2437.6847290640394"/>
         </scene>
         <!--UploadVideo-->
         <scene sceneID="QUb-rl-0xR">

@@ -26,7 +26,7 @@
                             <constraint firstAttribute="width" constant="95" id="q0Z-17-tqS"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtv-Ha-loV">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtv-Ha-loV">
                         <rect key="frame" x="125" y="12" width="174" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -47,7 +47,7 @@
                 <outlet property="userSearchDisplayName" destination="Jtv-Ha-loV" id="wOq-4f-0WP"/>
                 <outlet property="userSearchImage" destination="4Mp-5j-C07" id="Mt1-M4-o6D"/>
             </connections>
-            <point key="canvasLocation" x="-13" y="44"/>
+            <point key="canvasLocation" x="-163" y="36"/>
         </tableViewCell>
     </objects>
 </document>
