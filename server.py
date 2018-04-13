@@ -104,6 +104,22 @@ def get_post():
 
     return jsonify({'result': output})
 
+
+@app.route('/api/posts/get-username', methods=['GET'])
+def get_post_username():
+    """Grabs all posts based on created_by field i.e, the username"""
+
+    output = []
+    user_name = request.args.get('created_by')
+    data = mongo.db.Posts.find({'created_by': user_name })
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
 #  Kevin's routes
 @app.route('/api/get/posts', methods=['GET'])
 def get_posts():

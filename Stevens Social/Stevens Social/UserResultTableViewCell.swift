@@ -11,27 +11,13 @@ import UIKit
 class UserResultTableViewCell: UITableViewCell {
 
     @IBOutlet var userSearchImage: UIImageView!
-    
     @IBOutlet var userSearchDisplayName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped))
-//        userSearchDisplayName.addGestureRecognizer(gestureRecognizer)
     }
  
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-//    @objc func labelTapped() {
-//        print("labelTapped tapped")
-//        print(userSearchDisplayName.text!)
-//
-//    }
-    
-    
-
-    
 }

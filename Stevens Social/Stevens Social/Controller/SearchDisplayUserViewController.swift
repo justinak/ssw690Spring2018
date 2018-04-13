@@ -18,6 +18,7 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     
     var userArray:[User] = []
     var uName: String = ""
+    var uPhoto: UIImage?
     
     @IBOutlet var searchUsersTextBox: UITextField!
     
@@ -66,6 +67,7 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
         print(user.userSearchDisplayName.text!)
         
         uName = user.userSearchDisplayName.text!
+        uPhoto = user.userSearchImage.image!
         
         // Segue to the profile view controller
         self.performSegue(withIdentifier: "sendToProfileView", sender: self)
@@ -79,6 +81,7 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
         
         // set a variable in the profile view controller with the data to pass
         profileViewController.data = uName
+        profileViewController.userPhoto = uPhoto
     }
     
     

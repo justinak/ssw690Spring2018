@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32551dbd-6ac4-437c-9fda-bee42813183a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ProfileViewController.swift" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social.xcodeproj/project.pbxproj" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/HomeViewController.swift" />
+      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ProfileViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/ProfileViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/SearchDisplayUserViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/SearchDisplayUserViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/Controller/UserProfileViewController.swift" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/UserResultTableViewCell.swift" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/UserResultTableViewCell.swift" />
-      <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/UserResultTableViewCell.xib" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/UserResultTableViewCell.xib" />
       <change beforePath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/Stevens Social/Stevens Social/View/Base.lproj/Main.storyboard" />
+      <change beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="server.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="290">
+              <caret line="108" column="21" lean-forward="false" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -33,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eb_flask/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/eb_flask/S3StorageBoto3.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -245,12 +243,12 @@
       <workItem from="1522603299061" duration="7198000" />
       <workItem from="1522736069095" duration="6858000" />
       <workItem from="1523052876099" duration="12815000" />
-      <workItem from="1523562885945" duration="4844000" />
+      <workItem from="1523562885945" duration="5806000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54635000" />
+    <option name="totallyTimeSpent" value="55597000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -610,20 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/eb_flask/S3StorageBoto3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -631,8 +619,18 @@
     <entry file="file://$PROJECT_DIR$/eb_flask/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="108" column="21" lean-forward="false" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
