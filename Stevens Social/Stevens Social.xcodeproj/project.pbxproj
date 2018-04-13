@@ -34,6 +34,11 @@
 		A752388720771C9600BDA798 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752388620771C9600BDA798 /* Post.swift */; };
 		A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */; };
 		A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C42204D0B650014B3AF /* RegisterViewController.swift */; };
+		A75C31A5207FF59B00DDE040 /* SearchDisplayUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */; };
+		A75C31A8207FFA3C00DDE040 /* UserResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */; };
+		A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */; };
+		A75C31AB207FFFD700DDE040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AA207FFFD700DDE040 /* User.swift */; };
+		A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
 		A7867752207031480007D585 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7867750207031480007D585 /* VideoTableViewCell.swift */; };
 		A7867753207031480007D585 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7867751207031480007D585 /* VideoTableViewCell.xib */; };
@@ -97,6 +102,11 @@
 		A752388620771C9600BDA798 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A7526C42204D0B650014B3AF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDisplayUserViewController.swift; sourceTree = "<group>"; };
+		A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResultTableViewCell.swift; sourceTree = "<group>"; };
+		A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResultTableViewCell.xib; sourceTree = "<group>"; };
+		A75C31AA207FFFD700DDE040 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A7867750207031480007D585 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		A7867751207031480007D585 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -179,6 +189,8 @@
 				A7333F992062FEF30043E9BF /* GoogleService-Info.plist */,
 				A7867750207031480007D585 /* VideoTableViewCell.swift */,
 				A7867751207031480007D585 /* VideoTableViewCell.xib */,
+				A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */,
+				A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */,
 			);
 			path = "Stevens Social";
 			sourceTree = "<group>";
@@ -215,6 +227,7 @@
 			children = (
 				A72AF23020715BEC00627103 /* Video.swift */,
 				A752388620771C9600BDA798 /* Post.swift */,
+				A75C31AA207FFFD700DDE040 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +244,8 @@
 				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				A7E588202059DB7F005FACAE /* CreatePostViewController.swift */,
 				95C7DA872069F4C600D312BB /* MainVideoViewController.swift */,
+				A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */,
+				A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -398,6 +413,7 @@
 				95FBC8F420477AA100059E8A /* Assets.xcassets in Resources */,
 				95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */,
 				95FBC8F220477AA100059E8A /* Main.storyboard in Resources */,
+				A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */,
 				95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */,
 				95E80EE820479E78002AFA8A /* interviewicon.png in Resources */,
 			);
@@ -605,11 +621,15 @@
 				A72AF23120715BEC00627103 /* Video.swift in Sources */,
 				9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */,
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
+				A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
+				A75C31A5207FF59B00DDE040 /* SearchDisplayUserViewController.swift in Sources */,
 				A752388520769D6600BDA798 /* AttachmentHandler.swift in Sources */,
 				A752388320768D0600BDA798 /* UploadVideoViewController.swift in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
+				A75C31AB207FFFD700DDE040 /* User.swift in Sources */,
 				95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */,
+				A75C31A8207FFA3C00DDE040 /* UserResultTableViewCell.swift in Sources */,
 				A7E588212059DB7F005FACAE /* CreatePostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

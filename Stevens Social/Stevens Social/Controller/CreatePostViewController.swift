@@ -47,7 +47,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         if postBody?.text != "" {
             let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
-            myAPI.sendRequest(parameters: ["uuid": "000002", "text": self.postBody!.text!]) // insert real uuid from firebase
+            myAPI.sendRequest(parameters: ["uuid": self.uid!, "text": self.postBody!.text!]) // insert real uuid from firebase
         } else {
             print("Please enter text in the Post Box!")
         }

@@ -104,6 +104,22 @@ def get_post():
 
     return jsonify({'result': output})
 
+
+@app.route('/api/posts/get-username', methods=['GET'])
+def get_post_username():
+    """Grabs all posts based on created_by field i.e, the username"""
+
+    output = []
+    user_name = request.args.get('created_by')
+    data = mongo.db.Posts.find({'created_by': user_name })
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
+
 #  Kevin's routes
 @app.route('/api/get/posts', methods=['GET'])
 def get_posts():
@@ -121,7 +137,7 @@ def get_posts():
     return jsonify({'result': output})
 
 
-@app.route('/api/follow', methods=['GET', 'POST'])
+@app.route('/api/follow', methods=['PUT'])
 def follow():
     """
     Follow people
@@ -136,7 +152,7 @@ def follow():
     return jsonify({'result': "Follow successful!"})
 
 
-@app.route('/api/unfollow', methods=['GET', 'POST'])
+@app.route('/api/unfollow', methods=['PUT'])
 def unfollow():
     """
     Unfollow people
@@ -151,14 +167,14 @@ def unfollow():
     return jsonify({'result': "Unfollow successful!"})
 
 
-@app.route('/api/get/follow', methods=['GET', 'POST'])
+@app.route('/api/get/follow', methods=['GET'])
 def get_follow_uuid():
     """
     Get uuid which someone followed
     Request uuid(user)
     """
     user = mongo.db.Users
-    uuid = request.json['uuid']
+    uuid = request.args.get('uuid')
     data = user.find_one({'uuid': uuid})
     if data:
         output = {'follow': data['follow']}
@@ -284,6 +300,22 @@ def get_one_user():
     for d in data:
         d['_id'] = str(d['_id'])
         output.append(d)
+
+    return jsonify({'result': output})
+
+
+@app.route('/api/users', methods=['GET'])
+def get_videos_containing_title():
+    """Method returns all users containing the title from the database"""
+    data = mongo.db.Users
+    output = []
+    username = request.args.get('username')
+    for d in data.find({'username': { '$regex' : username, '$options' : 'i' }}):
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    if not output:
+        return jsonify({'result': 'Not Found'})
 
     return jsonify({'result': output})
 

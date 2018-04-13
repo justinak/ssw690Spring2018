@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import Firebase
 import FirebaseAuth
 import Alamofire
@@ -25,6 +24,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     var uid: String?
     var userPhoto: String?
     var uName: String?
+    var userImageInPost: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,14 +52,21 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
         cell.selectionStyle = .none
+        
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
-//        let imageUrl:URL = URL(string: self.userPhoto!)!
-//        let imageData:NSData = NSData(contentsOf: imageUrl)!
-//        let image = UIImage(data: imageData as Data)
-//        cell.avatarImageView!.image = image
-//        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView!.image = userImageInPost
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        cell.avatarImageView!.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+            cell.avatarImageView!.alpha = 1
+        })
         
         return cell
     }
@@ -71,7 +78,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func fetchData(){
         
-        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid! 
+        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
         Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
@@ -90,18 +97,20 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
   
                     self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                     
+                    
                 }
+                
                 DispatchQueue.main.async {
                     self.postTableViewProfile.reloadData()
                 }
-                print(self.postsArray)
+                print(self.postsArray.reverse())
             }
         }
         
     }
     
     func runGetRequestForUserPhoto() {
-        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid!
+        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
         Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
@@ -115,11 +124,13 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     self.uName = subJson["username"].stringValue
                     self.userPhoto = subJson["photo"].stringValue
                 }
+                
                 DispatchQueue.main.async {
                     self.postTableViewProfile.reloadData()
                     let imageUrl:URL = URL(string: self.userPhoto!)!
                     let imageData:NSData = NSData(contentsOf: imageUrl)!
                     let image = UIImage(data: imageData as Data)
+                    self.userImageInPost = image
                     self.profileImage.image = image
                     self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
                     self.profileName.text = self.uName
