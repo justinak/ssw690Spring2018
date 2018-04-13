@@ -137,7 +137,7 @@ def get_posts():
     return jsonify({'result': output})
 
 
-@app.route('/api/follow', methods=['GET', 'POST'])
+@app.route('/api/follow', methods=['PUT'])
 def follow():
     """
     Follow people
@@ -152,7 +152,7 @@ def follow():
     return jsonify({'result': "Follow successful!"})
 
 
-@app.route('/api/unfollow', methods=['GET', 'POST'])
+@app.route('/api/unfollow', methods=['PUT'])
 def unfollow():
     """
     Unfollow people
@@ -167,14 +167,14 @@ def unfollow():
     return jsonify({'result': "Unfollow successful!"})
 
 
-@app.route('/api/get/follow', methods=['GET', 'POST'])
+@app.route('/api/get/follow', methods=['GET'])
 def get_follow_uuid():
     """
     Get uuid which someone followed
     Request uuid(user)
     """
     user = mongo.db.Users
-    uuid = request.json['uuid']
+    uuid = request.args.get('uuid')
     data = user.find_one({'uuid': uuid})
     if data:
         output = {'follow': data['follow']}

@@ -26,12 +26,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userPhoto: UIImage?
     var postsArray:[Post] = []
     var isFollowing: Bool = false
+    var uid: String?
+    var foreignUid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.uid = user?.uid
+        }
         nameHere.text = data
+        profileViewImage.contentMode = UIViewContentMode.scaleAspectFit
         profileViewImage.image = userPhoto
+        
         profileViewTableView.delegate = self
         profileViewTableView.dataSource = self
         
@@ -39,6 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.profileViewTableView.reloadData()
         
         configureTableView()
+        self.getFollowing()
         
     }
     
@@ -61,19 +68,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
-//        cell.postBody!.alpha = 0
-//        cell.postName!.alpha = 0
-//        UIView.animate(withDuration: 0.5, animations: {
-//            cell.postBody!.alpha = 1
-//            cell.postName!.alpha = 1
-//        })
-        
-        
-        //        let imageUrl:URL = URL(string: self.userPhoto!)!
-        //        let imageData:NSData = NSData(contentsOf: imageUrl)!
-        //        let image = UIImage(data: imageData as Data)
-        //        cell.avatarImageView!.image = image
-        //        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView!.image = userPhoto
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        cell.avatarImageView!.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+            cell.avatarImageView!.alpha = 1
+        })
         
         return cell
     }
@@ -106,7 +110,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                     
-                    
+                    self.foreignUid = uid
+                    print("foreign id is here: " + self.foreignUid!)
                 }
                 
                 DispatchQueue.main.async {
@@ -118,15 +123,78 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func followUser() {
+        
+        let parameters: Parameters = [
+            "uuid": self.uid!,
+            "foreign_uuid": self.foreignUid!
+//            "uuid": "000002",
+//            "foreign_uuid": "000001"
+        ]
+        
+        Alamofire.request("http://localhost:5000/api/follow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
+
+    }
+    
+    func unfollowUser() {
+        
+        let parameters: Parameters = [
+            "uuid": self.uid!,
+            "foreign_uuid": self.foreignUid!
+//            "uuid": "000002",
+//            "foreign_uuid": "000001"
+        ]
+        
+        Alamofire.request("http://localhost:5000/api/unfollow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        
+    }
+    
+    func getFollowing() {
+        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
+        Alamofire.request("http://localhost:5000/api/get/follow", parameters: params).responseJSON { response in
+            
+            if (response.result.error != nil) {
+                print(response.result.error!)
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                
+                let arr = json["result"]["follow"]
+                print("getFollowing")
+                
+                for id in arr {
+
+                    if (id.1.stringValue == self.foreignUid) {
+                        print("true")
+                        self.isFollowing = true
+
+                    } else {
+                        print("false")
+                        self.isFollowing = false
+
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     @IBAction func profileViewFollowBtn(_ sender: UIButton) {
         print("follow button pressed")
         if isFollowing == false {
             followBtnText.setTitle("Following", for: UIControlState.normal)
             isFollowing = true
+            followUser()
         } else if isFollowing == true {
             followBtnText.setTitle("Follow", for: UIControlState.normal)
             isFollowing = false
+            unfollowUser()
         }
+    }
+    
+    @IBAction func backBtn(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

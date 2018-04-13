@@ -76,12 +76,15 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     // This function is called before the segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        let nav = segue.destination as! UINavigationController
+        let svc = nav.topViewController as! ProfileViewController
+            
         // get a reference to the profile view controller
-        let profileViewController = segue.destination as! ProfileViewController
+//        let profileViewController = segue.destination as! ProfileViewController
         
         // set a variable in the profile view controller with the data to pass
-        profileViewController.data = uName
-        profileViewController.userPhoto = uPhoto
+        svc.data = uName
+        svc.userPhoto = uPhoto
     }
     
     

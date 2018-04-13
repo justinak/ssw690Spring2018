@@ -25,9 +25,9 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            self.uid = user?.uid
-//        }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.uid = user?.uid
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,8 +38,8 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func uploadVideoBtn(_ sender: Any) {
         let title: String = videoTitleBox.text!
         let parameters: Parameters = [
-//            "user_id": uid!,
-            "user_id": "1234567",
+            "user_id": self.uid!,
+//            "user_id": "1234567",
             "title": title,
 //            "src": videoURL!
             "src": "videoURL!"
