@@ -288,6 +288,22 @@ def get_one_user():
     return jsonify({'result': output})
 
 
+@app.route('/api/users', methods=['GET'])
+def get_videos_containing_title():
+    """Method returns all users containing the title from the database"""
+    data = mongo.db.Users
+    output = []
+    username = request.args.get('username')
+    for d in data.find({'username': { '$regex' : username, '$options' : 'i' }}):
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    if not output:
+        return jsonify({'result': 'Not Found'})
+
+    return jsonify({'result': output})
+
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)

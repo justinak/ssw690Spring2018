@@ -169,6 +169,9 @@
                                     </barButtonItem>
                                     <barButtonItem title="Search" id="UrN-Cs-pjD">
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="zeb-Sh-fgf" kind="presentation" id="LFX-rT-8Gq"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -223,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLp-ic-4ZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3192.8000000000002" y="929.55665024630548"/>
+            <point key="canvasLocation" x="3482" y="930"/>
         </scene>
         <!--Interview-->
         <scene sceneID="9sK-1p-hXh">
@@ -565,22 +568,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPH-0F-G3n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3856.8000000000002" y="929.55665024630548"/>
+            <point key="canvasLocation" x="4271" y="930"/>
         </scene>
-        <!--SearchUser-->
-        <scene sceneID="hYI-69-sMp">
+        <!--SearchDisplayUser-->
+        <scene sceneID="psH-GX-Yxz">
             <objects>
-                <viewController title="SearchUser" id="lSn-UB-lO8" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hPs-sq-I6b">
+                <viewController title="SearchDisplayUser" id="zeb-Sh-fgf" customClass="SearchDisplayUserViewController" customModule="Stevens_Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OfM-Vq-Jev">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jdn-s1-4KB">
+                                <rect key="frame" x="32" y="81" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="0.32230202390000001" blue="0.25715955839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelUserSearch:" destination="zeb-Sh-fgf" eventType="touchUpInside" id="ZEo-ws-RyT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for users" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="94O-We-mW8">
+                                <rect key="frame" x="32" y="143" width="226" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-O5-gKw">
+                                <rect key="frame" x="302" y="143" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchUsersBtn:" destination="zeb-Sh-fgf" eventType="touchUpInside" id="CgN-GM-fp7"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UCc-7X-jhr">
+                                <rect key="frame" x="32" y="248" width="318" height="374"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="I8W-kU-IAj"/>
+                        <viewLayoutGuide key="safeArea" id="D7e-0Q-6gO"/>
                     </view>
+                    <connections>
+                        <outlet property="searchUsersTableView" destination="UCc-7X-jhr" id="1MF-q2-LWH"/>
+                        <outlet property="searchUsersTextBox" destination="94O-We-mW8" id="t54-nq-aDk"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j2b-QS-S29" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oH1-HY-BaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3193" y="1655"/>
+            <point key="canvasLocation" x="3480.8000000000002" y="1680.2955665024631"/>
         </scene>
         <!--UploadVideo-->
         <scene sceneID="QUb-rl-0xR">
@@ -652,7 +691,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upu-Yg-zMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4070" y="1677"/>
+            <point key="canvasLocation" x="4270" y="1706"/>
         </scene>
         <!--Register-->
         <scene sceneID="Ama-yB-Fnz">

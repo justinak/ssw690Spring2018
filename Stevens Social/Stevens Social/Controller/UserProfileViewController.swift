@@ -55,6 +55,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
+        
 //        let imageUrl:URL = URL(string: self.userPhoto!)!
 //        let imageData:NSData = NSData(contentsOf: imageUrl)!
 //        let image = UIImage(data: imageData as Data)
@@ -115,6 +116,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     self.uName = subJson["username"].stringValue
                     self.userPhoto = subJson["photo"].stringValue
                 }
+                
                 DispatchQueue.main.async {
                     self.postTableViewProfile.reloadData()
                     let imageUrl:URL = URL(string: self.userPhoto!)!
