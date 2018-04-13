@@ -3,6 +3,8 @@ from flask_pymongo import PyMongo
 from random import randint
 import eb_flask.settings as settings
 import datetime
+import boto3
+from botocore.client import Config
 
 
 app = Flask(__name__)
@@ -26,7 +28,7 @@ mongo = PyMongo(app)
 def index():
     return 'please go to /videos to see all videos'
 
-
+#
 # @app.route('/api/post/video', methods=['POST', 'GET'])
 # def post_video():
 #     """Method use to post video to S3 and store data in database"""
@@ -316,6 +318,68 @@ def get_one_user():
         output.append(d)
 
     return jsonify({'result': output})
+
+@app.route('/api/post/video', methods=['POST'])
+def post_video():
+    """Method use to post video to S3 and store data in database"""
+    output = list() # List of videos to be return once uploaded
+    if request.method == 'POST':
+
+        file = request.files['file']
+
+        video_format_list = ('.MP4', '.MOV')
+
+        if file is not None and file.filename.upper().endswith(video_format_list):
+            post_video_to_mongo(file, request)
+            upload_video_to_S3(file, file.filename)
+
+            result = {
+                'message': 'uploaded',
+                'uploaded': 'True'
+            }
+        else:
+            result = {
+                'message': 'check file and try again',
+                'uploaded': 'false'
+            }
+
+        output.append(result)
+
+    return jsonify({'result': output})
+
+
+
+def post_video_to_mongo(file, request):
+    """Uploads video data to database"""
+    try:
+        videoDB = mongo.db.Videos
+        videoDB.insert(
+            {
+                'user_id': str(request.form.get('user_id')).upper(),
+                'title': request.form.get('title'),
+                'src': 'http://d1nmi5ea5e2ysf.cloudfront.net/'+file.filename,
+                'description': request.form.get('description'),
+                'publish_date': datetime.datetime.now()
+            })
+
+    except Exception as e:
+        return e
+
+def upload_video_to_S3(file, file_name):
+    """Uploads video to s3 """
+    try:
+        # S3 Connect
+        s3 = boto3.resource( 's3',
+                             aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                             aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                             config=Config(signature_version='s3v4'),
+                             )
+
+        # adding file to S3
+        s3.Bucket(settings.BUCKET_NAME).put_object(Key=file_name, Body=file)
+    except Exception as e:
+        print("Something wrong happened", e)
+        return e
 
 
 @app.errorhandler(404)

@@ -1,6 +1,7 @@
 aniso8601==2.0.1
 awsebcli==3.12.3
 blessed==1.14.2
+boto3==1.7.4
 botocore==1.8.50
 cement==2.8.2
 click==6.7

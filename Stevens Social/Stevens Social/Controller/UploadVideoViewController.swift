@@ -68,21 +68,30 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
         
         // video params must be uploaded to the server along with the title and user_id. 
         AttachmentHandler.shared.videoPickedBlock = { (video) in
-            
             print("Video is here: \(video)")
-
-//            self.videoURL = video
+            let videoURL = video
             
-//            let fileURL = Bundle.main.url(forResource: video, withExtension: "mov")
-//
-//            Alamofire.upload(fileURL, to: "http://localhost:5000/api/post/video").responseJSON { response in
-//                debugPrint(response)
-////            }
-            
+            Alamofire.upload(multipartFormData: { MultipartFormData in
+                
+                //mp4 video
+                //MultipartFormData.append(videoURL.absoluteURL!, withName: "file", fileName: "testing.mp4", mimeType: "video/mp4")
+                MultipartFormData.append(videoURL.absoluteURL!, withName: "file")
+            },to:"http://127.0.0.1:5000/api/post/video"){ (result) in
+                switch result {
+                case .success(let upload, _, _):
+                    upload.uploadProgress(closure: { (progress) in
+                        print("Uploading Percent: \(progress.fractionCompleted)")
+                    })
+                    upload.responseJSON { response in
+                        print("Result: ",response.result.value ?? String())
+                        print("Data: ",response.data ?? NSData())
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+            }
         }
-        
     }
     
-    
-    
 }
+

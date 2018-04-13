@@ -52,7 +52,7 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
                 }
             }
         }
-    
+        self.expColl.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
