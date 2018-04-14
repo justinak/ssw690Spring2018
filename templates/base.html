@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
   <script type="text/javascript">
               function voteup(post_id){
 
@@ -14,6 +15,7 @@
                     url: '/voteup/'+post_id,
                     type: 'POST',
                     success: function(response) {
+                        location.reload()
                         console.log(response);
                      },
                      error: function(error) {
@@ -27,6 +29,7 @@
                     url: '/votedown/'+post_id,
                     type: 'POST',
                     success: function(response) {
+                        location.reload();
                         console.log(response);
                      },
                      error: function(error) {
@@ -40,6 +43,7 @@
                     url: '/exvoteup/'+post_id,
                     type: 'POST',
                     success: function(response) {
+                        location.reload();
                         console.log(response);
                      },
                      error: function(error) {
@@ -53,6 +57,7 @@
                     url: '/exvotedown/'+post_id,
                     type: 'POST',
                     success: function(response) {
+                        location.reload();
                         console.log(response);
                      },
                      error: function(error) {
@@ -74,9 +79,9 @@
                      }
                 });
               }
-        </script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+
+</script>
+
 
 <style>
 div.container {
@@ -149,6 +154,7 @@ a {
 </head>
 <body>
     {% block body %}
+
     {% endblock %}
 </body>
 </html>

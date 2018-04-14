@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
 from random import randint
 from bson.binary import Binary
+from Firebase_config import User
 import MongoCalls
 import os
 
@@ -9,7 +10,43 @@ import os
 application = Flask(__name__)
 title = "DuckHacker"
 post_questions = {}  # dictionary to contain the question asked to user
+user = None
 App_root = os.path.dirname(os.path.abspath(__file__))  # get file path for files to be uploaded to db
+
+@application.route('/')
+def index():
+    return render_template('Login.html', title=title)
+
+@application.route('/login',methods=['POST', 'GET'])
+def login():
+    if request.method =="POST":
+        email = request.form['user_email']
+        password = request.form['user_pswrd']
+        global user
+        user = User(email, password)
+        token = user.signin()
+        if token != None:
+            return redirect(url_for('get_questions'))
+
+    return redirect(url_for('Index'))
+
+
+@application.route('/signup',methods=['POST', 'GET'])
+def sign():
+    if request.method =="POST":
+        email = request.form['user_email']
+        password = request.form['user_pswrd']
+        username = request.form['user_name']
+        global user
+        user = User(email, password)
+        token = user.create_user()
+
+        if token != None:
+            MongoCalls.add_user(token, email, username,
+                                'https://pbs.twimg.com/profile_images/676830491383730177/pY-4PfOy_400x400.jpg')
+            return redirect(url_for('get_questions'))
+
+    return redirect(url_for('Index'))
 
 
 @application.route('/menu', methods=['POST', 'GET'])
@@ -26,7 +63,7 @@ def menu_options():
             return redirect(url_for('display_topic'))
 
 ################################################################################################
-@application.route('/')
+@application.route('/questions')
 def get_questions():
     global post_questions
     questions = MongoCalls.get_question()
