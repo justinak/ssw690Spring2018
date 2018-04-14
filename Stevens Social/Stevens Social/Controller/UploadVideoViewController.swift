@@ -64,6 +64,10 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
             /* get your image here */
             print(image)
             self.displayImage.image = image
+            
+            
+            
+        
         }
         
         // video params must be uploaded to the server along with the title and user_id. 
@@ -71,16 +75,27 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
             print("Video is here: \(video)")
             let videoURL = video
             
+            let title = self.videoTitleBox.text!
+            
+            let parameters =  [
+                "title" : title
+            ]
+
             Alamofire.upload(multipartFormData: { MultipartFormData in
                 
                 //mp4 video
-                //MultipartFormData.append(videoURL.absoluteURL!, withName: "file", fileName: "testing.mp4", mimeType: "video/mp4")
+                //MultipartFormData.append(videoURL.absoluteURL!, withName: "file", fileName: filename, mimeType: "video/mp4")
                 MultipartFormData.append(videoURL.absoluteURL!, withName: "file")
+                
+                for (key, value) in parameters {
+                    MultipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                }
             },to:"http://127.0.0.1:5000/api/post/video"){ (result) in
                 switch result {
                 case .success(let upload, _, _):
                     upload.uploadProgress(closure: { (progress) in
                         print("Uploading Percent: \(progress.fractionCompleted)")
+                        self.dismiss(animated: true, completion: nil)
                     })
                     upload.responseJSON { response in
                         print("Result: ",response.result.value ?? String())
@@ -90,7 +105,9 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
                     print(encodingError)
                 }
             }
+            
         }
+        
     }
     
 }

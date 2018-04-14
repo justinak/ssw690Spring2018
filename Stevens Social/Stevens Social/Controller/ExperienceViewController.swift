@@ -15,11 +15,9 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var expColl: UICollectionView!
     var ExperiencePosts:[Experiences] = []
 
-    @IBAction func likeButton(_ sender: Any) {
-     
-        
-    }
+ 
     @IBAction func dislikeButton(_ sender: Any) {
+        print("Dislike Button")
     }
     
     override func viewDidLoad() {
@@ -85,6 +83,13 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
 
         return cell
+    }
+    @IBAction func likeButton(_ sender: Any) {
+        
+        print("Like Button")
+        //let myAPI = API(customRoute: "http://127.0.0.1:5000/explike", customMethod: "POST")
+        //myAPI.sendRequest(parameters: ["_id": _id])
+        
     }
 }
 

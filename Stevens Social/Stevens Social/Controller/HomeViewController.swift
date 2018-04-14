@@ -14,30 +14,33 @@ import Alamofire
 import SwiftyJSON
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
-
+    
     @IBOutlet var postTableView: UITableView!
     @IBOutlet var userEmail: UILabel!
     
     var postsArray:[Post] = []
     var uid: String?
     var uName: String?
+    var uPhoto: UIImage?
+    
+    var userName: String?
+    var userImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.uid = user?.uid
-        }   
+        }
         postTableView.delegate = self
         postTableView.dataSource = self
         
         //fetch data from postArray
         self.fetchData()
         self.postTableView.reloadData()
-        
-//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        self.runGetRequestForUserPhoto()
         self.configureTableView()
         self.configureEmail()
-
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +60,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
         cell.quackCount!.text = "\(quackCount)"
+        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView!.image = uPhoto
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        cell.quackCount!.alpha = 0
+        cell.avatarImageView!.alpha = 0
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+            cell.quackCount!.alpha = 1
+            cell.avatarImageView!.alpha = 1
+        })
         
         return cell
         
@@ -66,11 +81,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // fetch data from get api
     func fetchData(){
         
-        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid!
+        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
         Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
@@ -90,7 +105,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                     
                     // Must change 000002 to Firebase uid!
-                    if (subJson["uuid"].stringValue == "000002") {
+                    if (subJson["uuid"].stringValue == self.uid!) {
                         self.uName = created_by
                     }
                     
@@ -100,6 +115,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.userEmail.text = self.uName
                 }
                 print(self.postsArray)
+            }
+        }
+    }
+    
+    func runGetRequestForUserPhoto() {
+        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
+        Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
+            
+            if (response.result.error != nil) {
+                print(response.result.error!)
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                var photo: String?
+                for (_, subJson) in json["result"] {
+                    print(subJson)
+                    photo = subJson["photo"].stringValue
+                }
+                
+                DispatchQueue.main.async {
+                    self.postTableView.reloadData()
+                    let imageUrl:URL = URL(string: photo!)!
+                    let imageData:NSData = NSData(contentsOf: imageUrl)!
+                    let image = UIImage(data: imageData as Data)
+                    self.uPhoto = image
+                }
             }
         }
     }
@@ -127,9 +169,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.userEmail.text = user?.email
         }
     }
-
+    
 }
-
 
 
 

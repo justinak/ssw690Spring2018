@@ -156,3 +156,6 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+
+.DS_Store
+Stevens Social/.DS_Store

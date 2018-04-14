@@ -14,16 +14,16 @@ import MobileCoreServices
 
 class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-
+    
     let imagePickerController = UIImagePickerController()
     var uid: String?
     
     @IBOutlet var postBody: UITextField!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Allows us to use the delegate
         postBody.delegate = self
         
@@ -32,7 +32,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,14 +47,13 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         
         if postBody?.text != "" {
             let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
-            myAPI.sendRequest(parameters: ["uuid": "000002", "text": self.postBody!.text!]) // insert real uuid from firebase
+            myAPI.sendRequest(parameters: ["uuid": self.uid!, "text": self.postBody!.text!]) // insert real uuid from firebase
         } else {
             print("Please enter text in the Post Box!")
         }
         
         performSegue(withIdentifier: "postSuccess", sender: self)
-
+        
     }
-
+    
 }
-
