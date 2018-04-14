@@ -40,7 +40,7 @@ class RegisterViewController: UIViewController {
                     print("registration success")
                     var uid = user?.uid
                     var email = user?.email
-                    let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/users", customMethod: "POST")
+                    let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/user", customMethod: "POST")
                     myAPI.sendRequest(parameters: ["uuid": uid!, "email": email!])
                     print(myAPI)
 
