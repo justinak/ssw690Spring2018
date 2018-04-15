@@ -26,14 +26,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userPhoto: UIImage?
     var postsArray:[Post] = []
     var isFollowing: Bool = false
-    var uid: String?
+
     var foreignUid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            self.uid = user?.uid
-        }
+        
         nameHere.text = data
         profileViewImage.contentMode = UIViewContentMode.scaleAspectFit
         profileViewImage.image = userPhoto
@@ -116,66 +114,76 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 DispatchQueue.main.async {
                     self.profileViewTableView.reloadData()
+                
                 }
                 print(self.postsArray.reverse())
+            }
+        }
+    }
+    
+    func followUser() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let parameters: Parameters = [
+                    "uuid": user.uid,
+                    "foreign_uuid": self.foreignUid!
+                ]
+            
+            
+                Alamofire.request("http://localhost:5000/api/follow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
+            }
+
+        }
+    }
+    
+    func unfollowUser() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let parameters: Parameters = [
+                    "uuid": user.uid,
+                    "foreign_uuid": self.foreignUid!
+                ]
+                
+                Alamofire.request("http://localhost:5000/api/unfollow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
             }
         }
         
     }
     
-    func followUser() {
-        
-        let parameters: Parameters = [
-            "uuid": self.uid!,
-            "foreign_uuid": self.foreignUid!
-//            "uuid": "000002",
-//            "foreign_uuid": "000001"
-        ]
-        
-        Alamofire.request("http://localhost:5000/api/follow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
-
-    }
-    
-    func unfollowUser() {
-        
-        let parameters: Parameters = [
-            "uuid": self.uid!,
-            "foreign_uuid": self.foreignUid!
-//            "uuid": "000002",
-//            "foreign_uuid": "000001"
-        ]
-        
-        Alamofire.request("http://localhost:5000/api/unfollow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
-        
-    }
-    
     func getFollowing() {
-        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
-        Alamofire.request("http://localhost:5000/api/get/follow", parameters: params).responseJSON { response in
-            
-            if (response.result.error != nil) {
-                print(response.result.error!)
-            }
-            
-            if let value = response.result.value {
-                let json = JSON(value)
-                
-                let arr = json["result"]["follow"]
-                print("getFollowing")
-                
-                for id in arr {
-
-                    if (id.1.stringValue == self.foreignUid) {
-                        print("true")
-                        self.isFollowing = true
-
-                    } else {
-                        print("false")
-                        self.isFollowing = false
-
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
+                Alamofire.request("http://localhost:5000/api/get/follow", parameters: params).responseJSON { response in
+                    
+                    if (response.result.error != nil) {
+                        print(response.result.error!)
                     }
                     
-                }
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        
+                        let arr = json["result"]["follow"]
+                        print("getFollowing")
+                        
+                        for id in arr {
+
+                            if (id.1.stringValue == self.foreignUid) {
+                                print("true")
+                                self.isFollowing = true
+                                self.followBtnText.setTitle("Following", for: UIControlState.normal)
+
+
+                            } else {
+                                print("false")
+                                self.isFollowing = false
+                                self.followBtnText.setTitle("Follow", for: UIControlState.normal)
+    
+                            }
+                            
+                        }
+                    }
+                } // request ends
             }
         }
     }

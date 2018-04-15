@@ -49,7 +49,6 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
         cell.backgroundColor = UIColor.magenta
         let user = userArray[indexPath.row]
         cell.userSearchDisplayName!.text = user.username
-//        cell.userSearchDisplayName.addGestureRecognizer()
         let imgData = NSData(contentsOf: user.photo!)
         cell.userSearchImage.contentMode = .scaleAspectFit
         cell.userSearchImage.image = UIImage(data: imgData! as Data)
@@ -78,9 +77,6 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
         
         let nav = segue.destination as! UINavigationController
         let svc = nav.topViewController as! ProfileViewController
-            
-        // get a reference to the profile view controller
-//        let profileViewController = segue.destination as! ProfileViewController
         
         // set a variable in the profile view controller with the data to pass
         svc.data = uName

@@ -19,7 +19,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var userEmail: UILabel!
     
     var postsArray:[Post] = []
-    var uid: String?
     var uName: String?
     var uPhoto: UIImage?
     
@@ -28,18 +27,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            self.uid = user?.uid
-        }   
+
         postTableView.delegate = self
         postTableView.dataSource = self
         
-        //fetch data from postArray
-        //self.fetchData()
+        self.fetchData()
         self.postTableView.reloadData()
-        //self.runGetRequestForUserPhoto()
+        self.runGetRequestForUserPhoto()
         self.configureTableView()
-        self.configureEmail()
+//        self.configureEmail()
 
     }
     
@@ -83,65 +79,70 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     // fetch data from get api
-    func fetchData(){
-        
-        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
-        Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in
-            
-            if (response.result.error != nil) {
-                print(response.result.error!)
-            }
-            
-            if let value = response.result.value {
-                let json = JSON(value)
-                for (_, subJson) in json["result"] {
-                    print(subJson)
-                    let id: String = subJson["_id"].stringValue
-                    let text: String = subJson["text"].stringValue
-                    let uid: String = subJson["uuid"].stringValue
-                    let likes: Array<Any> = subJson["likes"].array!
-                    let created_by: String = subJson["created_by"].stringValue
+    func fetchData() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                self.userEmail.text = user.email
+
+                let params: Parameters = ["uuid": (user.uid)]
+                Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in
                     
-                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
-                    
-                    // Must change 000002 to Firebase uid!
-                    if (subJson["uuid"].stringValue == self.uid!) {
-                        self.uName = created_by
+                    if (response.result.error != nil) {
+                        print(response.result.error!)
                     }
                     
-                }
-                DispatchQueue.main.async {
-                    self.postTableView.reloadData()
-                    self.userEmail.text = self.uName
-                }
-                print(self.postsArray)
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        for (_, subJson) in json["result"] {
+                            print(subJson)
+                            let id: String = subJson["_id"].stringValue
+                            let text: String = subJson["text"].stringValue
+                            let uid: String = subJson["uuid"].stringValue
+                            let likes: Array<Any> = subJson["likes"].array!
+                            let created_by: String = subJson["created_by"].stringValue
+                            
+                            self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
+                            
+                        }
+                        DispatchQueue.main.async {
+                            self.postTableView.reloadData()
+                            self.userEmail.text = self.uName
+                        }
+                        print(self.postsArray)
+                    }
+                } // end alamofire request
             }
         }
     }
     
     func runGetRequestForUserPhoto() {
-        let params: Parameters = ["uuid": self.uid!] // replace string with Firebase uid!
-        Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
-            
-            if (response.result.error != nil) {
-                print(response.result.error!)
-            }
-            
-            if let value = response.result.value {
-                let json = JSON(value)
-                var photo: String?
-                for (_, subJson) in json["result"] {
-                    print(subJson)
-                    photo = subJson["photo"].stringValue
-                }
-                
-                DispatchQueue.main.async {
-                    self.postTableView.reloadData()
-                    let imageUrl:URL = URL(string: photo!)!
-                    let imageData:NSData = NSData(contentsOf: imageUrl)!
-                    let image = UIImage(data: imageData as Data)
-                    self.uPhoto = image
-                }
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let params: Parameters = ["uuid": (user.uid)] // replace string with Firebase uid!
+                Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
+                    
+                    if (response.result.error != nil) {
+                        print(response.result.error!)
+                    }
+                    
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        var photo: String?
+                        for (_, subJson) in json["result"] {
+                            print(subJson)
+                            photo = subJson["photo"].stringValue
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.postTableView.reloadData()
+                            let imageUrl:URL = URL(string: photo!)!
+                            let imageData:NSData = NSData(contentsOf: imageUrl)!
+                            let image = UIImage(data: imageData as Data)
+                            self.uPhoto = image
+                        }
+                    }
+                } // request ends
             }
         }
     }
@@ -164,11 +165,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    func configureEmail() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            self.userEmail.text = user?.email
-        }
-    }
+//    func configureEmail() {
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            self.userEmail.text = user?.email
+//        }
+//    }
 
 }
 
