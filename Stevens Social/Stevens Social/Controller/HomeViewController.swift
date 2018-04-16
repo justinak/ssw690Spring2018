@@ -35,7 +35,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.postTableView.reloadData()
         self.runGetRequestForUserPhoto()
         self.configureTableView()
-//        self.configureEmail()
 
     }
     
@@ -58,16 +57,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.quackCount!.text = "\(quackCount)"
         cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
         cell.avatarImageView!.image = uPhoto
-        cell.postBody!.alpha = 0
-        cell.postName!.alpha = 0
-        cell.quackCount!.alpha = 0
-        cell.avatarImageView!.alpha = 0
-        UIView.animate(withDuration: 0.5, animations: {
-            cell.postBody!.alpha = 1
-            cell.postName!.alpha = 1
-            cell.quackCount!.alpha = 1
-            cell.avatarImageView!.alpha = 1
-        })
+//        cell.postBody!.alpha = 0
+//        cell.postName!.alpha = 0
+//        cell.quackCount!.alpha = 0
+//        cell.avatarImageView!.alpha = 0
+//        UIView.animate(withDuration: 0.5, animations: {
+//            cell.postBody!.alpha = 1
+//            cell.postName!.alpha = 1
+//            cell.quackCount!.alpha = 1
+//            cell.avatarImageView!.alpha = 1
+//        })
         
         return cell
         
@@ -85,8 +84,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.userEmail.text = user.email
 
                 let params: Parameters = ["uuid": (user.uid)]
-                Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in
-                    
+                Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in                    
                     if (response.result.error != nil) {
                         print(response.result.error!)
                     }
@@ -106,7 +104,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                         DispatchQueue.main.async {
                             self.postTableView.reloadData()
-                            self.userEmail.text = self.uName
                         }
                         print(self.postsArray)
                     }
@@ -116,7 +113,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func runGetRequestForUserPhoto() {
-        
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 let params: Parameters = ["uuid": (user.uid)] // replace string with Firebase uid!
@@ -164,13 +160,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         postTableView.estimatedRowHeight = 350.0
         
     }
-    
-//    func configureEmail() {
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            self.userEmail.text = user?.email
-//        }
-//    }
-
 }
 
 

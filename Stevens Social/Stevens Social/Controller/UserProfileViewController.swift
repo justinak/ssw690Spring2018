@@ -95,7 +95,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
           
                             self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
                             
-                            
                         }
                         
                         DispatchQueue.main.async {
