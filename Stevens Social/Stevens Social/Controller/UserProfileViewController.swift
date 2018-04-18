@@ -18,12 +18,18 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var postTableViewProfile: UITableView!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var profileName: UILabel!
+    @IBOutlet var bio: UILabel!
+    @IBOutlet var followersCount: UILabel!
+    @IBOutlet var followingCount: UILabel!
     
     var postsArray:[Post] = []
     var isFollowing: Bool = false
     var userPhoto: String?
     var uName: String?
     var userImageInPost: UIImage?
+    var userBio: String?
+    var follow: Int = 0 // number of users following
+    var follower: Int = 0 // number of followers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +38,14 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         postTableViewProfile.dataSource = self
         
         self.fetchData()
-        self.runGetRequestForUserPhoto()
+        
         self.postTableViewProfile.reloadData()
         
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.runGetRequestForUserPhoto()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -125,18 +135,27 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                             print(subJson)
                             self.uName = subJson["username"].stringValue
                             self.userPhoto = subJson["photo"].stringValue
+                            self.userBio = subJson["bio"].stringValue
+                            self.follow = subJson["follow"].array!.count
+                            self.follower = subJson["follower"].array!.count
+                            
                         }
                         
                         DispatchQueue.main.async {
                             self.postTableViewProfile.reloadData()
-                            let imageUrl:URL = URL(string: self.userPhoto!)!
-                            let imageData:NSData = NSData(contentsOf: imageUrl)!
-                            let image = UIImage(data: imageData as Data)
-                            self.userImageInPost = image
-                            self.profileImage.image = image
-                            self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
-                            self.profileName.text = self.uName
                         }
+                        let imageUrl:URL = URL(string: self.userPhoto!)!
+                        let imageData:NSData = NSData(contentsOf: imageUrl)!
+                        let image = UIImage(data: imageData as Data)
+                        self.userImageInPost = image
+                        self.profileImage.image = image
+                        self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
+                        self.profileName.text = self.uName
+                        self.bio.text = self.userBio
+                        self.followingCount.text = String(self.follow)
+                        self.followersCount.text = String(self.follower)
+                            
+                        
                     }
                 } // request ends
             }

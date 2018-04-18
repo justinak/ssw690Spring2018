@@ -251,7 +251,7 @@ def delete_post():
     return jsonify({'result': "Post deleted!"})
 
 
-@app.route('/api/get/timeline',methods=['GET', 'POST'])
+@app.route('/api/get/timeline',methods=['GET'])
 def get_timeline():
     """
     Get someone's timeline
@@ -325,6 +325,21 @@ def get_videos_containing_title():
         return jsonify({'result': 'Not Found'})
 
     return jsonify({'result': output})
+
+
+@app.route('/api/users', methods=['GET'])
+def get_user_by_username():
+    """Method returns all users containing the title from the database"""
+    output = []
+    username = request.args.get('username')
+    data = mongo.db.Users.find({'username': username })
+
+    for d in data:
+        d['_id'] = str(d['_id'])
+        output.append(d)
+
+    return jsonify({'result': output})
+
 
 #Retrieve Experiences Route for iOS
 @app.route('/api/get/experiences', methods=['GET'])

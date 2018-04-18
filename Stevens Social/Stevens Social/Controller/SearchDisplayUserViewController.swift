@@ -46,13 +46,12 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userResultCell", for: indexPath) as! UserResultTableViewCell
         cell.selectionStyle = .none
-        cell.backgroundColor = UIColor.magenta
+        cell.backgroundColor = UIColor.lightGray
         let user = userArray[indexPath.row]
         cell.userSearchDisplayName!.text = user.username
         let imgData = NSData(contentsOf: user.photo!)
         cell.userSearchImage.contentMode = .scaleAspectFit
         cell.userSearchImage.image = UIImage(data: imgData! as Data)
-        
         
         return cell
         
