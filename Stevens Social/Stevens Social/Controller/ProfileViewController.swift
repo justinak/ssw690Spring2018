@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var userPhoto: UIImage?
     var postsArray:[Post] = []
     var isFollowing: Bool = false
+    var follow: Int = 0
+    var follower: Int = 0
 
     var foreignUid: String?
     
@@ -40,6 +42,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileViewTableView.dataSource = self
         
         self.fetchData()
+        self.fetchBio()
         self.profileViewTableView.reloadData()
         
         configureTableView()
@@ -120,6 +123,44 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
+    
+    func fetchBio(){
+        // Search for posts based on created_by field
+        let params: Parameters = ["username": self.data]
+        var bio: String = ""
+        Alamofire.request("http://localhost:5000/api/users", parameters: params).responseJSON { response in
+            
+            if (response.result.error != nil) {
+                print(response.result.error!)
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                for (_, subJson) in json["result"] {
+                    print(subJson)
+                    bio = subJson["bio"].stringValue
+                    self.follow = subJson["follow"].array!.count
+                    self.follower = subJson["follower"].array!.count
+                    print("bio is here: " + bio)
+                }
+                
+                DispatchQueue.main.async {
+                    self.bioProfileView.text = bio
+                    self.numOfFollowing.text = String(self.follow)
+                    self.numOfFollowers.text = String(self.follower)
+                }
+                
+            }
+        }
+    }
+    
+//    func queuesWithQos() {
+//        let queue1 = DispatchQueue(label: "com.stevens.queue1", qos: DispatchQoS.utility, attributes: .concurrent)
+//
+//        queue1.async {
+//
+//        }
+//    }
     
     func followUser() {
         Auth.auth().addStateDidChangeListener { (auth, user) in

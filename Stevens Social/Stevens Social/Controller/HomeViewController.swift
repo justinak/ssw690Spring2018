@@ -57,16 +57,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.quackCount!.text = "\(quackCount)"
         cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
         cell.avatarImageView!.image = uPhoto
-//        cell.postBody!.alpha = 0
-//        cell.postName!.alpha = 0
-//        cell.quackCount!.alpha = 0
-//        cell.avatarImageView!.alpha = 0
-//        UIView.animate(withDuration: 0.5, animations: {
-//            cell.postBody!.alpha = 1
-//            cell.postName!.alpha = 1
-//            cell.quackCount!.alpha = 1
-//            cell.avatarImageView!.alpha = 1
-//        })
         
         return cell
         
