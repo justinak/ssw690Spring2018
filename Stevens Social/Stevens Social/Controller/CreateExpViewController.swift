@@ -13,6 +13,8 @@ class CreateExpViewController: UIViewController {
 
     @IBOutlet weak var expPost: UITextField!
     
+    let ExpViewCont = ExperienceViewController()
+    
     let userID = Auth.auth().currentUser!.uid
     
     @IBAction func postButton(_ sender: Any) {

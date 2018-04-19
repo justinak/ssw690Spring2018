@@ -45,6 +45,7 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
                 }
             }
         }
+
         self.expColl.reloadData()
     }
     
