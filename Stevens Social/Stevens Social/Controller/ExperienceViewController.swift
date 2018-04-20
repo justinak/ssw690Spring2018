@@ -15,8 +15,10 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var expColl: UICollectionView!
     var ExperiencePosts:[Experiences] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ExperiencePosts.removeAll()
         
         Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
             //print("Request: \(String(describing: response.request))")   // original url request
@@ -79,6 +81,7 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
         return cell
+        
     }
     //@IBAction func likeButton(_ sender: Any) {
         

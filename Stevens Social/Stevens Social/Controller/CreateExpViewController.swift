@@ -21,6 +21,10 @@ class CreateExpViewController: UIViewController {
         if expPost?.text != "" {
             let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/experiences", customMethod: "POST")
             myAPI.sendRequest(parameters: ["experience": self.expPost!.text!, "userid": userID])
+            
+            let expAPI = API(customRoute: "http://127.0.0.1:5000/api/get/experiences", customMethod: "GET")
+            expAPI.sendRequest(parameters: [:])
+            
         } else {
             print("Please enter experience in the Post Box!")
         }
