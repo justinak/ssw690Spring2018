@@ -25,8 +25,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userName: String?
     var userImage: UIImage?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        postsArray.removeAll()
 
         postTableView.delegate = self
         postTableView.dataSource = self
