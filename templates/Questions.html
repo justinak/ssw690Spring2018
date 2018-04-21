@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+    {{username}}
+  </div>
+  <div class = "toolbar col-md-7" align="right">
+    <ul class = "nav navbar-nav">
+      <li>
+           <a href="{{url_for('logout')}}">Logout</a>
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="newQuestion" name="menu" class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+<div class = "content">
+  <h1>Questions</h1>
+  <div class = "addanswers">
+      <h3>Add Question</h3>
+    <div class="submit">
+      <form action = "/question/submit" method = "POST" enctype="multipart/form-data">
+        <select name="topic" class="btn">
+            <option value="DataAnalysis">Data Analysis</option>
+            <!--<option value="Program">Program</option>-->
+            <option value="SoftwareEngineering">Software Engineering</option>
+            <option value="Systems Engineering">Systems Engineering</option>
+            <option value="Testing">Testing</option>
+            <option value="Algorithm">Algorithm</option>
+    </select><br/><br/>
+        <input type="text" name="title" placeholder="Title"><br/><br/>
+        <input type="text" name="question" id="question" class = "answer"/><br/><br/>
+        <button type="submit" value="Submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
