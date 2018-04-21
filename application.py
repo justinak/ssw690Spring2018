@@ -1,5 +1,5 @@
 """handle all routing for website. interfaces with Mongocalls.py"""
-from flask import Flask, render_template, request, make_response, redirect, url_for
+from flask import Flask, render_template, request, make_response, redirect, url_for, Session
 from random import randint
 from bson.binary import Binary
 from Firebase_config import User
@@ -11,12 +11,17 @@ application = Flask(__name__)
 title = "DuckHacker"
 post_questions = {}  # dictionary to contain the question asked to user
 user = None
-App_root = os.path.dirname(os.path.abspath(__file__))  # get file path for files to be uploaded to db
+App_root = os.path.dirname(os.path.abspath(__file__))  # get file path for files to be uploaded
+session=Session()
 
 @application.route('/')
 def index():
+    if 'username' in session.keys():
+        return redirect(url_for('get_questions'))
     return render_template('Login.html', title=title)
 
+
+#############################################################################################################
 @application.route('/login',methods=['POST', 'GET'])
 def login():
     if request.method =="POST":
@@ -25,12 +30,23 @@ def login():
         global user
         user = User(email, password)
         token = user.signin()
+        #get user name from mongo
+        username = MongoCalls.get_specific_user(token)['username']
+        global session
+        session['username'] = username
         if token != None:
             return redirect(url_for('get_questions'))
 
     return redirect(url_for('Index'))
 
+##############################################################################################################
+@application.route('/logout')
+def logout():
+    session.pop('username')
 
+    return redirect(url_for('index'))
+
+#############################################################################################################
 @application.route('/signup',methods=['POST', 'GET'])
 def sign():
     if request.method =="POST":
@@ -40,7 +56,8 @@ def sign():
         global user
         user = User(email, password)
         token = user.create_user()
-
+        session['username'] = username
+        print(session)
         if token != None:
             MongoCalls.add_user(token, email, username,
                                 'https://pbs.twimg.com/profile_images/676830491383730177/pY-4PfOy_400x400.jpg')
@@ -49,12 +66,21 @@ def sign():
     return redirect(url_for('Index'))
 
 
+################################################################################################################
+@application.route('/home')
+def user_profile():
+    user=MongoCalls.get_userbyid(session['username'])
+    return render_template('home.html', user=user)
+
+################################################################################################################
 @application.route('/menu', methods=['POST', 'GET'])
 def menu_options():
     """Handle clicks of menu options ***still needs to be updated"""
     if request.method == 'POST':
         if request.form['menu'] == 'Experience':
             return redirect(url_for('display_experiences'))
+        if request.form['menu'] == 'Profile':
+            return redirect(url_for('user_profile'))
         if request.form['menu'] == 'newQuestion':
             return redirect(url_for('display_add_question'))
         if request.form['menu'] == 'Questions':
@@ -65,13 +91,14 @@ def menu_options():
 ################################################################################################
 @application.route('/questions')
 def get_questions():
-    global post_questions
+
     questions = MongoCalls.get_question()
     randnum = randint(0, len(questions) - 1)
+    global post_questions
     post_questions['question'] = questions[randnum]
     solutions = MongoCalls.get_solution_by_id(questions[randnum]['_id'])
     return render_template('DuckHacker.html', title=title, question=questions[randnum],
-                           newcomment=solutions)
+                           newcomment=solutions, username=session['username'])
 
 
 #######################################################################################################
@@ -82,55 +109,55 @@ def handle_data():
         answer = request.form['Solution']
         id = request.form['quesid']
         if 'file' not in request.files:
-            MongoCalls.insert_solution(answer, id)
+            MongoCalls.insert_solution(answer, id, session['username'])
         else:
             file = request.files['file']
             if file.filename != '':
                 binfile = save_file(file)
-                MongoCalls.insert_solution(answer, id, files=binfile)
+                MongoCalls.insert_solution(answer, id, session['username'], files=binfile)
         solutions = MongoCalls.get_solution_by_id(id)
         question = MongoCalls.get_specific_ques(id)
+        return render_template('DuckHacker.html', title=title, question=question, newcomment=solutions, username=session['username'])
+
     elif request.method =='GET':
         id=request.form['quesid']
         solutions = MongoCalls.get_solution_by_id(id)
         question = MongoCalls.get_specific_ques(id)
+        return render_template('DuckHacker.html', title=title, question=question, newcomment=solutions, username=session['username'])
 
-        # return render_template('DuckHacker.html', title=title, question=post_questions['question'],
-        #                        newcomment=MongoCalls.get_solution_by_id(8345))
-    return render_template('DuckHacker.html', title=title, question=question, newcomment=solutions)
-
+    # return render_template('DuckHacker.html', title=title, question=question, newcomment=solutions)
 
 #########################################################################################################
 @application.route('/question/add')
 def display_add_question():
-    return render_template('Questions.html')
+    return render_template('Questions.html', username=session['username'])
 
 ########################################################################################################
 @application.route('/experience')
 def display_experiences():
     experience = MongoCalls.get_experience()
-    return render_template('Experience.html', title=title, experiences=experience)
+    return render_template('Experience.html', title=title, experiences=experience, username=session['username'])
 
 
 ############################################################################################################
 @application.route('/experience/submit', methods=['POST', 'GET'])
 def experience():
-    id = randint(0, 9999)
+
     if request.method == 'POST':
         projectpath = request.form['Experience']
         if 'file' not in request.files:
-
-            MongoCalls.insert_experience(id, projectpath)
+            print(session)
+            MongoCalls.insert_experience(session['username'], projectpath)
             # Experiences_page.add_experience(projectpath, id)
         else:
             file = request.files['file']
             if file.filename != '':
                 binfile = save_file(file)
-                MongoCalls.insert_experience(id, projectpath)
+                MongoCalls.insert_experience(session['username'], projectpath)
                 # Experiences_page.add_experience(projectpath, id)
 
     experience = MongoCalls.get_experience()
-    return render_template('Experience.html', title=title, experiences=experience)
+    return render_template('Experience.html', title=title, experiences=experience, username=session['username'])
 
 
 ########################################################################################################
@@ -140,7 +167,7 @@ def add_question():
         projectpath = request.form['question']
         title = request.form['title']
         topic = request.form['topic']
-        MongoCalls.insert_questions(projectpath, title, topic)
+        MongoCalls.insert_questions(projectpath, title, topic, session['username'])
 
     return redirect(url_for('get_questions'))
 
@@ -162,7 +189,7 @@ def get_topic_questions():
         elif request.form['topic'] == 'Testing':
             questions = MongoCalls.find_by_topic('Testing')
 
-    return render_template('Topics.html', title=title, questions=questions)
+    return render_template('Topics.html', title=title, questions=questions, username=session['username'])
 
 
 #########################################################################################################
@@ -181,45 +208,43 @@ def display_question_id():
 ##########################################################################################################
 @application.route('/topic')
 def display_topic():
-    return render_template('Topics.html', title=title)
+    return render_template('Topics.html', title=title, username=session['username'])
 
 
 #############################################################################################################
-@application.route('/voteup/<string:post_id>', methods=['POST'])
-def voteUp(post_id):
+@application.route('/vote/<string:post_id>/<string:question_id>', methods=['POST'])
+def votesUp(post_id, question_id):
     """Handle vote ups on click of button for any solution"""
-    MongoCalls.increase_count(post_id)
-    solutions = MongoCalls.get_solution_by_id(post_questions['question']['_id'])
-    return render_template('DuckHacker.html', title=title, question=post_questions['question']['question'],
-                           newcomment=solutions)
+    if request.method == "POST":
+        if request.form['vote'] == 'voteup':
+            print('voteup:', post_id)
+            MongoCalls.increase_count(post_id)
 
+        elif request.form['vote'] == 'votedown':
+            print('votedown:', post_id)
+            MongoCalls.decrease_count(post_id)
 
-##########################################################################################################
-@application.route('/votedown/<string:post_id>', methods=['POST'])
-def votedown(post_id):
-    """Handle vote ups on click of button for any solution"""
-    MongoCalls.decrease_count(post_id)
-    solutions = MongoCalls.get_solution_by_id(post_questions['question']['_id'])
-    return render_template('DuckHacker.html', title=title, question=post_questions['question']['question'],
-                           newcomment=solutions)
+    solutions = MongoCalls.get_solution_by_id(question_id)
+    question = MongoCalls.get_specific_ques(question_id)
+    return render_template('DuckHacker.html', title=title, question=question,
+                           newcomment=solutions, username=session['username'])
 
 
 #########################################################################################################
-@application.route('/exvoteup/<string:post_id>', methods=['POST'])
-def ex_voteUp(post_id):
-    """Handle vote ups on click of button for any solution"""
-    MongoCalls.ex_increase_count(post_id)
-    experience = MongoCalls.get_experience()
-    return render_template('Experience.html', title=title, experiences=experience)
+@application.route('/exvote/<string:post_id>', methods=['POST'])
+def exvotesUp(post_id):
+    """Handle vote on click of button for any solution"""
+    if request.method == "POST":
+        if request.form['vote'] == 'voteup':
+            print('voteup:', post_id)
+            MongoCalls.ex_increase_count(post_id)
 
+        elif request.form['vote'] == 'votedown':
+            print('votedown:', post_id)
+            MongoCalls.ex_decrease_count(post_id)
 
-##########################################################################################################
-@application.route('/exvotedown/<string:post_id>', methods=['POST'])
-def ex_votedown(post_id):
-    """Handle vote ups on click of button for any solution"""
-    MongoCalls.ex_decrease_count(post_id)
     experience = MongoCalls.get_experience()
-    return render_template('Experience.html', title=title, experiences=experience)
+    return render_template('Experience.html', title=title, experiences=experience, username=session['username'])
 
 
 ########################################################################################################
@@ -256,4 +281,8 @@ def convert_binary(file):
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run(debug=True)
+    application.secret_key = 'super secret key'
+    application.config['SESSION_TYPE'] = 'filesystem'
+    # session.init_app(application)
+
+application.run(debug=True)

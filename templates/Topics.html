@@ -8,24 +8,12 @@
     <h2>Duck Hacker</h2>
   </div>
   <div class = "email col-md-2">
-    cthden@stevens.edu
+    {{username}}
   </div>
-  <div class = "toolbar col-md-7">
+  <div class = "toolbar col-md-7" align="right">
     <ul class = "nav navbar-nav">
       <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>Pages</a>
-      </li>
-      <li>
-        <a>My Account</a>
-      </li>
-      <li>
-        <a>Contact</a>
-      </li>
-      <li>
-          <input type = "text" class="form-control">
+           <a href="{{url_for('logout')}}">Logout</a>
       </li>
     </ul>
 </div>
@@ -34,6 +22,11 @@
 <div class = "menu">
    <form action ="/menu" method = "post">
   <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
     <li>
       <div>
       <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
@@ -58,10 +51,9 @@
   </form>
 </div>
 
-<div class = "content">
+<div>
   <h1>Topics</h1>
-  <div class = "addanswers">
-      <h3>View Questions</h3>
+  <div class = "menu_topic">
         <form action = "/question/topic" method = "POST" enctype="multipart/form-data">
           <ul>
             <li>
@@ -97,7 +89,7 @@
 
                <p><b>{{post.title}}</b></p><br/><br/>
                 {{post.question}}
-                <button type="submit" value="{{post._id}}" name ='solve'> Solve</button>
+                <button type="submit" value="{{post._id}}" name ='solve' class="btn"> Solve</button>
 
       <hr/>
 

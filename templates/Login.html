@@ -33,19 +33,21 @@
 
 <div class="content" align="center">
     <h3>DuckHacker Login</h3>
-    <form action="/login" method="post">
-        <input type="email" name="user_email" placeholder="atila@stevens.edu" align="center"/><br/><br/>
-        <input type="password" name="user_pswrd" placeholder="password---" align="center"/><br/><br/>
-        <input type="submit" align="center"/>
-    </form>
-    <h3>OR </h3>
-    <h4>Sign Up below</h4>
-    <form action="/signup" method="post">
-        <input type="text" name="user_name" placeholder="Username" align="center"><br/><br/>
-        <input type="email" name="user_email" placeholder="atila@stevens.edu" align="center"/><br/><br/>
-        <input type="password" name="user_pswrd" placeholder="password---" align="center"/><br/><br/>
-        <!--<p>Upload Photo:</p><input type="file" name="user_photo" align="center"><br/><br/>-->
-        <input type="submit" align="center"/>
-    </form>
+    <div class="submit">
+        <form action="/login" method="post">
+            <input type="email" name="user_email" placeholder="atila@stevens.edu" align="center"/><br/><br/>
+            <input type="password" name="user_pswrd" placeholder="password---" align="center"/><br/><br/>
+            <button type="submit" align="center" class="btn">Login</button>
+        </form>
+        <h3>OR </h3>
+        <h4>Sign Up below</h4>
+        <form action="/signup" method="post">
+            <input type="text" name="user_name" placeholder="Username" align="center"><br/><br/>
+            <input type="email" name="user_email" placeholder="atila@stevens.edu" align="center"/><br/><br/>
+            <input type="password" name="user_pswrd" placeholder="password---" align="center"/><br/><br/>
+            <!--<p>Upload Photo:</p><input type="file" name="user_photo" align="center"><br/><br/>-->
+            <button type="submit" align="center" class="btn">Register</button>
+        </form>
+    </div>
 </div>
 {%endblock%}

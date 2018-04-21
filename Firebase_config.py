@@ -23,11 +23,10 @@ class User():
     def create_user(self):
         user = auth.create_user_with_email_and_password(self.email, self.password)
         self.token_id = user['localId']
+        auth.send_email_verification(self.token_id)
         return self.token_id
 
     def signin(self):
         user = auth.sign_in_with_email_and_password(self.email, self.password)
-        print(user)
         self.token_id = user['localId']
         return self.token_id
-
