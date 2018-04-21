@@ -25,19 +25,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userName: String?
     var userImage: UIImage?
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         postsArray.removeAll()
 
+        self.fetchData()
+        self.runGetRequestForUserPhoto()
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         postTableView.delegate = self
         postTableView.dataSource = self
         
-        self.fetchData()
         self.postTableView.reloadData()
-        self.runGetRequestForUserPhoto()
         self.configureTableView()
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
