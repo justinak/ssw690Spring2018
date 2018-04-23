@@ -13,7 +13,7 @@ config = {
 firebase = pyrebase.initialize_app(config=config)
 auth = firebase.auth()
 
-class user_unique():
+class User_Unique():
     def __init__(self,email, password):
         # self.user_uniquename = user_uniquename
         # print (os.environ.get('FIREBASE_KEY'))
@@ -22,6 +22,7 @@ class user_unique():
         self.email = email
 
     def create_user_unique(self):
+
         user_unique = auth.create_user_unique_with_email_and_password(self.email, self.password)
         self.token_id = user_unique['localId']
         return self.token_id

@@ -3,13 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# MacOS
-.DS_Store
-
-# Xcode user personal settings
-xcuserdata/
-
-
 # C extensions
 *.so
 
@@ -115,13 +108,11 @@ venv.bak/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea
 .idea/workspace.xml
-.idea/tasks.xmlq
+.idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-.vscode
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
@@ -134,6 +125,7 @@ venv.bak/
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
+
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
@@ -164,4 +156,5 @@ fabric.properties
 # *.iml
 # modules.xml
 # .idea/misc.xml
-# *.ipr
+# *.ipr.idea
+.DS_Store

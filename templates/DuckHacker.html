@@ -8,24 +8,24 @@
     <h2>Duck Hacker</h2>
   </div>
   <div class = "email col-md-2">
-    cthden@stevens.edu
+    {{username}}
   </div>
   <div class = "toolbar col-md-7">
     <ul class = "nav navbar-nav">
       <li>
-        <a>Home</a>
+        <a>    </a>
       </li>
       <li>
-        <a>Pages</a>
+        <a>    </a>
       </li>
       <li>
-        <a>My Account</a>
+        <a>    </a>
       </li>
       <li>
-        <a>Contact</a>
+        <a>    </a>
       </li>
       <li>
-          <input type = "text" class="form-control">
+          <a href="{{url_for('logout')}}">Logout</a>
       </li>
     </ul>
 </div>
@@ -34,6 +34,11 @@
 <div class = "menu">
    <form action ="/menu" method = "post">
   <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
     <li>
       <div>
       <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
@@ -60,30 +65,35 @@
 
 <div class = "content">
   <h1>Interview Questions</h1>
-  <h2>Most Recent</h2>
   <p>{{question.question}}</p>
   <div class = "addanswers">
     <h3>add your answer</h3>
+    <div class="submit">
     <form action = "{{url_for('handle_data')}}" method = "POST" enctype="multipart/form-data">
         <textarea name="Solution" id="Solution" class = "answer"></textarea><br/><br/>
-        <input type="file" value="Upload File" name="file"/><br/><br/>
-        <button type="submit" value="{{question._id}}" name="quesid">Submit</button>
+        <input type="file" value="Upload File" name="file" class="btn"/><br/><br/>
+        <button type="submit" value="{{question._id}}" name="quesid" class="btn">Submit</button>
     </form>
+    </div>
       <h3>Other Answers</h3>
-      <table>
+
           {% for post in newcomment %}
-        <tr>
-          <div><p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p><p>Votes: {{post.votes}}</p>
-            <input  name="voteup" type="submit" id="up{{post._id}}" value="Vote Up" onclick="voteup('{{post._id}}')" />
-            <input name="votedown" type="submit" id="down{{post._id}}" value="Vote Down"
-                   onclick="votedown('{{post._id}}')"/>
-          </div>
-        </tr>
+
+             <form    action="/vote/{{post._id}}/{{question._id}}" method="post">
+               <div class="vote">
+                    <button class = "btn" type="submit" name="vote" value="voteup"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <span id = "vote">{{post.votes}}</span>
+                    <button class = "btn" type="submit" name="vote" value="votedown"><span class = "glyphicon glyphicon-thumbs-down"></span></button>
+               </div>
+                    <p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p>
+             </form>
+             <hr>
+
           {% endfor %}
-      </table>
+
+
+  </div>
 
 </div>
-
-
 </div>
 {% endblock %}

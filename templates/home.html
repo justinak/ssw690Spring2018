@@ -1,0 +1,56 @@
+{%extends 'base.html' %}
+{%block body%}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
+    <div class = "header row">
+      <div class = "title col-md-3">
+        <h2>Duck Hacker</h2>
+      </div>
+      <div class = "email col-md-2" align="right">
+           <a href="{{url_for('logout')}}">Logout</a>
+      </div>
+    </div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="newQuestion" name="menu" class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+
+<div class="card">
+  <img src="{{user.photo}}" alt="Image" style="width:100%">
+  <h1>{{user.username}}</h1>
+  <p class="title">{{user.bio}}</p>
+  <p>{{user.email}}</p>
+
+</div>
+
+{%endblock%}
