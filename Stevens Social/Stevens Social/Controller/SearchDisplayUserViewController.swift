@@ -52,7 +52,9 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
         let imgData = NSData(contentsOf: user.photo!)
         cell.userSearchImage.contentMode = .scaleAspectFit
         cell.userSearchImage.image = UIImage(data: imgData! as Data)
-        
+//        let imageUrl:URL = URL(string: self.userPhoto!)!
+//        let imageData:NSData = NSData(contentsOf: imageUrl)!
+//        let image = UIImage(data: imageData as Data)
         return cell
         
     }

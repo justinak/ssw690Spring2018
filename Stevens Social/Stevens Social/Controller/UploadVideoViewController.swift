@@ -36,20 +36,8 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func uploadVideoBtn(_ sender: Any) {
-        let title: String = videoTitleBox.text!
-        let parameters: Parameters = [
-            //            "user_id": uid!,
-            "user_id": "1234567",
-            "title": title,
-            //            "src": videoURL!
-            "src": "videoURL!"
-        ]
         
-        //        Alamofire.request("http://localhost:5000/api/post/video", method: .post, parameters: parameters, encoding: JSONEncoding.default)
-        
-        //        Alamofire.upload(videoURL!, to: "http://localhost:5000/api/post/video").responseJSON { response in
-        //            debugPrint(response)
-        //        }
+        self.dismiss(animated: true, completion: nil)
         
     }
     

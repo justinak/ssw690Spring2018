@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>729702121869-nacqo4icg5l12bdcl649rnmbat8h11ie.apps.googleusercontent.com</string>
+	<string>729702121869-hs7adshqhallan4j0utead7so4ekc4bh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.729702121869-nacqo4icg5l12bdcl649rnmbat8h11ie</string>
+	<string>com.googleusercontent.apps.729702121869-hs7adshqhallan4j0utead7so4ekc4bh</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDhAb4cNMnrQhHhFV6Sa7BtPjxuOe5AeHU</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.SocialApp.Stevens-Social</string>
+	<string>com.SocialApp.Stevens-Social-v1</string>
 	<key>PROJECT_ID</key>
 	<string>stevens-social</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:729702121869:ios:390830e219e8de66</string>
+	<string>1:729702121869:ios:cbf0d762a8391ec1</string>
 	<key>DATABASE_URL</key>
 	<string>https://stevens-social.firebaseio.com</string>
 </dict>

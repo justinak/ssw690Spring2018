@@ -42,9 +42,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.postTableViewProfile.reloadData()
         
         configureTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         self.runGetRequestForUserPhoto()
     }
     

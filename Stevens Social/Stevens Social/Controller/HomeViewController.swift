@@ -25,19 +25,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userName: String?
     var userImage: UIImage?
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         postsArray.removeAll()
 
+        self.fetchData()
+        self.runGetRequestForUserPhoto()
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         postTableView.delegate = self
         postTableView.dataSource = self
         
-        self.fetchData()
         self.postTableView.reloadData()
-        self.runGetRequestForUserPhoto()
         self.configureTableView()
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,6 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postName!.text = post.created_by
         cell.quackCount!.text = "\(quackCount)"
         cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+
         cell.avatarImageView!.image = uPhoto
         
         return cell
@@ -138,11 +144,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func logOutPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
+            if let storyboard = self.storyboard {
+                let vc = storyboard.instantiateViewController(withIdentifier: "firstVC") as! UINavigationController
+                self.present(vc, animated: false, completion: nil)
+            }
             print("signout successful")
         }
-        catch {
-            print("Error: there was a problem logging out")
+        catch let error {
+            print("Error: there was a problem logging out: \(error)")
         }
     }
     
