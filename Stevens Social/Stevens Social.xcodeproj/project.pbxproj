@@ -43,6 +43,7 @@
 		A75C31AB207FFFD700DDE040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AA207FFFD700DDE040 /* User.swift */; };
 		A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */; };
 		A75C31B1208E591000DDE040 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */; };
+		A75C31B3208E6C7500DDE040 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = A75C31B2208E6C7400DDE040 /* awsconfiguration.json */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
 		A7867752207031480007D585 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7867750207031480007D585 /* VideoTableViewCell.swift */; };
 		A7867753207031480007D585 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7867751207031480007D585 /* VideoTableViewCell.xib */; };
@@ -115,6 +116,7 @@
 		A75C31AA207FFFD700DDE040 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A75C31B2208E6C7400DDE040 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = awsconfiguration.json; path = ../../../../../../Downloads/awsconfiguration.json; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A7867750207031480007D585 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		A7867751207031480007D585 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		95FBC8EB20477AA100059E8A /* Stevens Social */ = {
 			isa = PBXGroup;
 			children = (
+				95FBC8EC20477AA100059E8A /* AppDelegate.swift */,
 				A743DFFA206A0536000270E6 /* Helpers */,
 				A7C5B2BF204DCDA30065C25B /* Model */,
 				A7E588192059000F005FACAE /* Controller */,
@@ -194,6 +197,7 @@
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
 				95FBC8F820477AA100059E8A /* Info.plist */,
+				A75C31B2208E6C7400DDE040 /* awsconfiguration.json */,
 				A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */,
 				A7867750207031480007D585 /* VideoTableViewCell.swift */,
 				A7867751207031480007D585 /* VideoTableViewCell.xib */,
@@ -247,7 +251,6 @@
 				A752388220768D0500BDA798 /* UploadVideoViewController.swift */,
 				95FBC8EE20477AA100059E8A /* LoginViewController.swift */,
 				A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */,
-				95FBC8EC20477AA100059E8A /* AppDelegate.swift */,
 				A7526C42204D0B650014B3AF /* RegisterViewController.swift */,
 				A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */,
 				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
@@ -419,6 +422,7 @@
 				A7C5B2BE204DC34C0065C25B /* PostTableViewCell.xib in Resources */,
 				A7867753207031480007D585 /* VideoTableViewCell.xib in Resources */,
 				95E80EE420479CE2002AFA8A /* videoicon.png in Resources */,
+				A75C31B3208E6C7500DDE040 /* awsconfiguration.json in Resources */,
 				95FBC8F720477AA100059E8A /* LaunchScreen.storyboard in Resources */,
 				95E80EEC20479EED002AFA8A /* profileIcon.png in Resources */,
 				95FBC8F420477AA100059E8A /* Assets.xcassets in Resources */,
