@@ -79,7 +79,6 @@ def insert_questions(question, title, topic, userid):
 def get_specific_ques(id):
     question = None
     result = {}
-    print('i got here:',id)
     try:
         question = db.Interview.find_one({'_id': int(id)})
     except Exception as e:
