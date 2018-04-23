@@ -7,7 +7,6 @@
         <h2>Duck Hacker</h2>
       </div>
       <div class = "email col-md-2">
-        cthden@stevens.edu
       </div>
       <div class = "toolbar col-md-7">
         <ul class = "nav navbar-nav">
@@ -35,6 +34,7 @@
     <h3>DuckHacker Login</h3>
     <div class="submit">
         <form action="/login" method="post">
+            <p>{{error}}</p><br>
             <input type="email" name="user_email" placeholder="atila@stevens.edu" align="center"/><br/><br/>
             <input type="password" name="user_pswrd" placeholder="password---" align="center"/><br/><br/>
             <button type="submit" align="center" class="btn">Login</button>

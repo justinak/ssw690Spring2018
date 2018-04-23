@@ -16,7 +16,6 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     
 
     let imagePickerController = UIImagePickerController()
-    var uid: String?
     
     @IBOutlet var postBody: UITextField!
 
@@ -26,10 +25,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
 
         // Allows us to use the delegate
         postBody.delegate = self
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            self.uid = user?.uid
-        }
+
         
     }
 
@@ -44,15 +40,18 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
     
     
     @IBAction func confirmPost(_ sender: UIButton) {
-        
-        if postBody?.text != "" {
-            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
-            myAPI.sendRequest(parameters: ["uuid": "000002", "text": self.postBody!.text!]) // insert real uuid from firebase
-        } else {
-            print("Please enter text in the Post Box!")
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                if self.postBody?.text != "" {
+                    let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
+                    myAPI.sendRequest(parameters: ["uuid": user.uid, "text": self.postBody!.text!]) // insert real uuid from firebase
+                } else {
+                    print("Please enter text in the Post Box!")
+                }
+            }
         }
-        
         performSegue(withIdentifier: "postSuccess", sender: self)
+        
 
     }
 
