@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from random import randint
 import datetime
 
+
 #client = MongoClient()
 client = MongoClient('mongodb://duck_hacker:ssw690@34.230.77.217/ssw690spring2018')
 db = client.ssw690spring2018
@@ -21,6 +22,7 @@ def add_user(id, email, uname, photo):
 def get_user():
     try:
         result = db.Users.find()
+
     except Exception as e:
        print('ERROR READING FILE', e)
     users = [post for post in result]
@@ -29,12 +31,19 @@ def get_user():
 
 def get_specific_user(id):
     try:
-        result = db.Users.find_one({'_id': id})
+        result = db.Users.find_one({'uuid': id})
     except Exception as e:
        print('ERROR READING FILE', e)
-    user = [post for post in result]
+    user = result
     return user
 
+def get_userbyid(username):
+    try:
+        result = db.Users.find_one({'username': username})
+    except Exception as e:
+       print('ERROR READING FILE', e)
+    user = result
+    return user
 
 def get_question():
     """retrieve all the questions contained in Interview collection"""
@@ -47,7 +56,7 @@ def get_question():
     return brokendownexp
 
 
-def insert_questions(question, title, topic):
+def insert_questions(question, title, topic, userid):
     """insert solutions into the solution collection"""
 
     id = randint(0, 9999)
@@ -59,7 +68,7 @@ def insert_questions(question, title, topic):
             "votes": 0,
             "question": question,
             'topic': topic,
-            'userid': 'hannah',
+            'userid': userid,
             'time': get_time()
         }
         )
@@ -69,12 +78,16 @@ def insert_questions(question, title, topic):
 
 def get_specific_ques(id):
     question = None
+    result = {}
+    print('i got here:',id)
     try:
         question = db.Interview.find_one({'_id': int(id)})
     except Exception as e:
         print('Error finding element : {}'.format(e))
 
-    result =[ques for ques in question]
+    for key in question:
+
+        result[key] =question[key]
     return result
 
 
@@ -134,7 +147,7 @@ def get_solution_by_id(id):
     return listofsol
 
 
-def insert_solution(solution, quesid, files=None):
+def insert_solution(solution, quesid,userid, files=None):
     """insert solutions into the solution collection"""
 
     id = randint(0, 9999)
@@ -142,7 +155,7 @@ def insert_solution(solution, quesid, files=None):
         db.Solution.insert_one(
         {
             '_id': id,
-            "userid": 'hannah',
+            "userid": userid,
             'quesid':quesid,
             "files": files,
             "votes": 0,
