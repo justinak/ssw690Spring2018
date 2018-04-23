@@ -516,7 +516,11 @@ def handle_data():
     return render_template('DuckHacker.html', title=title, question=question, newcomment=solutions)
 
 
-#########################################################################################################
+##########################################################################################
+
+
+
+# ###############
 @app.route('/question/add')
 def display_add_question():
     return render_template('Questions.html')

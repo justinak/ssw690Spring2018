@@ -15,53 +15,17 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var expColl: UICollectionView!
     var ExperiencePosts:[Experiences] = []
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        ExperiencePosts.removeAll()
-//
-//        Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
-//            //print("Request: \(String(describing: response.request))")   // original url request
-//            //print("Response: \(String(describing: response.response))") // http url response
-//            //print("Result: \(response.result)")
-//            // response serialization result
-//
-//            if (response.result.error != nil) {
-//                print(response.result.error!)
-//            }
-//            if let value = response.result.value{
-//                let json = JSON(value)
-//                for (_, subJson) in json["result"] {
-//                    print("subJson: ",subJson)
-//                    let experience = subJson["experience"].stringValue
-//                    let _id = subJson["_id"].stringValue
-//                    let time = subJson["time"].stringValue
-//                    let userid = subJson["userid"].stringValue
-//                    let votes = subJson["votes"].stringValue
-//                    self.ExperiencePosts.append(Experiences(experience: experience, _id: _id, time: time, userid: userid, votes: votes))
-//                }
-//
-//                DispatchQueue.main.async {
-//                    print("DATA: \(self.ExperiencePosts)")
-//                    self.expColl.reloadData()
-//                }
-//            }
-//        }
-//
-//        self.expColl.reloadData()
-//    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
         ExperiencePosts.removeAll()
-        
+
         Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
             //print("Request: \(String(describing: response.request))")   // original url request
             //print("Response: \(String(describing: response.response))") // http url response
             //print("Result: \(response.result)")
             // response serialization result
-            
+
             if (response.result.error != nil) {
                 print(response.result.error!)
             }
@@ -76,14 +40,14 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
                     let votes = subJson["votes"].stringValue
                     self.ExperiencePosts.append(Experiences(experience: experience, _id: _id, time: time, userid: userid, votes: votes))
                 }
-                
+
                 DispatchQueue.main.async {
                     print("DATA: \(self.ExperiencePosts)")
                     self.expColl.reloadData()
                 }
             }
         }
-        
+
         self.expColl.reloadData()
     }
     

@@ -31,7 +31,6 @@
 		95FBC90220477AA100059E8A /* Stevens_SocialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90120477AA100059E8A /* Stevens_SocialTests.swift */; };
 		95FBC90D20477AA100059E8A /* Stevens_SocialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */; };
 		A72AF23120715BEC00627103 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72AF23020715BEC00627103 /* Video.swift */; };
-		A7333F9A2062FEF30043E9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7333F992062FEF30043E9BF /* GoogleService-Info.plist */; };
 		A743DFFC206A0565000270E6 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743DFFB206A0565000270E6 /* helper.swift */; };
 		A752388320768D0600BDA798 /* UploadVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752388220768D0500BDA798 /* UploadVideoViewController.swift */; };
 		A752388520769D6600BDA798 /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752388420769D6600BDA798 /* AttachmentHandler.swift */; };
@@ -43,6 +42,7 @@
 		A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */; };
 		A75C31AB207FFFD700DDE040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AA207FFFD700DDE040 /* User.swift */; };
 		A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */; };
+		A75C31B1208E591000DDE040 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
 		A7867752207031480007D585 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7867750207031480007D585 /* VideoTableViewCell.swift */; };
 		A7867753207031480007D585 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7867751207031480007D585 /* VideoTableViewCell.xib */; };
@@ -103,7 +103,6 @@
 		95FBC90C20477AA100059E8A /* Stevens_SocialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stevens_SocialUITests.swift; sourceTree = "<group>"; };
 		95FBC90E20477AA100059E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A72AF23020715BEC00627103 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		A7333F992062FEF30043E9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A743DFFB206A0565000270E6 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		A752388220768D0500BDA798 /* UploadVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoViewController.swift; sourceTree = "<group>"; };
 		A752388420769D6600BDA798 /* AttachmentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResultTableViewCell.xib; sourceTree = "<group>"; };
 		A75C31AA207FFFD700DDE040 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A7867750207031480007D585 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		A7867751207031480007D585 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				95FBC8F320477AA100059E8A /* Assets.xcassets */,
 				95FBC8F520477AA100059E8A /* LaunchScreen.storyboard */,
 				95FBC8F820477AA100059E8A /* Info.plist */,
-				A7333F992062FEF30043E9BF /* GoogleService-Info.plist */,
+				A75C31B0208E590D00DDE040 /* GoogleService-Info.plist */,
 				A7867750207031480007D585 /* VideoTableViewCell.swift */,
 				A7867751207031480007D585 /* VideoTableViewCell.xib */,
 				A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */,
@@ -414,7 +414,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7333F9A2062FEF30043E9BF /* GoogleService-Info.plist in Resources */,
 				95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */,
 				95E80EE620479E75002AFA8A /* homeicon.png in Resources */,
 				A7C5B2BE204DC34C0065C25B /* PostTableViewCell.xib in Resources */,
@@ -428,6 +427,7 @@
 				A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */,
 				95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */,
 				95E80EE820479E78002AFA8A /* interviewicon.png in Resources */,
+				A75C31B1208E591000DDE040 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,12 +817,15 @@
 			baseConfigurationReference = 486DC5956564D76D242F20CC /* Pods-Stevens Social.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R99J8TCCJZ;
+				DEVELOPMENT_TEAM = BFP7ZL95BB;
 				INFOPLIST_FILE = "Stevens Social/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social-v1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -833,12 +836,15 @@
 			baseConfigurationReference = 18720A36BA140147F5618452 /* Pods-Stevens Social.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R99J8TCCJZ;
+				DEVELOPMENT_TEAM = BFP7ZL95BB;
 				INFOPLIST_FILE = "Stevens Social/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social-v1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

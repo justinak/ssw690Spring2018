@@ -45,10 +45,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.runGetRequestForUserPhoto()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.runGetRequestForUserPhoto()
-//    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

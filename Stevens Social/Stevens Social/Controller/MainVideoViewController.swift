@@ -44,7 +44,7 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.selectionStyle = .none
         let video = videoArray[indexPath.row]
         cell.videoTitle.text = video.title
-        cell.videoPoster.text = "Vincent Porta" // Need a user email address to be displayed here. 
+//        cell.videoPoster.text = "Vincent Porta" // Need a user email address to be displayed here.
         cell.videoPlayerItem = AVPlayerItem.init(url: video.src! )
 
         return cell

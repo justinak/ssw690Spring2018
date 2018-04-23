@@ -63,6 +63,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.postName!.text = post.created_by
         cell.quackCount!.text = "\(quackCount)"
         cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+
         cell.avatarImageView!.image = uPhoto
         
         return cell
@@ -143,11 +144,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func logOutPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
+            if let storyboard = self.storyboard {
+                let vc = storyboard.instantiateViewController(withIdentifier: "firstVC") as! UINavigationController
+                self.present(vc, animated: false, completion: nil)
+            }
             print("signout successful")
         }
-        catch {
-            print("Error: there was a problem logging out")
+        catch let error {
+            print("Error: there was a problem logging out: \(error)")
         }
     }
     
