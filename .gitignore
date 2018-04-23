@@ -126,6 +126,7 @@ venv.bak/
 .idea/gradle.xml
 .idea/libraries
 
+
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
@@ -155,4 +156,5 @@ fabric.properties
 # *.iml
 # modules.xml
 # .idea/misc.xml
-# *.ipr
+# *.ipr.idea
+.DS_Store

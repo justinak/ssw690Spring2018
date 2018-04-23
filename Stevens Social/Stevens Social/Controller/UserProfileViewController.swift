@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import Firebase
 import FirebaseAuth
 import Alamofire
@@ -19,26 +18,34 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var postTableViewProfile: UITableView!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var profileName: UILabel!
+    @IBOutlet var bio: UILabel!
+    @IBOutlet var followersCount: UILabel!
+    @IBOutlet var followingCount: UILabel!
     
     var postsArray:[Post] = []
     var isFollowing: Bool = false
-    var uid: String?
     var userPhoto: String?
     var uName: String?
+    var userImageInPost: UIImage?
+    var userBio: String?
+    var follow: Int = 0 // number of users following
+    var follower: Int = 0 // number of followers
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            self.uid = user?.uid
-        }
+
         postTableViewProfile.delegate = self
         postTableViewProfile.dataSource = self
         
         self.fetchData()
-        self.runGetRequestForUserPhoto()
+        
         self.postTableViewProfile.reloadData()
         
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.runGetRequestForUserPhoto()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,14 +59,21 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableCell", for: indexPath) as! PostTableViewCell
         cell.selectionStyle = .none
+        
         let post = postsArray[indexPath.row]
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
-//        let imageUrl:URL = URL(string: self.userPhoto!)!
-//        let imageData:NSData = NSData(contentsOf: imageUrl)!
-//        let image = UIImage(data: imageData as Data)
-//        cell.avatarImageView!.image = image
-//        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
+        cell.avatarImageView!.image = userImageInPost
+        cell.postBody!.alpha = 0
+        cell.postName!.alpha = 0
+        cell.avatarImageView!.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            cell.postBody!.alpha = 1
+            cell.postName!.alpha = 1
+            cell.avatarImageView!.alpha = 1
+        })
         
         return cell
     }
@@ -70,60 +84,80 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchData(){
-        
-        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid! 
-        Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
-            
-            if (response.result.error != nil) {
-                print(response.result.error!)
-            }
-            
-            if let value = response.result.value {
-                let json = JSON(value)
-                for (_, subJson) in json["result"] {
-                    print(subJson)
-                    let id: String = subJson["_id"].stringValue
-                    let text: String = subJson["text"].stringValue
-                    let uid: String = subJson["uuid"].stringValue
-                    let likes: Array<Any> = []
-                    let created_by: String = subJson["created_by"].stringValue
-  
-                    self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
+                Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
                     
-                }
-                DispatchQueue.main.async {
-                    self.postTableViewProfile.reloadData()
-                }
-                print(self.postsArray)
+                    if (response.result.error != nil) {
+                        print(response.result.error!)
+                    }
+                    
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        for (_, subJson) in json["result"] {
+                            print(subJson)
+                            let id: String = subJson["_id"].stringValue
+                            let text: String = subJson["text"].stringValue
+                            let uid: String = subJson["uuid"].stringValue
+                            let likes: Array<Any> = []
+                            let created_by: String = subJson["created_by"].stringValue
+          
+                            self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
+                            
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.postTableViewProfile.reloadData()
+                        }
+                        print(self.postsArray.reverse())
+                    }
+                } // request ends
             }
         }
         
     }
     
     func runGetRequestForUserPhoto() {
-        let params: Parameters = ["uuid": "000002"] // replace string with Firebase uid!
-        Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
-            
-            if (response.result.error != nil) {
-                print(response.result.error!)
-            }
-            
-            if let value = response.result.value {
-                let json = JSON(value)
-                for (_, subJson) in json["result"] {
-                    print(subJson)
-                    self.uName = subJson["username"].stringValue
-                    self.userPhoto = subJson["photo"].stringValue
-                }
-                DispatchQueue.main.async {
-                    self.postTableViewProfile.reloadData()
-                    let imageUrl:URL = URL(string: self.userPhoto!)!
-                    let imageData:NSData = NSData(contentsOf: imageUrl)!
-                    let image = UIImage(data: imageData as Data)
-                    self.profileImage.image = image
-                    self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
-                    self.profileName.text = self.uName
-                }
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
+                Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
+                    
+                    if (response.result.error != nil) {
+                        print(response.result.error!)
+                    }
+                    
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        for (_, subJson) in json["result"] {
+                            print(subJson)
+                            self.uName = subJson["username"].stringValue
+                            self.userPhoto = subJson["photo"].stringValue
+                            self.userBio = subJson["bio"].stringValue
+                            self.follow = subJson["follow"].array!.count
+                            self.follower = subJson["follower"].array!.count
+                            
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.postTableViewProfile.reloadData()
+                        }
+                        let imageUrl:URL = URL(string: self.userPhoto!)!
+                        let imageData:NSData = NSData(contentsOf: imageUrl)!
+                        let image = UIImage(data: imageData as Data)
+                        self.userImageInPost = image
+                        self.profileImage.image = image
+                        self.profileImage.contentMode = UIViewContentMode.scaleAspectFit
+                        self.profileName.text = self.uName
+                        self.bio.text = self.userBio
+                        self.followingCount.text = String(self.follow)
+                        self.followersCount.text = String(self.follower)
+                            
+                        
+                    }
+                } // request ends
             }
         }
     }

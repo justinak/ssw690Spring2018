@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		09B979A67FEA6E2FD3069B63 /* Pods_Stevens_SocialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC6EC99E15E3774C3057D14 /* Pods_Stevens_SocialTests.framework */; };
 		43ABDC06E886A3162A0C64E0 /* Pods_Stevens_SocialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D6EA5CC43EB6651483C475 /* Pods_Stevens_SocialUITests.framework */; };
+		95372D4720829DC100F177C7 /* CreateExpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95372D4620829DC100F177C7 /* CreateExpViewController.swift */; };
 		9595AB76205B5E4B00CBCB13 /* Pods_Stevens_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */; };
 		9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5B2B9204DBE9C0065C25B /* HomeViewController.swift */; };
+		95BDD4CB208293E500532C08 /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDD4CA208293E500532C08 /* Experience.swift */; };
+		95BDD4CD208294F700532C08 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDD4CC208294F700532C08 /* ExperienceViewController.swift */; };
+		95BDD4CF2082956300532C08 /* ExperienceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BDD4CE2082956300532C08 /* ExperienceCollectionViewCell.swift */; };
 		95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C7DA872069F4C600D312BB /* MainVideoViewController.swift */; };
 		95E80EE020479CA9002AFA8A /* stevenslogo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */; };
 		95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */; };
@@ -34,6 +38,11 @@
 		A752388720771C9600BDA798 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752388620771C9600BDA798 /* Post.swift */; };
 		A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */; };
 		A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7526C42204D0B650014B3AF /* RegisterViewController.swift */; };
+		A75C31A5207FF59B00DDE040 /* SearchDisplayUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */; };
+		A75C31A8207FFA3C00DDE040 /* UserResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */; };
+		A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */; };
+		A75C31AB207FFFD700DDE040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AA207FFFD700DDE040 /* User.swift */; };
+		A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */; };
 		A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */; };
 		A7867752207031480007D585 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7867750207031480007D585 /* VideoTableViewCell.swift */; };
 		A7867753207031480007D585 /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7867751207031480007D585 /* VideoTableViewCell.xib */; };
@@ -68,6 +77,10 @@
 		486DC5956564D76D242F20CC /* Pods-Stevens Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens Social/Pods-Stevens Social.debug.xcconfig"; sourceTree = "<group>"; };
 		74C88C4D976D04B9A4A52BAE /* Pods-Stevens SocialUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stevens SocialUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stevens SocialUITests/Pods-Stevens SocialUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7590A2601539E9766B62E188 /* Pods_Stevens_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stevens_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95372D4620829DC100F177C7 /* CreateExpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExpViewController.swift; sourceTree = "<group>"; };
+		95BDD4CA208293E500532C08 /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
+		95BDD4CC208294F700532C08 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
+		95BDD4CE2082956300532C08 /* ExperienceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceCollectionViewCell.swift; sourceTree = "<group>"; };
 		95C7DA872069F4C600D312BB /* MainVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVideoViewController.swift; sourceTree = "<group>"; };
 		95E80EDD20479CA8002AFA8A /* stevenslogo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stevenslogo2.jpg; path = "Stevens Social/Assets.xcassets/iOS Photos/stevenslogo2.jpg"; sourceTree = "<group>"; };
 		95E80EDE20479CA8002AFA8A /* Stevens_Institute_of_Technology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stevens_Institute_of_Technology.png; path = "Stevens Social/Assets.xcassets/iOS Photos/Stevens_Institute_of_Technology.png"; sourceTree = "<group>"; };
@@ -97,6 +110,11 @@
 		A752388620771C9600BDA798 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A7526C40204CF4E10014B3AF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A7526C42204D0B650014B3AF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDisplayUserViewController.swift; sourceTree = "<group>"; };
+		A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResultTableViewCell.swift; sourceTree = "<group>"; };
+		A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserResultTableViewCell.xib; sourceTree = "<group>"; };
+		A75C31AA207FFFD700DDE040 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		A7867750207031480007D585 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		A7867751207031480007D585 /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -179,6 +197,8 @@
 				A7333F992062FEF30043E9BF /* GoogleService-Info.plist */,
 				A7867750207031480007D585 /* VideoTableViewCell.swift */,
 				A7867751207031480007D585 /* VideoTableViewCell.xib */,
+				A75C31A6207FFA3C00DDE040 /* UserResultTableViewCell.swift */,
+				A75C31A7207FFA3C00DDE040 /* UserResultTableViewCell.xib */,
 			);
 			path = "Stevens Social";
 			sourceTree = "<group>";
@@ -215,6 +235,8 @@
 			children = (
 				A72AF23020715BEC00627103 /* Video.swift */,
 				A752388620771C9600BDA798 /* Post.swift */,
+				A75C31AA207FFFD700DDE040 /* User.swift */,
+				95BDD4CA208293E500532C08 /* Experience.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +253,11 @@
 				A777E67A204A0BEF00AE3D21 /* UserProfileViewController.swift */,
 				A7E588202059DB7F005FACAE /* CreatePostViewController.swift */,
 				95C7DA872069F4C600D312BB /* MainVideoViewController.swift */,
+				A75C31A4207FF59B00DDE040 /* SearchDisplayUserViewController.swift */,
+				A75C31AC20807A1C00DDE040 /* ProfileViewController.swift */,
+				95BDD4CC208294F700532C08 /* ExperienceViewController.swift */,
+				95BDD4CE2082956300532C08 /* ExperienceCollectionViewCell.swift */,
+				95372D4620829DC100F177C7 /* CreateExpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -398,6 +425,7 @@
 				95FBC8F420477AA100059E8A /* Assets.xcassets in Resources */,
 				95E80EE120479CA9002AFA8A /* Stevens_Institute_of_Technology.png in Resources */,
 				95FBC8F220477AA100059E8A /* Main.storyboard in Resources */,
+				A75C31A9207FFA3C00DDE040 /* UserResultTableViewCell.xib in Resources */,
 				95E80EE220479CA9002AFA8A /* stevenslogo.png in Resources */,
 				95E80EE820479E78002AFA8A /* interviewicon.png in Resources */,
 			);
@@ -596,20 +624,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BDD4CF2082956300532C08 /* ExperienceCollectionViewCell.swift in Sources */,
+				95BDD4CD208294F700532C08 /* ExperienceViewController.swift in Sources */,
 				A7C5B2BD204DC34C0065C25B /* PostTableViewCell.swift in Sources */,
 				A7867752207031480007D585 /* VideoTableViewCell.swift in Sources */,
 				95FBC8EF20477AA100059E8A /* LoginViewController.swift in Sources */,
+				95BDD4CB208293E500532C08 /* Experience.swift in Sources */,
 				A7526C41204CF4E20014B3AF /* WelcomeViewController.swift in Sources */,
 				A752388720771C9600BDA798 /* Post.swift in Sources */,
 				A743DFFC206A0565000270E6 /* helper.swift in Sources */,
 				A72AF23120715BEC00627103 /* Video.swift in Sources */,
 				9595AB802064AA1B00CBCB13 /* HomeViewController.swift in Sources */,
 				A777E67B204A0BEF00AE3D21 /* UserProfileViewController.swift in Sources */,
+				A75C31AD20807A1D00DDE040 /* ProfileViewController.swift in Sources */,
 				A7526C43204D0B650014B3AF /* RegisterViewController.swift in Sources */,
+				A75C31A5207FF59B00DDE040 /* SearchDisplayUserViewController.swift in Sources */,
+				95372D4720829DC100F177C7 /* CreateExpViewController.swift in Sources */,
 				A752388520769D6600BDA798 /* AttachmentHandler.swift in Sources */,
 				A752388320768D0600BDA798 /* UploadVideoViewController.swift in Sources */,
 				95FBC8ED20477AA100059E8A /* AppDelegate.swift in Sources */,
+				A75C31AB207FFFD700DDE040 /* User.swift in Sources */,
 				95C7DA882069F4C600D312BB /* MainVideoViewController.swift in Sources */,
+				A75C31A8207FFA3C00DDE040 /* UserResultTableViewCell.swift in Sources */,
 				A7E588212059DB7F005FACAE /* CreatePostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,7 +824,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -804,7 +840,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SocialApp.Stevens-Social";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

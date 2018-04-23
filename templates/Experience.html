@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+      {{username}}
+  </div>
+  <div class = "toolbar col-md-7" align="right">
+    <ul class = "nav navbar-nav">
+      <li>
+           <a href="{{url_for('logout')}}">Logout</a>
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="newQuestion" name="menu" class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+<div class = "content">
+  <h1>Experience</h1>
+  <div class = "addanswers">
+      <h3>Experiences</h3>
+
+           {% for post in experiences %}
+              <form    action="/exvote/{{post._id}}" method="post">
+               <div class="vote">
+                    <button class = "btn" type="submit" name="vote" value="voteup"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <span id = "vote">{{post.votes}}</span>
+                    <button class = "btn" type="submit" name="vote" value="votedown"><span class = "glyphicon glyphicon-thumbs-down"></span></button>
+               </div>
+                    <p><b>{{ post.userid }}</b> answered: {{ post.experience }}</p>
+             </form>
+             <hr>
+           {% endfor %}
+      <h3>Add Experience</h3>
+      <div class="submit">
+        <form action = "/experience/submit" method = "POST" enctype="multipart/form-data">
+          <textarea name="Experience" id="Experience" class = "answer"></textarea><br/><br/>
+          <input type="file" value="Upload File" name="file"/><br/><br/>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
+{% endblock %}

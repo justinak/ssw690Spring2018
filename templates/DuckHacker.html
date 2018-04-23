@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+
+<div class = "header row">
+  <div class = "title col-md-3">
+    <h2>Duck Hacker</h2>
+  </div>
+  <div class = "email col-md-2">
+    {{username}}
+  </div>
+  <div class = "toolbar col-md-7">
+    <ul class = "nav navbar-nav">
+      <li>
+        <a>    </a>
+      </li>
+      <li>
+        <a>    </a>
+      </li>
+      <li>
+        <a>    </a>
+      </li>
+      <li>
+        <a>    </a>
+      </li>
+      <li>
+          <a href="{{url_for('logout')}}">Logout</a>
+      </li>
+    </ul>
+</div>
+</div>
+
+<div class = "menu">
+   <form action ="/menu" method = "post">
+  <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Experience" name="menu" class="btn btn-block">Experience</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="newQuestion" name="menu" class="btn btn-block">New Question</button>
+      </div>
+    </li>
+    <li>
+      <div>
+      <button type="submit" value="Topics" name="menu" class="btn btn-block">Topics</button>
+      </div>
+    </li>
+  </ul>
+  </form>
+</div>
+
+<div class = "content">
+  <h1>Interview Questions</h1>
+  <p>{{question.question}}</p>
+  <div class = "addanswers">
+    <h3>add your answer</h3>
+    <div class="submit">
+    <form action = "{{url_for('handle_data')}}" method = "POST" enctype="multipart/form-data">
+        <textarea name="Solution" id="Solution" class = "answer"></textarea><br/><br/>
+        <input type="file" value="Upload File" name="file" class="btn"/><br/><br/>
+        <button type="submit" value="{{question._id}}" name="quesid" class="btn">Submit</button>
+    </form>
+    </div>
+      <h3>Other Answers</h3>
+
+          {% for post in newcomment %}
+
+             <form    action="/vote/{{post._id}}/{{question._id}}" method="post">
+               <div class="vote">
+                    <button class = "btn" type="submit" name="vote" value="voteup"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <span id = "vote">{{post.votes}}</span>
+                    <button class = "btn" type="submit" name="vote" value="votedown"><span class = "glyphicon glyphicon-thumbs-down"></span></button>
+               </div>
+                    <p><b>{{ post.userid }}</b> answered: {{ post.solution }}</p>
+             </form>
+             <hr>
+
+          {% endfor %}
+
+
+  </div>
+
+</div>
+</div>
+{% endblock %}

@@ -1,12 +1,7 @@
 # Mongo Configuration credentials
 MONGO_DBNAME = 'ssw690spring2018'
-<<<<<<< HEAD:eb-flask/settings.py
-MONGO_HOST  = '34.230.77.217'
-MONGO_PORT  = '27017'
-=======
 MONGO_HOST = '34.230.77.217'
 MONGO_PORT = '27017'
->>>>>>> d730553c445cfeda96d6af2176d3e0a67eae903d:eb_flask/settings.py
 MONGO_USERNAME = 'duck_hacker'
 MONGO_PASSWORD = 'ssw690'
 MONGO_AUTH_MECHANISM = 'MONGODB-CR'
