@@ -8,24 +8,12 @@
     <h2>Duck Hacker</h2>
   </div>
   <div class = "email col-md-2">
-    cthden@stevens.edu
+    {{username}}
   </div>
-  <div class = "toolbar col-md-7">
+  <div class = "toolbar col-md-7" align="right">
     <ul class = "nav navbar-nav">
       <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>Pages</a>
-      </li>
-      <li>
-        <a>My Account</a>
-      </li>
-      <li>
-        <a>Contact</a>
-      </li>
-      <li>
-          <input type = "text" class="form-control">
+           <a href="{{url_for('logout')}}">Logout</a>
       </li>
     </ul>
 </div>
@@ -34,6 +22,11 @@
 <div class = "menu">
    <form action ="/menu" method = "post">
   <ul>
+    <li>
+      <div>
+      <button type="submit" value="Profile" name="menu" class="btn btn-block">Profile</button>
+      </div>
+    </li>
     <li>
       <div>
       <button type="submit" value="Questions" name="menu" class="btn btn-block">Questions</button>
@@ -62,8 +55,9 @@
   <h1>Questions</h1>
   <div class = "addanswers">
       <h3>Add Question</h3>
-        <form action = "/question/submit" method = "POST" enctype="multipart/form-data">
-        <select name="topic">
+    <div class="submit">
+      <form action = "/question/submit" method = "POST" enctype="multipart/form-data">
+        <select name="topic" class="btn">
             <option value="DataAnalysis">Data Analysis</option>
             <!--<option value="Program">Program</option>-->
             <option value="SoftwareEngineering">Software Engineering</option>
@@ -73,8 +67,10 @@
     </select><br/><br/>
         <input type="text" name="title" placeholder="Title"><br/><br/>
         <input type="text" name="question" id="question" class = "answer"/><br/><br/>
-        <input type="submit" value="Submit"/>
-    </form>
+        <button type="submit" value="Submit" class="btn">Submit</button>
+      </form>
+    </div>
   </div>
+</div>
 </div>
 {% endblock %}
