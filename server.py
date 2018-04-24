@@ -465,7 +465,7 @@ def login():
         global session
         session['username'] = username
         if token != None:
-            return redirect(url_for('get_questions'))
+            return redirect(url_for('display_topic'))
 
     return redirect(url_for('web_index'))
 
@@ -559,6 +559,7 @@ def handle_data():
 #########################################################################################################
 @app.route('/question/add')
 def display_add_question():
+
     return render_template('Questions.html', username=session['username'])
 
 ########################################################################################################
@@ -609,11 +610,11 @@ def get_topic_questions():
         if request.form['topic'] == 'Algorithm':
             questions =MongoCalls.find_by_topic('Algorithm')
         elif request.form['topic'] == 'DataAnalysis':
-            questions = MongoCalls.find_by_topic('DataAnalysis')
+            questions = MongoCalls.find_by_topic('Data Analysis')
         elif request.form['topic'] == 'SoftwareEngineering':
             questions = MongoCalls.find_by_topic('Software Engineering')
         elif request.form['topic'] == 'SystemsEngineering':
-            questions = MongoCalls.find_by_topic('System Engineering')
+            questions = MongoCalls.find_by_topic('Systems Engineering')
         elif request.form['topic'] == 'Testing':
             questions = MongoCalls.find_by_topic('Testing')
 
