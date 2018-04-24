@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify, make_response, render_template, redirect, url_for, Session
 from flask_pymongo import PyMongo
 import eb_flask.settings as settings
+from apiclient.discovery import build
 import datetime
 from random import randint
 import boto3
+import argparse
 from botocore.client import Config
 from bson.binary import Binary
 from Firebase_config import User_Unique
@@ -37,23 +39,12 @@ mongo = PyMongo(app)
 def index():
     return render_template('Login.html', title=title)
 
-
-# @app.route('/api/post/video', methods=['POST', 'GET'])
-# def post_video():
-#     """Method use to post video to S3 and store data in database"""
-#
-#     file = request.files['file']
-#     return jsonify(file)
-
-
-
-@app.route('/videos', methods=['GET'])
-def get_all_videos():
+@app.route('/api/videos', methods=['GET'])
+def get_videos_containing_title():
     """Method returns videos that match the search title in the database"""
     output = []
     name = request.args.get('name')
-    print(name)
-    data = mongo.db.Videos.find({'title': name}) # Use find, not find_one
+    data = mongo.db.Videos.find({'name': name}) # Use find, not find_one
     print(data)
     if data:
         for d in data:
@@ -63,6 +54,71 @@ def get_all_videos():
     else:
         return jsonify({'result': output})
 
+@app.route('/api/videos/all', methods=['GET'])
+def get_all_videos():
+    """Method returns all videos from database and youtube"""
+    output = []
+    data = mongo.db.Videos.find() # Use find, not find_one
+    print(data)
+    if data:
+        for d in data:
+            d['_id'] = str(d['_id'])
+            output.append(d)
+
+        # Get youtube videos and add to output list
+        youtube_data = youtube_api()
+        output.extend(youtube_data)
+        return jsonify({'result': output})
+    else:
+        return jsonify({'result': output})
+
+
+# Videos Services
+def youtube_api(query="Stevens Institute of Technology"):
+    """Helper function to the youtube_search"""
+    data = youtube_search(query)
+    return data
+
+
+def youtube_search(query):
+    """Performs youtube search for the search key that's passed"""
+    youtube = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION,
+        developerKey=settings.DEVELOPER_KEY)
+
+    # Arguments to be use to pass to youtube
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--q', help='Search term', default=query)
+    parser.add_argument('--max-results', help='Max results', default=50)
+    args = parser.parse_args()
+
+    # youtube call
+    search_response = youtube.search().list(
+        q=args.q,
+        part='id,snippet',
+        type='video',
+        maxResults=args.max_results
+    ).execute()
+
+    videos = []
+
+    # collect the data from youtube place it in a dictionary and append it to the video list
+    for search_result in search_response.get('items', []):
+        if search_result['id']['kind'] == 'youtube#video':
+            video_data = dict()
+            id = search_result['id']['videoId']
+            title = search_result['snippet']['title']
+            description = search_result['snippet']['description']
+            src = 'https://www.youtube.com/embed/'+id
+            publish_date = search_result['snippet']['publishedAt']
+            video_data['_id'] = str(id)
+            video_data['title'] = title
+            video_data['description'] = description
+            video_data['src'] = src
+            video_data['publish_date'] = publish_date
+            videos.append(video_data)
+            del video_data
+
+    return videos
 
 @app.route('/api/new/user', methods=['POST'])
 def new_user():
@@ -318,7 +374,7 @@ def get_one_user():
 
 
 @app.route('/api/users', methods=['GET'])
-def get_videos_containing_title():
+def get_all_users():
     """Method returns all users containing the title from the database"""
     data = mongo.db.Users
     output = []
@@ -465,7 +521,7 @@ def login():
         global session
         session['username'] = username
         if token != None:
-            return redirect(url_for('get_questions'))
+            return redirect(url_for('display_topic'))
 
     return redirect(url_for('web_index'))
 
@@ -559,6 +615,7 @@ def handle_data():
 #########################################################################################################
 @app.route('/question/add')
 def display_add_question():
+
     return render_template('Questions.html', username=session['username'])
 
 ########################################################################################################
@@ -609,11 +666,11 @@ def get_topic_questions():
         if request.form['topic'] == 'Algorithm':
             questions =MongoCalls.find_by_topic('Algorithm')
         elif request.form['topic'] == 'DataAnalysis':
-            questions = MongoCalls.find_by_topic('DataAnalysis')
+            questions = MongoCalls.find_by_topic('Data Analysis')
         elif request.form['topic'] == 'SoftwareEngineering':
             questions = MongoCalls.find_by_topic('Software Engineering')
         elif request.form['topic'] == 'SystemsEngineering':
-            questions = MongoCalls.find_by_topic('System Engineering')
+            questions = MongoCalls.find_by_topic('Systems Engineering')
         elif request.form['topic'] == 'Testing':
             questions = MongoCalls.find_by_topic('Testing')
 
