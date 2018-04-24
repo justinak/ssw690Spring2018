@@ -39,12 +39,12 @@ mongo = PyMongo(app)
 def index():
     return render_template('Login.html', title=title)
 
-@app.route('/api/videos', methods=['GET'])
+@app.route('/videos', methods=['GET'])
 def get_videos_containing_title():
     """Method returns videos that match the search title in the database"""
     output = []
     name = request.args.get('name')
-    data = mongo.db.Videos.find({'name': name}) # Use find, not find_one
+    data = mongo.db.Videos.find({'title': name}) # Use find, not find_one
     print(data)
     if data:
         for d in data:
