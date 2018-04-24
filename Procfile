@@ -1,1 +1,1 @@
-web: gunicorn ssw690Spring2018:app
+web: gunicorn ssw690spring2018:app
