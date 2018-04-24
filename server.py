@@ -709,4 +709,4 @@ def not_found(error):
 if __name__ == '__main__':
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug=False)
+    app.run(debug=True)
