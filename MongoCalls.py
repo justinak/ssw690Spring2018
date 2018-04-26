@@ -57,7 +57,7 @@ def get_question():
 
 
 def insert_questions(question, title, topic, userid):
-    """insert solutions into the solution collection"""
+    """insert questions into the question collection"""
 
     id = randint(0, 9999)
     try:
@@ -65,7 +65,8 @@ def insert_questions(question, title, topic, userid):
         {
             '_id': id,
             'title': title,
-            "votes": 0,
+            "voteup": 0,
+            "votedown":0,
             "question": question,
             'topic': topic,
             'userid': userid,
@@ -100,7 +101,8 @@ def insert_experience(userid, exp):
             'userid':userid,
             'experience': exp,
             'time': get_time(),
-            "votes":0
+            "voteup":0,
+            "votedown":0
         }
         )
     except Exception as e:
@@ -157,7 +159,8 @@ def insert_solution(solution, quesid,userid, files=None):
             "userid": userid,
             'quesid':quesid,
             "files": files,
-            "votes": 0,
+            "voteup": 0,
+            "votedown":0,
             "solution": solution,
             'time': get_time()
         }
@@ -187,7 +190,7 @@ def increase_count(post_id):
 
     try:
         solution = table.find_one({'_id': int(post_id)})
-        votes = solution['votes']
+        votes = solution['voteup']
 
     except Exception as e:
         print('Error finding element : {}'.format(e))
@@ -197,7 +200,7 @@ def increase_count(post_id):
     try:
         db.Solution.update_one(
         {'_id': int(post_id)},
-        {"$set":{"votes" : new_vote}
+        {"$set":{"voteup" : new_vote}
           }
         )
     except Exception as e:
@@ -211,16 +214,16 @@ def decrease_count(post_id):
 
     try:
         solution = table.find_one({'_id': int(post_id)})
-        votes = solution['votes']
+        votes = solution['votedown']
 
     except Exception as e:
         print('Error finding element : {}'.format(e))
 
-    new_vote = int(votes) - 1
+    new_vote = int(votes) + 1
     try:
         db.Solution.update_one(
             {'_id': int(post_id)},
-            {"$set": {"votes" : new_vote}
+            {"$set": {"votedown" : new_vote}
              }
         )
     except Exception as e:
@@ -234,7 +237,7 @@ def ex_increase_count(post_id):
 
     try:
         Experience = table.find_one({'_id': int(post_id)})
-        votes = Experience['votes']
+        votes = Experience['voteup']
 
     except Exception as e:
         print('Error finding element : {}'.format(e))
@@ -244,7 +247,7 @@ def ex_increase_count(post_id):
     try:
         db.Experience.update_one(
         {'_id': int(post_id)},
-        {"$set":{"votes" : new_vote}
+        {"$set":{"voteup" : new_vote}
           }
         )
     except Exception as e:
@@ -258,16 +261,16 @@ def ex_decrease_count(post_id):
 
     try:
         Experience = table.find_one({'_id': int(post_id)})
-        votes = Experience['votes']
+        votes = Experience['votedown']
 
     except Exception as e:
         print('Error finding element : {}'.format(e))
 
-    new_vote = int(votes) - 1
+    new_vote = int(votes) + 1
     try:
         db.Experience.update_one(
             {'_id': int(post_id)},
-            {"$set": {"votes" : new_vote}
+            {"$set": {"votedown" : new_vote}
              }
         )
     except Exception as e:

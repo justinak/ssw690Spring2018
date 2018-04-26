@@ -1,4 +1,201 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <!-- Bootstrap -->
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <style>
+  .imagesize {
+              max-width: 200px;
+              max-height: 200px;
+          }
+
+  .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+  }
+
+  .title {
+      color: grey;
+      font-size: 18px;
+  }
+
+  a {
+      text-decoration: none;
+      font-size: 22px;
+      color: black;
+  }
+
+  div.container {
+      width: 100%;
+  }
+
+  .header {
+      padding: 0;
+      color: white;
+      background-color: rgb(69,69,69);
+      clear: both;
+      font-size: 16px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+  }
+
+  .header ul li {
+      display: inline;
+      margin-left: 20px;
+  }
+  a {
+      text-decoration: none;
+      color:white;
+  }
+  .toolbar ul{
+      list-style-type: none;
+  }
+  .content {
+      margin-right: 170px;
+      padding: 1em;
+      overflow: hidden;
+      margin-right: 170px;
+      font-size: 14px;
+  }
+
+  .menu {
+      float: right;
+      max-width: 220px;
+      border-left: 1px solid gray;
+      padding: 1em;
+  }
+
+  .menu ul {
+      list-style-type: none;
+  }
+  .menu button {
+      color:white;
+      background-color: rgb(168,38,56);
+  }
+
+  .menu li div {
+      height: 50px;
+  }
+  .menu_topic {
+      float: center;
+      max-width: 500px;
+      padding: 1em;
+  }
+  .menu_topic ul {
+      list-style-type: none;
+  }
+  .menu_topic button {
+      color:white;
+      background-color: rgb(168,38,56);
+  }
+
+  .menu_topic li div {
+      height: 50px;
+  }
+  .answer {
+      width:500px;
+      height: 180px;
+  }
+
+  .new-question{
+      margin-left: 60px;
+  }
+
+  .QTitle {
+      margin: 20px;
+  }
+
+  .QTag {
+      margin: 20px;
+  }
+
+  .QDescription {
+      margin: 20px;
+  }
+  .question-title{
+      width: 600px;
+      height:60px;
+  }
+
+  .question-tags {
+      width:600px;
+      height: 50px;
+  }
+  .question-description {
+      width: 600px;
+      height: 100px;
+  }
+
+  .post-question {
+      margin: 20px;
+  }
+
+  .post {
+      background-color: rgb(168,38,56);
+      color: white;
+  }
+
+  .answer {
+      width:500px;
+      height: 180px;
+  }
+
+  .submit{
+      margin-top: 20px;
+  }
+
+  .submit button {
+      background-color:rgb(168,38,56);
+      color:white;
+  }
+
+  .vote{
+      width: 120px;
+      float: left;
+  }
+
+  .vote button{
+      background-color: rgb(214, 110, 110)
+  }
+
+  .answer1 {
+      margin-top: 10px;
+      background-color:white;
+      padding: 10px;
+  }
+  .question {
+      background-color: white;
+      padding:10px;
+  }
+  .addanswers {
+      background-color: white;
+      margin-top: 10px;
+      padding: 10px;
+  }
+
+  .upicture{
+    height: 30px;
+    width: 30px;
+  }
+
+  .user{
+    margin-bottom: 10px;
+  }
+  .time {
+    color: gray;
+    clear: left;
+    margin-top:20px;
+  }
+</style>
+</head>
+<body>
 
 {% block body %}
 <div class="container" xmlns="http://www.w3.org/1999/html">
@@ -93,3 +290,6 @@
   </div>
 </div>
 {% endblock %}
+</div>
+</body>
+</html>
