@@ -20,29 +20,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var postsArray:[Post] = []
     var uName: String?
-    var uPhoto: UIImage?
     
     var userName: String?
     var userImage: UIImage?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         postsArray.removeAll()
-
         self.fetchData()
-        self.runGetRequestForUserPhoto()
-
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         postTableView.delegate = self
         postTableView.dataSource = self
-        
-        self.postTableView.reloadData()
+        self.fetchData()
         self.configureTableView()
+
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,10 +57,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let quackCount = post.likes.count
         cell.postBody!.text = post.text
         cell.postName!.text = post.created_by
-        cell.quackCount!.text = "\(quackCount)"
+//        cell.quackCount!.text = "\(quackCount)"
         cell.avatarImageView.contentMode = UIViewContentMode.scaleAspectFit
-
-        cell.avatarImageView!.image = uPhoto
+        let imageUrl:URL = URL(string: post.image!)!
+        let imageData:NSData = NSData(contentsOf: imageUrl)!
+        let image = UIImage(data: imageData as Data)
+        cell.avatarImageView!.image = image
         
         return cell
         
@@ -73,16 +71,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        postsArray.removeAll()
     }
 
     // fetch data from get api
     func fetchData() {
+       var userPhoto: String?
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 self.userEmail.text = user.email
 
                 let params: Parameters = ["uuid": (user.uid)]
-                Alamofire.request("http://localhost:5000/api/get/timeline", parameters: params).responseJSON { response in                    
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/get/timeline", parameters: params).responseJSON { response in
                     if (response.result.error != nil) {
                         print(response.result.error!)
                     }
@@ -97,48 +97,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let likes: Array<Any> = subJson["likes"].array!
                             let created_by: String = subJson["created_by"].stringValue
                             
-                            self.postsArray.append(Post(_id: id, text: text, image: nil, uuid: uid, likes: likes, created_by: created_by))
+                            // 2nd api call to get user photos
+                            let param: Parameters = ["uuid": uid] // replace string with Firebase uid!
+                            Alamofire.request("https://stevens-social-app.herokuapp.com/api/user/getone", parameters: param).responseJSON { response in
+                                if (response.result.error != nil) {
+                                    print(response.result.error!)
+                                }
+                                
+                                if let value = response.result.value {
+                                    let json2 = JSON(value)
+                        
+                                    userPhoto = json2["result"][0]["photo"].stringValue
+
+                                    self.postsArray.append(Post(_id: id, text: text, image: userPhoto, uuid: uid, likes: likes, created_by: created_by))
+
+                                } // end second if statement
+
+                                DispatchQueue.main.async {
+                                    self.postTableView.reloadData()
+                                }
+                            } // end second request
                             
-                        }
-                        DispatchQueue.main.async {
-                            self.postTableView.reloadData()
-                        }
-                        print(self.postsArray)
+
+                        } // end first for loop
+                    
                     }
                 } // end alamofire request
             }
         }
-    }
-    
-    func runGetRequestForUserPhoto() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if let user = user {
-                let params: Parameters = ["uuid": (user.uid)] // replace string with Firebase uid!
-                Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
-                    
-                    if (response.result.error != nil) {
-                        print(response.result.error!)
-                    }
-                    
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                        var photo: String?
-                        for (_, subJson) in json["result"] {
-                            print(subJson)
-                            photo = subJson["photo"].stringValue
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.postTableView.reloadData()
-                            let imageUrl:URL = URL(string: photo!)!
-                            let imageData:NSData = NSData(contentsOf: imageUrl)!
-                            let image = UIImage(data: imageData as Data)
-                            self.uPhoto = image
-                        }
-                    }
-                } // request ends
-            }
-        }
+        print("###################")
+        print(self.postsArray)
     }
     
     @IBAction func logOutPressed(_ sender: Any) {

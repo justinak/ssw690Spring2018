@@ -31,7 +31,6 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciD-Zy-Pwu">
                         <rect key="frame" x="103" y="143" width="40" height="30"/>
-                        <color key="backgroundColor" red="0.61032626300000004" green="0.1330445891" blue="0.16149323669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Share">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
@@ -41,7 +40,6 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0q-XU-PIe">
                         <rect key="frame" x="238" y="143" width="52" height="30"/>
-                        <color key="backgroundColor" red="0.61032626300000004" green="0.1330445891" blue="0.16149323669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Quacks">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>

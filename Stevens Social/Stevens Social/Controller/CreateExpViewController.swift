@@ -19,7 +19,7 @@ class CreateExpViewController: UIViewController {
     
     @IBAction func postButton(_ sender: Any) {
         if expPost?.text != "" {
-            let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/experiences", customMethod: "POST")
+            let myAPI = API(customRoute: "https://stevens-social-app.herokuapp.com/api/new/experiences", customMethod: "POST")
             myAPI.sendRequest(parameters: ["experience": self.expPost!.text!, "userid": userID])
             
         } else {

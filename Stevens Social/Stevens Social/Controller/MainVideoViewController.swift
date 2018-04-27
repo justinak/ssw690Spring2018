@@ -132,7 +132,7 @@ class MainVideoViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func getTitle(title: String) {
         let params: Parameters = ["name": title]
-        Alamofire.request("http://localhost:5000/videos", parameters: params).responseJSON { response in
+        Alamofire.request("https://stevens-social-app.herokuapp.com/videos", parameters: params).responseJSON { response in
 
             if (response.result.error != nil) {
                 print(response.result.error!)

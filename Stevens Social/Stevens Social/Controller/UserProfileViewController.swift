@@ -84,7 +84,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
-                Alamofire.request("http://localhost:5000/api/posts/get", parameters: params).responseJSON { response in
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/posts/get", parameters: params).responseJSON { response in
                     
                     if (response.result.error != nil) {
                         print(response.result.error!)
@@ -120,7 +120,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
-                Alamofire.request("http://localhost:5000/api/user/getone", parameters: params).responseJSON { response in
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/user/getone", parameters: params).responseJSON { response in
                     
                     if (response.result.error != nil) {
                         print(response.result.error!)

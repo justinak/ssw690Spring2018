@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func fetchData(){
         // Search for posts based on created_by field
         let params: Parameters = ["created_by": self.data] //
-        Alamofire.request("http://localhost:5000/api/posts/get-username", parameters: params).responseJSON { response in
+        Alamofire.request("https://stevens-social-app.herokuapp.com/api/posts/get-username", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
                 print(response.result.error!)
@@ -128,7 +128,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Search for posts based on created_by field
         let params: Parameters = ["username": self.data]
         var bio: String = ""
-        Alamofire.request("http://localhost:5000/api/users", parameters: params).responseJSON { response in
+        Alamofire.request("https://stevens-social-app.herokuapp.com/api/users", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
                 print(response.result.error!)
@@ -171,7 +171,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 ]
             
             
-                Alamofire.request("http://localhost:5000/api/follow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/follow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
             }
 
         }
@@ -185,7 +185,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     "foreign_uuid": self.foreignUid!
                 ]
                 
-                Alamofire.request("http://localhost:5000/api/unfollow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/unfollow", method: .put, parameters: parameters, encoding: JSONEncoding.default)
             }
         }
         
@@ -195,7 +195,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 let params: Parameters = ["uuid": user.uid] // replace string with Firebase uid!
-                Alamofire.request("http://localhost:5000/api/get/follow", parameters: params).responseJSON { response in
+                Alamofire.request("https://stevens-social-app.herokuapp.com/api/get/follow", parameters: params).responseJSON { response in
                     
                     if (response.result.error != nil) {
                         print(response.result.error!)
