@@ -20,7 +20,7 @@ class ExperienceViewController: UIViewController, UICollectionViewDataSource, UI
 
         ExperiencePosts.removeAll()
 
-        Alamofire.request("http://127.0.0.1:5000/api/get/experiences").responseJSON { response in
+        Alamofire.request("https://stevens-social-app.herokuapp.com/api/get/experiences").responseJSON { response in
             //print("Request: \(String(describing: response.request))")   // original url request
             //print("Response: \(String(describing: response.response))") // http url response
             //print("Result: \(response.result)")

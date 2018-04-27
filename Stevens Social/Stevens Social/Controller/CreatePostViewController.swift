@@ -43,7 +43,7 @@ class CreatePostViewController: UIViewController, UITextFieldDelegate, UITableVi
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 if self.postBody?.text != "" {
-                    let myAPI = API(customRoute: "http://127.0.0.1:5000/api/new/post", customMethod: "POST")
+                    let myAPI = API(customRoute: "https://stevens-social-app.herokuapp.com/api/new/post", customMethod: "POST")
                     myAPI.sendRequest(parameters: ["uuid": user.uid, "text": self.postBody!.text!]) // insert real uuid from firebase
                 } else {
                     print("Please enter text in the Post Box!")

@@ -78,7 +78,7 @@ class UploadVideoViewController: UIViewController, UIImagePickerControllerDelega
                 for (key, value) in parameters {
                     MultipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
                 }
-            },to:"http://127.0.0.1:5000/api/post/video"){ (result) in
+            },to:"https://stevens-social-app.herokuapp.com/api/post/video"){ (result) in
                 switch result {
                 case .success(let upload, _, _):
                     upload.uploadProgress(closure: { (progress) in

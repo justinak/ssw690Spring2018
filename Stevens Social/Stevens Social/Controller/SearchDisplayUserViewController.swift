@@ -87,7 +87,7 @@ class SearchDisplayUserViewController: UIViewController, UITableViewDataSource, 
     
     func getUser(name: String) {
         let params: Parameters = ["username": name]
-        Alamofire.request("http://localhost:5000/api/users", parameters: params).responseJSON { response in
+        Alamofire.request("https://stevens-social-app.herokuapp.com/api/users", parameters: params).responseJSON { response in
             
             if (response.result.error != nil) {
                 print(response.result.error!)
