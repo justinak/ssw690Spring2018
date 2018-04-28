@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <!-- Bootstrap -->
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="/static/main.css">
-  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-
+{% extends 'base.html' %}
 {% block body %}
 <div class="container" xmlns="http://www.w3.org/1999/html">
 
@@ -96,13 +84,8 @@
              </form>
              <hr>
 
-          {% endfor %}
-
+    </div>
 
   </div>
-
-</div>
-</div>
-{% endblock %}
-</body>
-</html>
+  </div>
+{% endfor %}
